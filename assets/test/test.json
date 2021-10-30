@@ -1,0 +1,50 @@
+{
+    "BPM": 0,
+    "offset": 0,
+    "notes": [
+        {
+            "track": 0,
+            "targetTime": 0
+        },
+        {
+            "track": 1,
+            "targetTime": 0
+        },
+        {
+            "track": 2,
+            "targetTime": 0
+        },
+        {
+            "track": 3,
+            "targetTime": 0
+        },
+        {
+            "track": 0,
+            "targetTime": 250
+        },
+        {
+            "track": 1,
+            "targetTime": 375
+        },
+        {
+            "track": 2,
+            "targetTime": 500
+        },
+        {
+            "track": 3,
+            "targetTime": 750
+        },
+        {
+            "track": 2,
+            "targetTime": 1000
+        },
+        {
+            "track": 1,
+            "targetTime": 1250
+        },
+        {
+            "track": 0,
+            "targetTime": 1500
+        }
+    ]
+}
