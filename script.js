@@ -63,5 +63,5 @@ phina.main(()=>{
          app.enableStats();
         app.run();
     });
-select("canvas").style.display="";
+select("canvas").style.display="unset";
 }
