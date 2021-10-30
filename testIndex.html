@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>MusicGame</title>
+</head>
+
+<body>
+
+    <div class="main">
+        <hr id="topbar">
+        <hr id="bottombar">
+        <div id="topframe">
+            <h1 id="pagetitle">Home</h1>
+            <h1 id="username">UserName</h1>
+            <h2 id="userlevel">Lv.1</h1>
+            <h2 id="userrating">00.00</h1>
+        </div>
+        <div id="mainframe">
+            <div class="Homepage">
+                <img src="./src/img/config.png" alt="" style="position: absolute;height: 48px;width: 48px;top: 4px;right: 4px;" onclick="switchpage('Settings')">
+            </div>
+            <div class="Settingspage">
+                <div style="position: absolute; top: 48px; width: 100vw;">
+                    <h1>User Name</h1>
+                    <input type="text" style="height: 2em; width: 60%; text-align: center; font-size: 1.5em;border-radius: 4px;background-color: rgba(150, 150, 150, 0.4);border:none;border-bottom: 2px solid #03a7eb; color: whitesmoke;">
+                </div>
+                <div style="position: absolute; top: 148px; width: 100vw;" class="valuesetting">
+                    <h1>Notes Speed</h1>
+                    <img src="./src/img/Left.png" alt="">
+                    <img src="./src/img/Plus.png" alt="">
+                    <h1 style="width: 2em;vertical-align: super;">10</h1>
+                    <img src="./src/img/Minus.png" alt="">
+                    <img src="./src/img/Right.png" alt="">
+                </div>
+                <div style="position: absolute; top: 248px; width: 100vw;" class="valuesetting">
+                    <h1>Music Volume</h1>
+                    <img src="./src/img/Left.png" alt="">
+                    <img src="./src/img/Plus.png" alt="">
+                    <h1 style="width: 2em;vertical-align: super;">100</h1>
+                    <img src="./src/img/Minus.png" alt="">
+                    <img src="./src/img/Right.png" alt="">
+                </div>
+                <div style="position: absolute; top: 348px; width: 100vw;" class="valuesetting">
+                    <h1>Sound Effects Volume</h1>
+                    <img src="./src/img/Left.png" alt="">
+                    <img src="./src/img/Plus.png" alt="">
+                    <h1 style="width: 2em;vertical-align: super;">100</h1>
+                    <img src="./src/img/Minus.png" alt="">
+                    <img src="./src/img/Right.png" alt="">
+                </div>
+                <img src="./src/img/Floppy.png" alt="" style="position: absolute;height: 48px;width: 48px;bottom: 4px;left: 4px;" onclick="saveDB();setUserParams()">
+                <span style="font-size:36px;position: absolute;height: 48px;width: 72px;bottom: 4px;left: 56px;" onclick="saveDB();setUserParams()">保存</span>
+            </div>
+        </div>
+        <div id="bottomframe">
+            <div class="Homepage">
+                <input type="file"id="jsonfile">
+                <container style="position: absolute;top: 0;right: 12px;">
+                    <img src="./src/img/Cursor.png" alt> <span>選択</span>
+                </container>
+            </div>
+            <div class="Settingspage">
+                <container style="position: absolute;top: 0;right: 12px;">
+                    <img src="./src/img/Cursor.png" alt> <span>選択</span>
+                </container>
+                <container style="position: absolute;top: 0;right: 140px;">
+                    <img src="./src/img/Esc.png" alt=""><span>戻る</span>
+                </container>
+                <container style="position: absolute;top: 0;right: 268px;">
+                    <img src="./src/img/Ctrl.png" alt="" style="margin-right: 4px;"><img src="./src/img/S.png" alt=""><span>保存</span>
+                </container>
+            </div>
+        </div>
+    </div>
+    <script src="./src/shortcut.js"></script>
+    <script src="./src/fps.js"></script>
+    <script src="script.js"></script>
+    <script type="text/javascript">
+        phina.globalize();
+    </script>
+    <script src="./src/config.js"></script>
+    <script src="./src/components.js"></script>
+    <script src="./src/mainscene.js"></script>
+    <script src="./src/titlescene.js"></script>
+    
+</body>
+
+</html>
