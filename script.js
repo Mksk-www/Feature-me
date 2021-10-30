@@ -1,8 +1,3 @@
-const { ipcRenderer } = require('electron')
-//const Keyv = require('keyv')
-const phina = require('phina.js');
-//const UserDB = new Keyv('sqlite://db.sqlite',{table:"userData"})
-//const RatingDB = new Keyv('sqlite://db.sqlite', { table: "Rating" })
 let userData = {};
 let RatingData = {}
 let activePage="";
@@ -22,35 +17,10 @@ shortcut.add('ctrl+s', () => {
         setUserParams();
     }
 })
-async function closeWindow(params) {
-    //await saveDB();
-    window.close()
-}
-
-function maximize() {
-    ipcRenderer.send('maximize')
-}
-
-function minimize() {
-    ipcRenderer.send('minimize')
-}
-
 function select(elem) {
     return document.querySelector(elem);
 }
 
-/* async function GetDB(params) {
-    userData = (await UserDB.get('userdata')) || {
-        UserName: "UserName",
-        UserLevel: 1,
-        UserRating: "00.00"
-    }
-    RatingData = (await RatingDB.get('userrating')) || {
-        Recent: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-        Best: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    }
-}
- */
 function setUserParams(params) {
     /* select("#username").textContent = userData.UserName;
     select("#userlevel").textContent = "Lv."+userData.UserLevel;
@@ -73,7 +43,10 @@ window.addEventListener("load",async()=>{
     document.querySelectorAll('img').forEach(e=>e.setAttribute('draggable','false'))
     //await GetDB();
     setUserParams();
-    phina.main(()=>{
+})
+
+function run(){
+phina.main(()=>{
         var app = GameApp({
             assets: ASSETS,
             font: {
@@ -90,5 +63,4 @@ window.addEventListener("load",async()=>{
          app.enableStats();
         app.run();
     });
-
-})
+}
