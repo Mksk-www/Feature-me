@@ -108,6 +108,7 @@ const musicList = [
 		beatmap:"./assets/feat_you/beatmap.json",
 		bpm:120,
 		lev:14,
+		duration:"01:33"
 		diff:"master",
 		nd:"Raetan",
 	}/* ,
