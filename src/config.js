@@ -75,7 +75,7 @@ const musicList = [
 		music:"./assets/ラエルの歌/ラエルの歌.mp3",
 		beatmap:"./assets/ラエルの歌/beatmap.json",
 		bpm:60,
-		lev:15,
+		lev:13,
 		diff:"expert",
 		nd:"Raetan",
 		duration:"00:20",
@@ -108,7 +108,7 @@ const musicList = [
 		beatmap:"./assets/feat_you/beatmap.json",
 		bpm:120,
 		lev:14,
-		duration:"01:33"
+		duration:"01:33",
 		diff:"master",
 		nd:"Raetan",
 	}/* ,
