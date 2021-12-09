@@ -312,7 +312,7 @@ height: calc(100vh - 122px)!important;
 }
 #result>div>h1{
     font-size: 96px;
-		line-height:  calc(calc(100vh - 122px - 64px)*0.5 - 0.775em);
+		line-height:  calc(calc(100vh - 122px - 64px)*0.5 - 0.5em);
 }
 .button{
     border-radius: 8px;
