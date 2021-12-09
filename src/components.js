@@ -11,15 +11,15 @@ phina.define('UnitIcon', {
             strokeWidth: MARKER_STROKE_WIDTH,
             stroke: false,
             fill: "aqua",
-            width:160,
-            height:5.75,
+            width:240,
+            height:12.5,
         });
         this.setInteractive(true);
         this.id = id;
     },
 
-    fireEffect: function () {
-        EffectWave().addChildTo(this);
+    fireEffect: function (color) {
+        EffectWave(color).addChildTo(this);
     },
 
 });
@@ -31,14 +31,14 @@ phina.define('UnitIcon', {
 phina.define('TargetMarker', {
     superClass: 'phina.display.RectangleShape',
 
-    init: function (targetTime, trackId, type) {
+    init: function (targetTime, trackId, color="#f5f5f5cc") {
         this.superInit({
             
-            strokeWidth: MARKER_STROKE_WIDTH,
+            strokeWidth: 3,
             stroke: false,
-            fill: "whitesmoke",
-            height:5,
-            width:155
+            fill: color,
+            height:(color=="#eabc02cc"?30:10),
+            width:(color=="#eabc02cc"?240*4:235)
         });
 
         this.visible = false;
@@ -73,6 +73,10 @@ phina.define('TargetMarker', {
                 this.vector = phina.geom.Vector2(
                     0.62, 1
                 );
+						case 4 :
+                this.vector = phina.geom.Vector2(
+                    0, 1
+                );
                 break;
             default:
                 this.vector = phina.geom.Vector2(
@@ -103,7 +107,7 @@ phina.define('EffectWave', {
         this.superInit({
             radius: MARKER_RADIUS,
             stroke: false,
-            fill: "white",
+            fill: options+"80",
         });
 
         this.tweener
@@ -131,7 +135,7 @@ phina.define('RateLabel', {
     init: function (textParam) {
         this.superInit({
             text: textParam.text,
-            fontSize: 48,
+            fontSize: 36,
             strokeWidth: 1,
             fill: textParam.fill,
             stroke: "white",
@@ -148,6 +152,10 @@ phina.define('RateLabel', {
             }, this);
     },
 });
+
+/**
+ * FAST/LATEラベル
+ */
 phina.define('FLLabel', {
     superClass: 'phina.display.Label',
 
@@ -171,3 +179,35 @@ phina.define('FLLabel', {
             }, this);
     },
 });
+
+/**
+ * スコア加算量
+ */
+
+phina.define('Additions',{
+	superClass:"phina.display.Label",
+
+	init:function(score,backgroundColor){
+		this.superInit({
+			text: `+${Math.round(score)}`,
+    	align: "left",
+    	stroke: false,
+    	fill: "#aaa",
+			backgdjfkfdjfjkdfjkdfjkdfkdjround:backgroundColor,
+    	strokeWidth: 2,
+    	fontSize: 24,
+    	fontFamily: "Montserrat",
+		});
+		
+		this.tweener
+    .set({ scaleX: 0.2, scaleY: 0.2, alpha: 0 })
+    .to({ scaleX: 1, scaleY: 1, alpha: 1 }, 130, "easeOutCirc")
+    .wait(250)
+    .to({ alpha: 0 }, 100)
+    .call(function () {
+    	this.remove();
+    }, this);
+	}
+
+})
+

@@ -1,0 +1,358 @@
+{
+    "BPM":60,
+    "offset":  1000,
+		"duration":20000,
+		"title":"ラエルの歌(笑)",
+    "notes": [
+        {
+            "track": 1,
+            "count": 1
+        },
+				{
+            "track": 2,
+            "count": 1
+        },
+				{
+            "track": 0,
+            "count": 1.25
+        },
+				{
+            "track": 3,
+            "count": 1.25
+        },
+				{
+            "track": 2,
+            "count": 1.5
+        },
+				{
+            "track": 3,
+            "count": 1.5
+        },
+				{
+            "track": 0,
+            "count": 1.75
+        },
+				{
+            "track": 1,
+            "count": 1.75
+        },
+				{
+            "track": 1,
+            "count": 2
+        },
+				{
+            "track": 3,
+            "count": 2
+        },
+				{
+            "track": 0,
+            "count": 2.5
+        },
+				{
+            "track": 2,
+            "count": 2.5
+        },
+				{
+            "track": 1,
+            "count": 3
+        },
+				{
+            "track": 2,
+            "count": 3.0625
+        },
+				{
+            "track": 1,
+            "count": 3.125
+        },
+				{
+            "track": 2,
+            "count": 3.1875
+        },
+				{
+            "track": 1,
+            "count": 3.25
+        },
+				{
+            "track": 0,
+            "count": 3.5
+        },
+				{
+            "track": 2,
+            "count": 3.625
+        },
+				{
+            "track": 1,
+            "count": 3.75
+        },
+				{
+            "track": 3,
+            "count": 3.875
+        },
+				{
+            "track": 1,
+            "count": 4
+        },
+				{
+            "track": 3,
+            "count": 5
+        },
+				{
+            "track": 2,
+            "count": 5.25
+        },
+				{
+            "track": 1,
+            "count": 5.25
+        },
+				{
+            "track": 3,
+            "count": 5.5
+        },
+				{
+            "track": 1,
+            "count": 5.75
+        },
+				{
+            "track": 3,
+            "count": 6
+        },
+				{
+            "track": 0,
+            "count": 6.25
+        },
+				{
+            "track": 2,
+            "count": 6.5
+        },
+				{
+            "track": 1,
+            "count": 6.75
+        },
+				{
+            "track": 3,
+            "count": 7
+        },
+				{
+            "track": 2,
+            "count": 7.25
+        },
+				{
+            "track": 0,
+            "count": 7.25
+        },
+				{
+            "track": 3,
+            "count": 7.5
+        },
+				{
+            "track": 1,
+            "count": 7.5
+        },
+				{
+            "track": 3,
+            "count": 8
+        },
+				{
+            "track": 0,
+            "count": 9
+        },
+				{
+            "track": 1,
+            "count": 9.25
+        },
+				{
+            "track": 2,
+            "count": 9.5
+        },
+				{
+            "track": 3,
+            "count": 9.75
+        },
+				{
+            "track": 0,
+            "count": 10
+        },
+				{
+            "track": 1,
+            "count": 10.25
+        },
+				{
+            "track": 2,
+            "count": 10.5
+        },
+				{
+            "track": 3,
+            "count": 10.75
+        },
+				{
+            "track": 0,
+            "count": 11
+        },
+				{
+            "track": 2,
+            "count": 11.125
+        },
+				{
+            "track": 1,
+            "count": 11.25
+        },
+				{
+            "track": 3,
+            "count": 11.375
+        },
+				{
+            "track": 0,
+            "count": 11.5
+        },
+				{
+            "track": 2,
+            "count": 11.675
+        },
+				{
+            "track": 1,
+            "count": 11.75
+        },
+				{
+            "track": 3,
+            "count": 11.875
+        },
+				{
+            "track": 0,
+            "count": 12
+        },
+				{
+            "track": 2,
+            "count": 12.125
+        },
+				{
+            "track": 1,
+            "count": 12.25
+        },
+				{
+            "track": 3,
+            "count": 12.375
+        },
+				{
+            "track": 0,
+            "count": 12.5
+        },
+				{
+            "track": 2,
+            "count": 12.675
+        },
+				{
+            "track": 1,
+            "count": 12.75
+        },
+				{
+            "track": 3,
+            "count": 12.875
+        },
+				{
+            "track": 0,
+            "count": 13
+        },
+				{
+            "track": 1,
+            "count": 13.125
+        },
+				{
+            "track": 3,
+            "count": 13.25
+        },
+				{
+            "track": 2,
+            "count": 13.375
+        },
+				{
+            "track": 0,
+            "count": 13.5
+        },
+				{
+            "track": 1,
+            "count": 13.675
+        },
+				{
+            "track": 3,
+            "count": 13.75
+        },
+				{
+            "track": 2,
+            "count": 13.875
+        },
+				{
+            "track": 0,
+            "count": 14
+        },
+				{
+            "track": 1,
+            "count": 14
+        },
+				{
+            "track": 0,
+            "count": 14.5
+        },
+				{
+            "track": 2,
+            "count": 14.5
+        },
+				{
+            "track": 1,
+            "count": 14.25
+        },
+				{
+            "track": 3,
+            "count": 14.25
+        },
+				{
+            "track": 0,
+            "count": 15
+        },
+				{
+            "track": 2,
+            "count": 15.125
+        },
+				{
+            "track": 1,
+            "count": 15.25
+        },
+				{
+            "track": 3,
+            "count": 15.375
+        },
+				{
+            "track": 0,
+            "count": 15.5
+        },
+				{
+            "track": 2,
+            "count": 15.675
+        },
+				{
+            "track": 1,
+            "count": 15.75
+        },
+				{
+            "track": 3,
+            "count": 15.875
+        },
+				{
+            "track": 0,
+            "count": 16
+        },
+				{
+            "track": 2,
+            "count": 16
+        },
+				{
+            "track": 1,
+            "count": 16
+        },
+				{
+            "track": 3,
+            "count": 16
+        }
+
+
+    ]
+}

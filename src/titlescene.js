@@ -5,18 +5,19 @@
 phina.define('TitleScene', {
     superClass: 'phina.display.DisplayScene',
 
-    init: function (params) {
+    init: async function (params) {
         this.superInit(params);
         this.backgroundColor = params.backgroundColor;
-
+				this.AM = phina.asset.AssetManager;
+				this.metadata = this.AM.get('json', 'beatmap').data;
         // タイトルラベル
         Label({
-            text: "MusicGame",
+            text: this.metadata.title,
             fill: "white",
             stroke: "#2F3CEC",
             strokeWidth: 6,
-            fontSize: 100,
-            fontFamily: "IBMPlex"
+            fontSize: 72,
+            fontFamily: "Montserrat"
         })
             .setPosition(this.gridX.center(), this.gridY.span(6))
             .addChildTo(this)
@@ -26,8 +27,8 @@ phina.define('TitleScene', {
             fill: "white",
             stroke: "#2F3CEC",
             strokeWidth: 6,
-            fontSize: 64,
-            fontFamily: "IBMPlex"
+            fontSize: 48,
+            fontFamily: "Montserrat"
         })
             .setPosition(this.gridX.center(), this.gridY.span(12))
             .addChildTo(this);
@@ -55,7 +56,9 @@ phina.define('TitleScene', {
                 this.exit();
             });
         });
-
+			await sleep(1000);
+			this.exit();
+			closeMusicModal();
     },
 
 });

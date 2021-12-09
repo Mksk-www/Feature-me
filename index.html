@@ -1,93 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>MusicGame</title>
+    <title>Feature Me Alpha</title>
+
 </head>
 
 <body>
-    <div class="main">
-        <hr id="topbar">
-        <hr id="bottombar">
-        <div id="topframe">
-            <h1 id="pagetitle">Home</h1>
-            <h1 id="username">UserName</h1>
-            <h2 id="userlevel">Lv.1</h1>
-            <h2 id="userrating">00.00</h1>
-        </div>
-        <div id="mainframe">
-            <div class="Homepage">
-                <img src="./src/img/config.png" alt="" style="position: absolute;height: 48px;width: 48px;top: 4px;right: 4px;" onclick="switchpage('Settings')">
-            </div>
-            <div class="Settingspage">
-                <div style="position: absolute; top: 48px; width: 100vw;">
-                    <h1>User Name</h1>
-                    <input type="text" style="height: 2em; width: 60%; text-align: center; font-size: 1.5em;border-radius: 4px;background-color: rgba(150, 150, 150, 0.4);border:none;border-bottom: 2px solid #03a7eb; color: whitesmoke;">
-                </div>
-                <div style="position: absolute; top: 148px; width: 100vw;" class="valuesetting">
-                    <h1>Notes Speed</h1>
-                    <img src="./src/img/Left.png" alt="">
-                    <img src="./src/img/Plus.png" alt="">
-                    <h1 style="width: 2em;vertical-align: super;">10</h1>
-                    <img src="./src/img/Minus.png" alt="">
-                    <img src="./src/img/Right.png" alt="">
-                </div>
-                <div style="position: absolute; top: 248px; width: 100vw;" class="valuesetting">
-                    <h1>Music Volume</h1>
-                    <img src="./src/img/Left.png" alt="">
-                    <img src="./src/img/Plus.png" alt="">
-                    <h1 style="width: 2em;vertical-align: super;">100</h1>
-                    <img src="./src/img/Minus.png" alt="">
-                    <img src="./src/img/Right.png" alt="">
-                </div>
-                <div style="position: absolute; top: 348px; width: 100vw;" class="valuesetting">
-                    <h1>Sound Effects Volume</h1>
-                    <img src="./src/img/Left.png" alt="">
-                    <img src="./src/img/Plus.png" alt="">
-                    <h1 style="width: 2em;vertical-align: super;">100</h1>
-                    <img src="./src/img/Minus.png" alt="">
-                    <img src="./src/img/Right.png" alt="">
-                </div>
-                <img src="./src/img/Floppy.png" alt="" style="position: absolute;height: 48px;width: 48px;bottom: 4px;left: 4px;" onclick="saveDB();setUserParams()">
-                <span style="font-size:36px;position: absolute;height: 48px;width: 72px;bottom: 4px;left: 56px;" onclick="saveDB();setUserParams()">保存</span>
-            </div>
-        </div>
-        <div id="bottomframe">
-            <div class="Homepage">
-                <container style="position: absolute;top: 0;right: 12px;">
-                    <img src="./src/img/Cursor.png" alt> <span>選択</span>
-                </container>
-            </div>
-            <div class="Settingspage">
-                <container style="position: absolute;top: 0;right: 12px;">
-                    <img src="./src/img/Cursor.png" alt> <span>選択</span>
-                </container>
-                <container style="position: absolute;top: 0;right: 140px;">
-                    <img src="./src/img/Esc.png" alt=""><span>戻る</span>
-                </container>
-                <container style="position: absolute;top: 0;right: 268px;">
-                    <img src="./src/img/Ctrl.png" alt="" style="margin-right: 4px;"><img src="./src/img/S.png" alt=""><span>保存</span>
-                </container>
-            </div>
-        </div>
-    </div>
-    <script>location.href="./testIndex.html"</script>
-    
-    <script src='./src/phina.js'></script>
-    <script src="./src/shortcut.js"></script>
-    <script src="./src/fps.js"></script>
-    <script src="script.js"></script>
-    <script type="text/javascript">
-        phina.globalize();
-    </script>
-    <script src="./src/config.js"></script>
-    <script src="./src/components.js"></script>
-    <script src="./src/mainscene.js"></script>
-    <script src="./src/titlescene.js"></script>
+<div id="startdisplay" onclick="document.querySelector('#color1').style.animation='color1hide 0.5s ease forwards';document.querySelector('#startdisplaytext').style.animation='hidemodal 0.3s ease forwards';document.querySelector('#color2').style.animation='color2hide 0.55s ease forwards';setTimeout(()=>location.href='./play.html',500)">
+  	  <div id="color1">
+      </div>
+    	<div id="color2">
+      </div>
+			<div id="startdisplaytext">
+				<h1 style="font-size:10vmin;">
+				Feature Me
+			</h1>
+			<h4 style="font-size:5vmin;text-align:center;">Alpha</h4>
+			<p style="text-align:center;margin-top:64px">Click to begin</p>
+			</div>
+</div>
+			<p style="position:fixed;bottom:4px;left:4px;">2021 Mksk & Raetan the Feature Me Project</p>
+    <!--<script>location.href="./play.html"</script>-->
     
 </body>
 
