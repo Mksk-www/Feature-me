@@ -7,11 +7,12 @@ let effectTypeindex = 0;
 let shareText;
 let playing;
 let selectedMusic = false;
+let maxFps = 120;
+let uiDetails = 2;
 shortcut.add('esc',()=>{
     if(activePage==="Settings") switchpage('Home');
 		else if(activePage==="Home") switchpage('Settings');
 		else if(activePage==="play") location.reload()
-
 })
 shortcut.add('ctrl+s', () => {
     if (activePage === "Settings") {
@@ -42,6 +43,10 @@ window.addEventListener("load",async()=>{
 		setEffectVolume(localStorage.getItem('effectVolume'));
 		if(!localStorage.getItem('effecttype')) localStorage.setItem('effectType',"0");
 		setEffectType(localStorage.getItem('effecttype'));
+		if(!localStorage.getItem('fps')) localStorage.setItem('fps',"120");
+		setFps(localStorage.getItem('fps'));
+		if(!localStorage.getItem('uidetails')) localStorage.setItem('uidetails',"2");
+		setUiDetails(localStorage.getItem('uidetails'));
 
 	document.querySelectorAll('#shareleaderboard .button').forEach(e=>{
 		e.addEventListener('click',()=>{
@@ -85,8 +90,8 @@ phina.main(()=>{
             height: SCREEN_HEIGHT,
             startLabel: 'title',
             backgroundColor: 'rgb(20,20,30)',
-            title: 'MusicGame',
-            fps: 120,
+            title: 'Feature Me',
+            fps: maxFps,
         });
 
          app.enableStats();
@@ -184,42 +189,97 @@ function setEffectType(e){
 	 localStorage.setItem("effecttype",effectTypeindex);
 }
 
+function uiDetailsCtrl(e){
+	e = Number(e);
+	if(e>0&&uiDetails==3) return;
+	if(e<0&&uiDetails==0)return;
+	uiDetails+=e;
+	setUiDetails(uiDetails);
+}
+function setUiDetails(e){
+	e = Number(e);
+	uiDetails = e;
+	document.querySelectorAll('.uicss').forEach(e=>e.remove())
+	switch(e){
+		case 0:
+			select('#uidetailsvalue').textContent = "Lowest"
+			select('head').insertAdjacentHTML('beforeend',`<link rel="stylesheet" href="./src/style/lowest.css" id="lowestcss" class="uicss">`)
+		break;
+		case 1:
+			select('#uidetailsvalue').textContent = "Low";
+			select('head').insertAdjacentHTML('beforeend',`<link rel="stylesheet" href="./src/style/low.css" id="lowcss" class="uicss">`)
+		break;
+		case 2:
+			select('#uidetailsvalue').textContent = "High";
+			select('head').insertAdjacentHTML('beforeend',`<link rel="stylesheet" href="./src/style/high.css" id="highcss" class="uicss">`)
+		break;
+	}
+	localStorage.setItem('uidetails',e)
+}
+
+function fpsCtrl(e){
+	e = Number(e);
+	if(e<0&&maxFps<=30)return;
+	maxFps += e
+	select('#fpsvalue').textContent = maxFps
+	localStorage.setItem("fps",maxFps);
+}
+function setFps(e){
+	e = Number(e);
+	maxFps = e
+	select('#fpsvalue').textContent = maxFps;
+	localStorage.setItem("fps",maxFps);
+}
+
 
 function reset(){
 	setNotesSpeed(10);
 	setMusicVolume(100);
 	setEffectVolume(100);
 	setJudgeType(true);
-	setEffectType(0)
+	setEffectType(0);
+	setFps(120)
 }
 
 function setAssets(music){
 	ASSETS.sound.music=musicList[music].music;
 	ASSETS.json.beatmap =musicList[music].beatmap;
-	select(`.music[onclick="setAssets(${music})"]`).style.position = "absolute";
+	
+	select(`#musicbg`).style.display = "block";
+	if(uiDetails!==0){
+		select(`.music[onclick="setAssets(${music})"]`).style.position = "absolute";
 	select(`.music[onclick="setAssets(${music})"] .title`).style.position = "absolute";
 	select(`.music[onclick="setAssets(${music})"] .title`).style.textAlign = "center";
 	select(`.music[onclick="setAssets(${music})"] .diff`).style.position = "absolute";
 	select(`.music[onclick="setAssets(${music})"] .details`).style.position = "absolute";
 	select(`.music[onclick="setAssets(${music})"] > img`).style.position = "absolute";
 	select(`.music[onclick="setAssets(${music})"]`).style.zIndex = "9999";
-	select(`#musicbg`).style.display = "block";
+	
 	select(`#musicbg`).style.animation = "showmodal 0.5s ease forwards";
 	select(`.music[onclick="setAssets(${music})"]`).style.animation = "movemusic 0.5s ease forwards";
 	select(`.music[onclick="setAssets(${music})"] > img`).style.animation = "movemusicimg 0.5s ease forwards";
 	select(`.music[onclick="setAssets(${music})"] .title`).style.animation = "movemusictitle 0.5s ease forwards";
 	select(`.music[onclick="setAssets(${music})"] .diff`).style.animation = "movemusicdiff 0.5s ease forwards";
 	select(`.music[onclick="setAssets(${music})"] .details`).style.animation = "movemusicdetails 0.5s ease forwards";
+	}
 	
 	run();
 	select('#pagetitle').textContent = musicList[music].name;
 }
 
 function closeMusicModal(){
-	select(`#musicbg`).style.animation = "hidemodal 0.5s ease forwards";
+	if(uiDetails!==0){
+		select(`#musicbg`).style.animation = "hidemodal 0.5s ease forwards";
 	document.querySelectorAll(".music").forEach(e=>{
 		e.style.animation = "hidemodal 0.5s ease forwards";
+	})	
+	}else{
+		select(`#musicbg`).style.display="none";
+	document.querySelectorAll(".music").forEach(e=>{
+		e.style.display = "none";
 	})
+	}
+	
 }
 async function result(totalScore,combo,maxCombo,ratePerfect,rateGreat,rateMiss,fast,late,title){
 	

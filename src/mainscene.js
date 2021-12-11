@@ -13,8 +13,9 @@ phina.define('MainScene', {
         var AM = phina.asset.AssetManager;
         // var beatmap = DEBUG_BEATMAP;
         var beatmap = AM.get('json', 'beatmap').data;
-
-				this.backgroundColor = beatmap.backgroundColor?beatmap.backgroundColor:"rgb(40,40,45)";
+				this.beatmap = beatmap;
+				//this.backgroundColor = beatmap.backgroundColor?beatmap.backgroundColor:"rgb(33,59,40)";
+				this.backgroundColor = beatmap.backgroundColor?beatmap.backgroundColor:"rgb(50,50,55)";
 				
 				MUSIC_START_DELAY = (60/beatmap.BPM)*1000 * 4 + 100
 
@@ -65,15 +66,29 @@ phina.define('MainScene', {
         });
 			
 				setTimeout(()=>{
+					this.backGroundCover.width = SCREEN_WIDTH;
 					result(this.totalScore,this.combo,this.maxCombo,this.RatePerfect,this.RateGreat,this.RateMiss,this.fast,this.late,beatmap.title)
 				},beatmap.duration+1000)
+
+				this.backGround = Sprite("background").addChildTo(this)
+				this.backGround.origin.set(0, 0);
+    		this.backGround.width = SCREEN_WIDTH;
+    		this.backGround.height = SCREEN_HEIGHT;
+
+				this.backGroundCover = RectangleShape({
+					stroke:false,
+					strokeWidth:0,
+					height:SCREEN_HEIGHT,
+					width:960,
+					fill:"rgba(0,0,0,0.7)"
+				}).setPosition(gx.center(),gy.center()).addChildTo(this)
 
         // ユニットアイコンの配置
         var iconGroup = DisplayElement()
             .setPosition(gx.center(), gy.span(5))
             .addChildTo(this);
         for (var i = 0; i < TRACK_NUM; i++) {
-            let label = INDEX_TO_KEY_MAP[i].toUpperCase();
+            let label = INDEX_TO_KEY_MAP[i];
             let icon;
 						let posX;
 						if(i==4) posX = 0;
@@ -259,6 +274,8 @@ phina.define('MainScene', {
         this.elapsedTime += app.deltaTime;
         this.gameTime += app.deltaTime;
 
+				//進捗度合い更新
+				//select("#trackprogress").style.width = Math.floor((this.gameTime / this.beatmap.duration) * window.innerWidth) + "px";
         // ゲームスタートまでの猶予
         if (this.has('musicstart') && this.elapsedTime > MUSIC_START_DELAY) {
             this.flare('musicstart');

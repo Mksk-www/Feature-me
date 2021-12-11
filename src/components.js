@@ -19,11 +19,10 @@ phina.define('UnitIcon', {
     },
 
     fireEffect: function (color) {
-        EffectWave(color).addChildTo(this);
+        EffectWave(color,this.id).addChildTo(this);
     },
 
 });
-
 
 /**
  * ターゲットマーカー（ノーツ）
@@ -52,37 +51,7 @@ phina.define('TargetMarker', {
             Math.sin((trackId * ICON_INTERVAL_DEGREE).toRadian()) 
             
         );*/
- 
-           switch (trackId) {
-            case 0:
-                this.vector = phina.geom.Vector2(
-                    -0.6,1
-                );
-                break;
-            case 1:
-                this.vector = phina.geom.Vector2(
-                    -0.2,1
-                );
-                break;
-            case 2:
-                this.vector = phina.geom.Vector2(
-                    0.2,1
-                );
-                break;
-            case 3:
-                this.vector = phina.geom.Vector2(
-                    0.62, 1
-                );
-						case 4 :
-                this.vector = phina.geom.Vector2(
-                    0, 1
-                );
-                break;
-            default:
-                this.vector = phina.geom.Vector2(
-                    999,999
-                );
-        }
+        this.vector = phina.geom.Vector2(0,1);
          
 
         // カウント表示
@@ -101,17 +70,20 @@ phina.define('TargetMarker', {
  * エフェクト：白フェードアウト円
  */
 phina.define('EffectWave', {
-    superClass: 'phina.display.CircleShape',
+    superClass: 'phina.display.RectangleShape',
 
-    init: function (options) {
+    init: function (options,id) {
         this.superInit({
-            radius: MARKER_RADIUS,
+            radius: 0,
             stroke: false,
             fill: options+"80",
+						width:id==4?960:235,
+						height:300
         });
 
         this.tweener
-            .to({ scaleX: 1.7, scaleY: 1.7, alpha: 0 }, 250)
+						.set({scaleX:1,scaleY:1,alpha:0.75})
+            .to({ scaleX: 1, scaleY: 1, alpha: 0 }, 200)
             .call(function () {
                 this.remove();
             }, this);

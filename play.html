@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Feature Me</title>
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="./src/style/high.css" id="highcss" class="uicss">
 </head>
 
 <body>
 	<header>
-		Feature Me Alpha 0.2.5
-		<a href="https://feature-me-leaderboard.mksksub.repl.co/" target="_blank" class="headertext">Leaderboard</a>
-		<a class="headertext" onclick="select('#updatesmodal').style.display = 'block';select('#updatesmodal').style.animation = 'showmodal 0.3s ease forwards'">Update</a>
-		<a class="headertext" onclick="select('#creditsmodal').style.display = 'block';select('#creditsmodal').style.animation = 'showmodal 0.3s ease forwards'">Credits</a>
+		<div id="trackprogress"></div>
+		<div id="headercontent">
+			Feature Me Alpha 0.2.6
+				<a href="https://feature-me-leaderboard.mksksub.repl.co/" target="_blank" class="headertext">Leaderboard</a>
+				<a class="headertext" onclick="select('#updatesmodal').style.display = 'block';select('#updatesmodal').style.animation = 'showmodal 0.3s ease forwards'">Update</a>
+				<a class="headertext" onclick="select('#creditsmodal').style.display = 'block';select('#creditsmodal').style.animation = 'showmodal 0.3s ease forwards'">Credits</a>
+		</div>
 	</header>
     <div class="main">
         <hr id="topbar">
@@ -23,13 +27,26 @@
             <h1 id="pagetitle">Home</h1>
         </div>
         <div id="mainframe">
-            <div class="Homepage">
+
+            <div class="Homepage ">
                 <img src="./src/img/config.png" alt="" style="position: absolute;height: 48px;width: 48px;top: 4px;right: 4px;" onclick="switchpage('Settings')">
 								<div id="musicbg"></div>
 								
             </div>
             <div class="Settingspage">
-                <div style=" margin-top: 148px; width: 100vw;" class="valuesetting">
+								<div style=" margin-top: 100px; width: 100vw;" class="valuesetting">
+                    <h1>UI Details</h1>
+                    <img src="./src/img/Plus.png" alt="" onclick="uiDetailsCtrl(1)">
+                    <h1 style="width: 7.25em;vertical-align: super;" id="uidetailsvalue">High</h1>
+                    <img src="./src/img/Minus.png" alt="" onclick="uiDetailsCtrl(-1)">
+                </div>
+								<div style=" margin-top: 100px; width: 100vw;" class="valuesetting">
+                    <h1>Framerate Upper Limit</h1>
+                    <img src="./src/img/Plus.png" alt="" onclick="fpsCtrl(30)">
+                    <h1 style="width: 7.25em;vertical-align: super;" id="fpsvalue">120</h1>
+                    <img src="./src/img/Minus.png" alt="" onclick="fpsCtrl(-30)">
+                </div>
+                <div style=" margin-top: 100px; width: 100vw;" class="valuesetting">
                     <h1>Notes Speed</h1>
                     <img src="./src/img/Left.png" alt="" onclick="notesSpeedCtrl(1)">
                     <img src="./src/img/Plus.png" alt="" onclick="notesSpeedCtrl(0.1)">
@@ -72,6 +89,9 @@
         </div>
         <div id="bottomframe">
             <div class="Homepage">
+							<p style="position:absolute;bottom:0;left:96px;margin:0">
+								VERSION:WEB_0.2.6_00030 <br>
+								2021 Mksk & Raetan the Feature Me Project</p>
                 <container style="position: absolute;top: 0;right: 12px;">
                     <img src="./src/img/Cursor.png" alt> <span>選択</span>
                 </container>
@@ -176,7 +196,7 @@
 				設定項目 : ノーツ速度 音量 判定表示 追加。 <br>
 				SPACE NOTE 実装。
 				<hr>
-				Version:0.2.0～0.2.4 <br>
+				Version:0.2.0～0.2.6 <br>
 				リズムアシスト追加。 <br>
 				背景色変更機能を追加。 <br>
 				エフェクト音を2種類追加。 <br>
@@ -187,6 +207,9 @@
 				Full Chain/All Stunning Bloom 演出追加。 <br>
 				リザルト画面に共有メニューを追加。 <br>
 				POSITION NOTE 実装。 <br>
+				エフェクト調整。 <br>
+				設定項目 : 細部画質 FPS上限 追加。 <br>
+
 
 			</div>
 			<div class="button" style="position:absolute;bottom:8px;right:8px;font-size:1em;border-radius:4px;">Close</div>

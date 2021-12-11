@@ -46,6 +46,71 @@
         right: -100%;
     }
 }
+
+@keyframes movemusic {
+	0%{
+		top: unset;
+		left: unset;
+	}
+	100%{
+		top: 50%;
+    left: 50%;
+    height: 75%;
+    width: 768px;
+    transform: translate(-50%,-50%);
+    margin: 0;
+		background-color: #03a7eb
+	}
+}
+
+@keyframes movemusicimg {
+	0%{
+		top: unset;
+		left: unset;
+		height: 70px;
+	}
+	100%{
+		top: 16px;
+    left: 50%;
+    height: 50%;
+    transform: translate(-50%,0);
+    margin: 0;
+	}
+}
+
+@keyframes movemusictitle {
+	0%{
+		top: unset;
+		left: unset;
+	}
+	100%{
+		top: 60%;
+    width:  100%;
+    margin: 0;
+	}
+}
+
+@keyframes movemusicdiff {
+	0%{
+		top: unset;
+		left: unset;
+	}
+	100%{
+		top: 60%;
+    margin: 8px;
+	}
+}
+
+@keyframes movemusicdetails {
+	0%{
+		top: unset;
+		left: unset;
+	}
+	100%{
+		bottom: 0;
+	}
+}
+
 ::-webkit-scrollbar{
 	height: 0;
 	width: 5px;
@@ -88,6 +153,7 @@ canvas{
 header{
     background-color: rgb(100, 100, 100);
     -webkit-app-region:drag;
+		height: 24px;
 }
 header img{
     height: 24px;
@@ -103,6 +169,23 @@ header img:hover{
 header img[onclick="closeWindow()"]:hover{
     background-color: red;
 }
+#headercontent{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 24px;
+}
+#trackprogress{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 24px;
+	background-color: #eabc0280;
+	transition: 0.3s;
+}
+
 
 .version{
     background-color: rgb(100, 100, 100);
@@ -467,69 +550,7 @@ a{
 	z-index: 9998;
 }
 
-@keyframes movemusic {
-	0%{
-		top: unset;
-		left: unset;
-	}
-	100%{
-		top: 50%;
-    left: 50%;
-    height: 75%;
-    width: 768px;
-    transform: translate(-50%,-50%);
-    margin: 0;
-		background-color: #03a7eb
-	}
-}
 
-@keyframes movemusicimg {
-	0%{
-		top: unset;
-		left: unset;
-		height: 70px;
-	}
-	100%{
-		top: 16px;
-    left: 50%;
-    height: 50%;
-    transform: translate(-50%,0);
-    margin: 0;
-	}
-}
-
-@keyframes movemusictitle {
-	0%{
-		top: unset;
-		left: unset;
-	}
-	100%{
-		top: 60%;
-    width:  100%;
-    margin: 0;
-	}
-}
-
-@keyframes movemusicdiff {
-	0%{
-		top: unset;
-		left: unset;
-	}
-	100%{
-		top: 60%;
-    margin: 8px;
-	}
-}
-
-@keyframes movemusicdetails {
-	0%{
-		top: unset;
-		left: unset;
-	}
-	100%{
-		bottom: 0;
-	}
-}
 
 video{
 	display: none;
@@ -556,7 +577,6 @@ video{
   left: 0!important;
   background-color: rgb(20,20,30);
   color: whitesmoke;
-  backdrop-filter: blur(30px);
   box-sizing: border-box;
 	z-index: 9998;
 }
@@ -572,3 +592,4 @@ video{
 #sharemodal p:hover{
 	background-color: #03a7eb;
 }
+

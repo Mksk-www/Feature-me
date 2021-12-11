@@ -44,8 +44,8 @@ KEYCODE_TO_KEYDATA_MAP.forIn(function (key, val) {
 
 var ASSETS = {
 	font:{
-		IBMPlex:"../IBMPLEXSANSJP-EXTRALIGHT.ttf",
-    Montserrat:"../MONTSERRAT-EXTRALIGHT.ttf"
+		IBMPlex:"./IBMPLEXSANSJP-EXTRALIGHT.ttf",
+    Montserrat:"./MONTSERRAT-EXTRALIGHT.ttf"
 	},
 	sound:{
 		music:"./assets/test-new/testSound.mp3",
@@ -54,6 +54,9 @@ var ASSETS = {
 	},
 	json:{
 		beatmap:"./assets/test-new/test-new.json"
+	},
+	image:{
+		background:"./src/img/wallpaper (2).png"
 	}
 }
 // テスト用譜面
