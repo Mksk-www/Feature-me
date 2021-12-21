@@ -10,7 +10,7 @@ let ICON_INTERVAL_DEGREE = 60; // 22.5
 let MARKER_APPEARANCE_DELTA = 750; // ノーツ出現時間(ms): 大きくするほど低速
 let UNIT_ARRANGE_RADIUS = SCREEN_WIDTH * 0.3 ;
 let MUSIC_START_DELAY;
-let UNTI_ICON_Y = 625
+let UNIT_ICON_Y = 625
 
 
 
@@ -56,7 +56,10 @@ var ASSETS = {
 		beatmap:"./assets/test-new/test-new.json"
 	},
 	image:{
-		background:"./src/img/wallpaper (2).png"
+		background:"./src/img/wallpaper (2).png",
+		character:"./src/img/Characters/Shiori.png",
+		character_back:"./src/img/Characters/Shiori-back.png",
+		character_card:"./src/img/Characters/card-shiori.png"
 	}
 }
 // テスト用譜面
@@ -95,7 +98,7 @@ const musicList = [
 		duration:"00:20",
 		thumb:"./assets/BGS/image.png"
 	},
-	{
+	/* {
 		name:"ちゅ縺｡繧ーりﾂ縺翫▲縺ｷぷノｮ縺?◆うﾀ",
 		music:"./assets/チューリップのうた/tyurippu.mp3",
 		beatmap:"./assets/チューリップのうた/beatmap.json",
@@ -104,13 +107,13 @@ const musicList = [
 		diff:"master",
 		nd:"Mksk",
 		duration:"00:51"
-	},
+	}, */
 	{
 		name:"Feat you.",
 		music:"./assets/feat_you/Feat_You._3.mp3",
 		beatmap:"./assets/feat_you/beatmap.json",
 		bpm:120,
-		lev:14,
+		lev:17,
 		duration:"01:33",
 		diff:"master",
 		nd:"Raetan",
@@ -137,3 +140,21 @@ const effectType = [
 	}
 ]
 
+const notesData ={
+	color:{
+		normal:"#f5f5f5cc",
+		space:"#eabc02cc",
+		//position:"#09c906"
+		position:"#02f768cc"
+	},
+	height:{
+		normal:10,
+		space:30,
+		position:80
+	},
+	width:{
+		normal:235,
+		space:960,
+		position:80
+	}
+}
