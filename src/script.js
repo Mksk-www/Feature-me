@@ -648,7 +648,8 @@ async function showDiffUserData() {
 }
 
 function colorRating(rating) {
-	const ratingTable = ["whitesmoke","#30e648","#e6e30","#e69a30","#e63030","#9a26de","#8a6978","#84c7d1","#c0f03"]
-	if(rating>18) return "linear-gradient(to bottom, #74ebd5, #acb6e5)"
+	console.log(Math.floor(Math.abs(rating)/2))
+	const ratingTable = ["whitesmoke","#30e648","#e6e30","#e69a30","#e63030","#9a26de","#8a6978","#84c7d1","#c0f038"]
+	if(rating>18) return "linear-gradient(to bottom, #74ebd5, #acb6e5)";
 	else return ratingTable[Math.floor(Math.abs(rating)/2)]
 }
