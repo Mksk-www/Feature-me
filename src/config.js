@@ -118,12 +118,7 @@ const musicList = [
 		duration:"01:33",
 		diff:"master",
 		nd:"Mksk vs Raetan",
-	},/* ,
-	{
-		name:"Test Feature Me",
-		music:"./assets/test/test_feature_me.mp3",
-		beatmap:"./assets/test/beatmap.json"
-	} */
+	},
 	{
 		name:"ours",
 		music:ASSETS_BASE_DIR+"ours/ours.mp3",
