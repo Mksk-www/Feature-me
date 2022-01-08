@@ -13,7 +13,7 @@ phina.define('UnitIcon', {
             stroke: false,
             fill: id == 4 ? "transparent" : "aqua",
             width: 240,
-            height: 12.5,
+            height: 17.5,
         });
         this.setInteractive(true);
         this.id = id;
@@ -34,6 +34,22 @@ phina.define('VerticalLine', {
             height: SCREEN_HEIGHT,
             width: 1
         });
+    },
+});
+
+phina.define('HorizonalBeatsLine', {
+    superClass: 'phina.display.RectangleShape',
+    init: function (targetTime) {
+        this.superInit({
+            strokeWidth: 0,
+            stroke: false,
+            fill: "#80808080",
+            height: 3,
+            width: 1200
+        });
+		this.targetTime = targetTime;
+		this.visible = false;
+		this.vector = phina.geom.Vector2(0, 1);
     },
 });
 

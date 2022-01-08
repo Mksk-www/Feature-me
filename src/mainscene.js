@@ -1,4 +1,4 @@
-
+"use strict";
 /**
  * メイン
  */
@@ -17,7 +17,7 @@ phina.define('MainScene', {
         //this.backgroundColor = beatmap.backgroundColor?beatmap.backgroundColor:"rgb(33,59,40)";
         this.backgroundColor = beatmap.backgroundColor ? beatmap.backgroundColor : "rgb(50,50,55)";
 
-        MUSIC_START_DELAY = (60 / beatmap.BPM) * 1000 * 4 + 100
+        MUSIC_START_DELAY = (60 / beatmap.BPM) * 1000 * 6 + 100
 
         // タイマーのセット
         this.elapsedTime = 0; // 経過時間
@@ -59,7 +59,7 @@ phina.define('MainScene', {
             setTimeout(() => {
                 SoundManager.play('assist');
                 console.log(this.elapsedTime)
-            }, (60 / beatmap.BPM * i) * 1000)
+            }, (60 / beatmap.BPM * i+1) * 1000)
         }
 
         // 時間が来たら音楽流す
@@ -91,7 +91,32 @@ phina.define('MainScene', {
             fill: "rgba(0,0,0,0.7)"
         }).setPosition(gx.center(), gy.center()).addChildTo(this)
 
-        // ユニットアイコンの配置
+		//ポジションノーツラインの配置
+		this.positionIconGroup = DisplayElement()
+            .setPosition(gx.center(), gy.span(5))
+            .addChildTo(this);
+
+        for (let j = 0; j < 2; j++) {
+            let icon;
+            let posX;
+            if (j == 0) posX = -550;
+            else posX = 550;
+            PositionNotesIcon(j == 0 ? "Left" : "Right").setPosition(posX, gy.span(3)).addChildTo(this.positionIconGroup);
+            PositionNotesIconLine(j == 0 ? "Left" : "Right").setPosition(posX, UNIT_ICON_Y).addChildTo(this.positionIconGroup);
+        }
+
+		//リズムラインの配置
+		this.horizonalBeatsLineGroup = DisplayElement()
+            .setPosition(gx.center(), 0)
+            .addChildTo(this);
+		
+		for (let i = 0; i < (beatmap.duration/beatmap.BPM/horizonalBeatsLineTiming/2); i++) {
+			const targetTime = (60 / beatmap.BPM * i * 4) * 1000
+			HorizonalBeatsLine(targetTime).addChildTo(this.horizonalBeatsLineGroup);
+			console.log("beatsline:",targetTime);
+		}
+		
+        // ノーツラインの配置
         let iconGroup = DisplayElement()
             .setPosition(gx.center(), gy.span(5))
             .addChildTo(this);
@@ -110,18 +135,6 @@ phina.define('MainScene', {
             };
         }
 
-        this.positionIconGroup = DisplayElement()
-            .setPosition(gx.center(), gy.span(5))
-            .addChildTo(this);
-
-        for (let j = 0; j < 2; j++) {
-            let icon;
-            let posX;
-            if (j == 0) posX = -550;
-            else posX = 550;
-            PositionNotesIcon(j == 0 ? "Left" : "Right").setPosition(posX, gy.span(3)).addChildTo(this.positionIconGroup);
-            PositionNotesIconLine(j == 0 ? "Left" : "Right").setPosition(posX, UNIT_ICON_Y).addChildTo(this.positionIconGroup);
-        }
 
         // キーボード判定
         this.on('keydown', function input(e) {
@@ -152,14 +165,15 @@ phina.define('MainScene', {
             .setPosition(iconGroup.x, 0)
             .addChildTo(this);
         beatmap.notes.forEach(function (note) {
+			const targetTime = (60 / beatmap.BPM * note.count) * 1000
             let type;
             if (note.track < 4) type = "normal";
             if (note.track == 4) type = "space";
             if (note.track > 4) type = "position";
             //TargetMarker(note.targetTime, note.track) msカウント
-            TargetMarker((60 / beatmap.BPM * note.count) * 1000, note.track, type) //BPM
+            TargetMarker(targetTime, note.track, type) //BPM
                 .addChildTo(self.markerGroup);
-            console.log((60 / beatmap.BPM * note.count) * 1000)
+            console.log(note.track,targetTime)
 
 
         })
@@ -367,10 +381,34 @@ phina.define('MainScene', {
 
         // マーカー描画
         const markers = this.markerGroup.children;
+		const lines = this.horizonalBeatsLineGroup.children;
+		lines.forEach(function(l){
+			if (!l.isAwake) return;
+			const time = this.gameTime
+            const rTime = l.targetTime - time; // 相対時間
+			if (rTime < MARKER_APPEARANCE_DELTA) {
+                // マーカーの位置比率や縮小率（倍率）を計算する
+                // ratioはアイコンに近いほど1.0に近づく
+                const ratio = (time - (l.targetTime - MARKER_APPEARANCE_DELTA)) / MARKER_APPEARANCE_DELTA;
+                const distance = UNIT_ICON_Y * 1.6 * ratio;
+
+                l.setVisible(true)
+                    .setPosition(
+                        0,
+                        l.vector.y * distance
+                    )
+                    .setScale(1, 1);
+            }else{
+				l.setVisible(false);
+				 if (MARKER_APPEARANCE_DELTA < -rTime) {
+					 l.isAwake = true;
+				 }
+			}
+		}.bind(this))
         markers.forEach(function (m) {
             if (!m.isAwake) return;
-            var time = this.gameTime
-            var rTime = m.targetTime - time; // 相対時間
+            const time = this.gameTime
+            const rTime = m.targetTime - time; // 相対時間
             let posX;
             if (m.trackId == 4) posX = 0;
             else if (m.trackId == 5) posX = -550;
@@ -379,8 +417,8 @@ phina.define('MainScene', {
             if (rTime < MARKER_APPEARANCE_DELTA) {
                 // マーカーの位置比率や縮小率（倍率）を計算する
                 // ratioはアイコンに近いほど1.0に近づく
-                var ratio = (time - (m.targetTime - MARKER_APPEARANCE_DELTA)) / MARKER_APPEARANCE_DELTA;
-                var distance = UNIT_ICON_Y * 1.6 * ratio;
+                const ratio = (time - (m.targetTime - MARKER_APPEARANCE_DELTA)) / MARKER_APPEARANCE_DELTA;
+                const distance = UNIT_ICON_Y * 1.6 * ratio;
 
                 m.setVisible(true)
                     .setPosition(

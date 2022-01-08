@@ -336,7 +336,7 @@ header img[onclick="closeWindow()"]:hover{
     margin-left: 16px;
     padding: 4px;
     border-radius: 8px;
-    width: 1.5em;
+    width: 2em;
     text-align: center;
 }
 
@@ -351,11 +351,18 @@ header img[onclick="closeWindow()"]:hover{
 .music span.expert{
     background-color: rgb(224, 48, 4);
 }
+.music span.advanced{
+    background-color: rgb(202,155,7);
+}
 .music span.basic{
     background-color: rgb(48, 206, 9);
 }
 
-@media screen and (max-width: 1364px){
+.music span.ozma{
+    background: linear-gradient(31deg, rgba(236,20,20,1) 0%, rgba(255,227,0,1) 17%, rgba(37,255,0,1) 25%, rgba(29,253,170,1) 41%, rgba(26,138,250,1) 59%, rgba(138,23,248,1) 81%, rgba(244,61,204,1) 100%);
+}
+
+@media screen and (max-width: 900px){
     .music span.details,.music span.diff{
         display: none;
     }
@@ -459,7 +466,7 @@ height: calc(100vh - 122px)!important;
     border-bottom: 1px solid #1b2538;
     background-color: transparent;
 }
-.ef ~ .focus_line {
+.ef ~ .focus_line {
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -688,4 +695,8 @@ video{
 	background-clip: text!important;
 	-webkit-background-clip: text!important;
 	color:transparent;
+}
+
+#loginmodal-second{
+	display:none;
 }

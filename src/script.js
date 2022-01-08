@@ -15,6 +15,7 @@ let login = false;
 let logintype;
 let userData;
 let oldUserData;
+let horizonalBeatsLineTiming = 4;
 shortcut.add('esc', () => {
 	if (activePage === "Settings") switchpage('Home');
 	else if (activePage === "Home") switchpage('Settings');
@@ -79,9 +80,21 @@ window.addEventListener("load", async () => {
 		})
 	})
 
+	select('#passtoggle').addEventListener('click',()=>{
+		let passInput = select('input[name="password-login"]')
+		if(passInput.type=="password"){
+			passInput.type="text";
+			select('#passtoggle').textContent = "HIDE"
+		}else{
+			passInput.type="password";
+			select('#passtoggle').textContent = "SHOW"
+		}
+	})
+	
 	select('#cover').style.animation = "hidemodal 0.3s ease forwards";
 	await sleep(300);
 	select('#cover').style.display = "none";
+
 })
 
 window.onerror = e => {
