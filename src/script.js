@@ -69,7 +69,9 @@ window.addEventListener("load", async () => {
 	setUiDetails(localStorage.getItem('uidetails'));
 	if (!localStorage.getItem('vLine')) localStorage.setItem('vLine', "1");
 	setVLine(localStorage.getItem('vLine'));
-	if (localStorage.getItem('userid') && localStorage.getItem('username')) autoLogin()
+	if (localStorage.getItem('userid') && localStorage.getItem('username')) autoLogin();
+	if(!localStorage.getItem('keymap')) localStorage.setItem('keymap',JSON.stringify(KEY_TO_JUDGE_LIST));
+	setKeyMap(localStorage.getItem('keymap'));
 
 	document.querySelectorAll('.modal>.button:not(.static)').forEach(e => {
 		e.addEventListener('click', () => {
@@ -270,13 +272,29 @@ function setVLine(e) {
 	localStorage.setItem("vLine", vLine);
 }
 
+function setKeyMap(map){
+	KEY_TO_JUDGE_LIST = JSON.parse(map);
+	for (let i of document.querySelectorAll('.keyconfiginput')) {
+		i.value = (KEY_TO_JUDGE_LIST[i.id]["key"]==" "?"space":KEY_TO_JUDGE_LIST[i.id]["key"]);
+		i.addEventListener('keydown',(e)=>{
+			e.preventDefault();
+			if(e.key=="Escape") return notification("",'Keybind register Error:このキーは既に予約されているため,設定できません.');
+			KEY_TO_JUDGE_LIST[i.id] = {code:e.keyCode,key:e.key};
+			i.value ="";
+			i.value = (e.key==" "?"space":e.key);
+			localStorage.setItem('keymap',JSON.stringify(KEY_TO_JUDGE_LIST))
+		})
+	}
+}
+
 function reset() {
 	setNotesSpeed(10);
 	setMusicVolume(100);
 	setEffectVolume(100);
 	setJudgeType(true);
 	setEffectType(0);
-	setFps(120)
+	setFps(120);
+	setKeyMap(JSON.stringify([{code:68,key:"d"},{code:70,key:"f"},{code:74,key:"j"},{code:75,key:"k"},{code:32,key:" "},{code:69,key:"e"},{code:75,key:"i"}]));
 }
 
 function setAssets(music) {
@@ -285,7 +303,8 @@ function setAssets(music) {
 
 	select(`#musicbg`).style.display = "block";
 	if (uiDetails !== 0) {
-		select(`.music[onclick="setAssets(${music})"]`).style.position = "absolute";
+		select('#mainframe').style.overflow = "hidden";
+		select(`.music[onclick="setAssets(${music})"]`).style.position = "fixed";
 		select(`.music[onclick="setAssets(${music})"] .title`).style.position = "absolute";
 		select(`.music[onclick="setAssets(${music})"] .title`).style.textAlign = "center";
 		select(`.music[onclick="setAssets(${music})"] .diff`).style.position = "absolute";
@@ -321,7 +340,7 @@ function closeMusicModal() {
 
 }
 async function result(totalScore, combo, maxCombo, ratePerfect, rateGreat, rateMiss, fast, late, title) {
-
+	console.log(totalScore)
 	const rank = setScoreRank(totalScore);
 	select('#pagetitle').textContent = "Result - " + select('#pagetitle').textContent;
 	select('#score').textContent = Math.round(totalScore);
@@ -333,7 +352,7 @@ async function result(totalScore, combo, maxCombo, ratePerfect, rateGreat, rateM
 	select('#fast').textContent = fast;
 	select('#late').textContent = late;
 	shareText = encodeURI(`https://twitter.com/intent/tweet?text=音楽ゲーム Feature Me でのリザルト|${title}\nスコア:${Math.round(totalScore)}\nランク${rank}\nShutting Bloom:${ratePerfect}\nBloom:${rateGreat}\nMiss:${rateMiss}\n@makisakadesu @Raetantan より`);
-	if (totalScore == 1000000) {
+	if (totalScore >= 1000000) {
 		select('#asb').style.display = "block";
 		select('#videobackground').style.display = "block";
 		select('#videobackground').style.animation = "showmodal 0.2s ease forwards";
@@ -417,15 +436,12 @@ function sleep(msec) {
 function setScoreRank(score) {
 	const highScore = ["SSS+", "SSS", "SS+", "SS", "S+", "S", "AAA", "AA"];
 	const lowScore = ["B", "C"];
-	if (score > 880000) {
-		return highScore[Math.floor((1000000 - score) / 15000)];
-	} else if (score > 800000) {
-		return "A";
-	} else if (score <= 600000) {
-		return "D";
-	} else {
-		return lowScore[Math.floor((800000 - score) / 100000)];
-	}
+	if(score >=1000000) return "SSS+";
+	else if (score > 880000) return highScore[Math.floor((1000000 - score) / 15000)];
+	else if (score > 800000) return "A";
+	else if (score <= 600000) return "D";
+	else return lowScore[Math.floor((800000 - score) / 100000)];
+	
 }
 
 function setMusicList() {
@@ -614,6 +630,8 @@ function sendNewUserData(rank, score, type) {
 	}
 	rating = Math.floor(rating * 100) / 100
 	if (rating < 0) rating = 0;
+
+	if(playingMusicData.diff=="ozma") rating = userData.rating;
 	console.log(rating);
 
 	if (!login) return;

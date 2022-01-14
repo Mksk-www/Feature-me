@@ -16,18 +16,31 @@ const ASSETS_BASE_DIR = "https://FeatureMe-Server.mksksub.repl.co/"
 
 
 // キーボード操作用
-var KEYCODE_TO_KEYDATA_MAP = {
+/*var KEYCODE_TO_KEYDATA_MAP = {
     68: { key: "d", id: 0 },
     70: { key: "f", id: 1 },
     74: { key: "j", id: 2 },
     75: { key: "k", id: 3 },
-		32: { key: "space", id: 4 }
+	32: { key: "space", id: 4 }
+};*/
 
-};
+let KEY_TO_JUDGE_LIST = [
+	{code:68,key:"d"},
+	{code:70,key:"f"},
+	{code:74,key:"j"},
+	{code:75,key:"k"},
+	{code:32,key:" "},
+	{code:69,key:"e"},
+	{code:75,key:"i"}
+]
+
 var INDEX_TO_KEY_MAP = {};
-KEYCODE_TO_KEYDATA_MAP.forIn(function (key, val) {
+/* KEYCODE_TO_KEYDATA_MAP.forIn(function (key, val) {
     INDEX_TO_KEY_MAP[val.id] = val.key;
-});
+}); */
+for(const i in KEY_TO_JUDGE_LIST){
+	INDEX_TO_KEY_MAP[i] = KEY_TO_JUDGE_LIST[i]["key"]
+}
 
 /* var ASSETS = {
     font:{
@@ -122,12 +135,12 @@ const musicList = [
 	{
 		name:"ours",
 		music:ASSETS_BASE_DIR+"ours/ours.mp3",
-		beatmap:ASSETS_BASE_DIR+"beatmap.json",
-		bpm:0,
-		lev:0,
+		beatmap:ASSETS_BASE_DIR+"ours/beatmap.json",
+		bpm:80,
+		lev:10,
 		duration:"01:42",
 		diff:"advanced",
-		nd:"-",
+		nd:"Mksk",
 	},{
 		name:"ウーパールーパー",
 		music:"",
@@ -148,13 +161,13 @@ const musicList = [
 		nd:"-",
 	},{
 		name:"Vocaloid_Eazy",
-		music:ASSETS_BASE_DIR+"vocaloid_eazy/vocaloid_eazy.mp3",
+		music:ASSETS_BASE_DIR+"vocaloid_eazy/Vocaloid_Easy.mp3",
 		beatmap:ASSETS_BASE_DIR+"vocaloid_eazy/beatmap.json",
-		bpm:0,
+		bpm:120,
 		lev:999,
-		duration:"00：20",
+		duration:"???",
 		diff:"ozma",
-		nd:"-",
+		nd:"???",
 	}
 ]
 

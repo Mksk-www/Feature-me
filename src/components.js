@@ -96,7 +96,7 @@ phina.define('PositionNotesIconLine', {
 phina.define('TargetMarker', {
     superClass: 'phina.display.RectangleShape',
 
-    init: function (targetTime, trackId, type) {
+    init: function (targetTime, trackId, type,speed) {
         this.superInit({
 
             strokeWidth: 3,
@@ -118,6 +118,7 @@ phina.define('TargetMarker', {
             
         );*/
         this.vector = phina.geom.Vector2(0, 1);
+		this.noteSpeed = speed;
 
 
         // カウント表示

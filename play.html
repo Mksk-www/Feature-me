@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feature Me</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="./src/style/high.css" id="highcss" class="uicss">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/style/high.css" id="highcss" class="uicss">
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -47,21 +48,21 @@
                 <div id="musicbg"></div>
             </div>
             <div class="Settingspage">
-                <div style=" margin-top: 100px; width: 100vw;" class="valuesetting">
+                <div class="valuesetting">
                     <h1>UI Details</h1>
                     <img src="./src/img/Plus.png" alt="" onclick="uiDetailsCtrl(1)">
                     <h1 style="width: 7.25em;vertical-align: super;" id="uidetailsvalue">High</h1>
                     <img src="./src/img/Minus.png" alt="" onclick="uiDetailsCtrl(-1)">
                 </div>
 
-                <div style=" margin-top: 100px; width: 100vw;" class="valuesetting">
+                <div class="valuesetting">
                     <h1>Framerate Upper Limit</h1>
                     <img src="./src/img/Plus.png" alt="" onclick="fpsCtrl(30)">
                     <h1 style="width: 7.25em;vertical-align: super;" id="fpsvalue">120</h1>
                     <img src="./src/img/Minus.png" alt="" onclick="fpsCtrl(-30)">
                 </div>
 
-                <div style=" margin-top: 100px; width: 100vw;" class="valuesetting">
+                <div class="valuesetting">
                     <h1>Notes Speed</h1>
                     <img src="./src/img/Left.png" alt="" onclick="notesSpeedCtrl(1)">
                     <img src="./src/img/Plus.png" alt="" onclick="notesSpeedCtrl(0.1)">
@@ -70,7 +71,7 @@
                     <img src="./src/img/Right.png" alt="" onclick="notesSpeedCtrl(-1)">
                 </div>
 
-                <div style="margin-top: 100px; width: 100vw;" class="valuesetting">
+                <div class="valuesetting">
                     <h1>Music Volume</h1>
                     <img src="./src/img/Left.png" alt="" onclick="musicVolumeCtrl(10)">
                     <img src="./src/img/Plus.png" alt="" onclick="musicVolumeCtrl(1)">
@@ -78,7 +79,7 @@
                     <img src="./src/img/Minus.png" alt="" onclick="musicVolumeCtrl(-1)">
                     <img src="./src/img/Right.png" alt="" onclick="musicVolumeCtrl(-10)">
                 </div>
-                <div style="margin-top: 100px; width: 100vw;" class="valuesetting">
+                <div class="valuesetting">
                     <h1>Sound Effects Volume</h1>
                     <img src="./src/img/Left.png" alt="" onclick="effectVolumeCtrl(10)">
                     <img src="./src/img/Plus.png" alt="" onclick="effectVolumeCtrl(1)">
@@ -87,33 +88,50 @@
                     <img src="./src/img/Right.png" alt="" onclick="effectVolumeCtrl(-10)">
                 </div>
 
-                <div style="margin-top:100px; width: 100vw;" class="valuesetting">
+                <div class="valuesetting">
                     <h1>Judge Type</h1>
                     <img src="./src/img/Plus.png" alt="" onclick="judgeTypeCtrl(true)">
                     <h1 style="width: 7.25em;vertical-align: super;" id="judgetypevalue">Text & Effect</h1>
                     <img src="./src/img/Minus.png" alt="" onclick="judgeTypeCtrl(false)">
                 </div>
 
-                <div style="margin-top:100px; width: 100vw;" class="valuesetting">
+                <div class="valuesetting">
                     <h1>Effect Sound Type</h1>
                     <img src="./src/img/Plus.png" alt="" onclick="effectTypeCtrl(1)">
                     <h1 style="width: 7.25em;vertical-align: super;" id="effecttypevalue">Default</h1>
                     <img src="./src/img/Minus.png" alt="" onclick="effectTypeCtrl(-1)">
                 </div>
 
-                <div style=" margin-top: 100px; width: 100vw;" class="valuesetting">
+                <div class="valuesetting">
                     <h1>Lane Vertical Lines</h1>
                     <img src="./src/img/Plus.png" alt="" onclick="vLineCtrl(true)">
                     <h1 style="width: 7.25em;vertical-align: super;" id="vlinevalue">Enabled</h1>
                     <img src="./src/img/Minus.png" alt="" onclick="vLineCtrl(false)">
                 </div>
 
-				<div style=" margin-top: 100px; width: 100vw;" class="valuesetting">
+				<div class="valuesetting">
                     <h1>Horizonal Beat Lines</h1>
                     <img src="./src/img/Plus.png" alt="" onclick="">
                     <h1 style="width: 7.25em;vertical-align: super;" id="">Every 4beats</h1>
                     <img src="./src/img/Minus.png" alt="" onclick="">
                 </div>
+
+				<div class="acd">
+				<input id="acd-check1" class="acd-check" type="checkbox">
+                    <label class="acd-label" for="acd-check1">Key Config</label>
+                    <div class="acd-content" id="keyconfig-content">
+                        <span>Left:</span> <input type=text class="keyconfiginput" id="0" readonly><br>
+						<span>Center(Left):</span>  <input type=text class="keyconfiginput" id="1" readonly><br>
+						<span>Center(Right):</span>  <input type=text class="keyconfiginput" id="2" readonly><br>
+						<span>Right:</span> <input type=text class="keyconfiginput" id="3" readonly><br>
+						<span>SPACE NOTE:</span> <input type=text class="keyconfiginput" id="4" readonly><br>
+						<span>Move Character (To Left): </span> <input type=text class="keyconfiginput" id="5" readonly><br>
+						<span>Move Character (To Right):</span>  <input type=text class="keyconfiginput" id="6" readonly><br>
+						
+                    </div>
+				</div>
+				
+				
             </div>
 
             <div class="Characterpage">
@@ -129,7 +147,7 @@
         <div id="bottomframe">
             <div class="Homepage">
                 <p style="position:absolute;bottom:0;left:96px;margin:0" class="version">
-                    VERSION:WEB_0.3.5_00082 <br>
+                    VERSION:WEB_0.3.6_00090 <br>
                     2021 Mksk & Raetan the Feature Me Project</p>
                 <container style="position: absolute;top: 0;right: 12px;">
                     <img src="./src/img/Cursor.png" alt> <span>選択</span>
@@ -280,7 +298,9 @@
             SCOREをTECHNICAL SCOREへ変更。<br>
             CHARACTER　SCORE追加。<br>
 			FEATTURE ME ACCOUNT システム追加.<br>
-			楽曲追加.
+			楽曲追加.<br>
+			キーコンフィグ設定追加。<br>
+			
         </div>
         <div class="button" style="position:absolute;bottom:8px;right:8px;font-size:1em;border-radius:4px;">Close</div>
     </div>

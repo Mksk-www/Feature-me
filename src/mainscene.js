@@ -145,15 +145,11 @@ phina.define('MainScene', {
                 }     */
         });
         window.addEventListener('keydown', (e) => {
-            if (e.key == "e") {
-				self.moveCharacter("left")
-			}
-            else if (e.key == "i") {
-				self.moveCharacter("right")
-			}
-            var keyData = KEYCODE_TO_KEYDATA_MAP[e.keyCode];
+            if (e.key == KEY_TO_JUDGE_LIST[5].key) return self.moveCharacter("left");
+            else if (e.key == KEY_TO_JUDGE_LIST[6].key) return self.moveCharacter("right");
+            var keyData = KEY_TO_JUDGE_LIST.find(f=>f.key==e.key);
             if (keyData) {
-                const icon = iconGroup.getChildAt(keyData.id);
+                const icon = iconGroup.getChildAt(KEY_TO_JUDGE_LIST.indexOf(keyData));
                 self.judge(icon);
             }
         })
@@ -167,11 +163,26 @@ phina.define('MainScene', {
         beatmap.notes.forEach(function (note) {
 			const targetTime = (60 / beatmap.BPM * note.count) * 1000
             let type;
+			let thisNoteSpeed;
             if (note.track < 4) type = "normal";
             if (note.track == 4) type = "space";
             if (note.track > 4) type = "position";
             //TargetMarker(note.targetTime, note.track) msカウント
-            TargetMarker(targetTime, note.track, type) //BPM
+			if(note.speed){
+				switch(note.speed.type){
+					case "absolute":
+						thisNoteSpeed = -70 * note.speed.value + 1500
+					break;
+					case "relative":
+						thisNoteSpeed = -70 * (note.speed.value + notesSpeed) + 1500
+					break;
+					case "fixed":
+						thisNoteSpeed = note.speed.value;
+					break;
+				}
+				
+			}
+            TargetMarker(targetTime, note.track, type,thisNoteSpeed) //BPM
                 .addChildTo(self.markerGroup);
             console.log(note.track,targetTime)
 
@@ -372,12 +383,6 @@ phina.define('MainScene', {
 
         const positionLines = this.positionIconGroup.children;
 
-        /* positionLines.forEach(e=>{
-            if(e.line) return;
-            e.fill = "rgba(0,0,0,0.7)"
-            if(e.rl == "Left" && this.position == "left") e.fill = "#eabc02aa";
-            if(e.rl == "Right" && this.position == "right") e.fill = "#eabc02aa";
-        })				 */
 
         // マーカー描画
         const markers = this.markerGroup.children;
@@ -414,10 +419,10 @@ phina.define('MainScene', {
             else if (m.trackId == 5) posX = -550;
             else if (m.trackId == 6) posX = 550
             else posX = 240 * m.trackId - 360;
-            if (rTime < MARKER_APPEARANCE_DELTA) {
+            if (rTime < (m.noteSpeed||MARKER_APPEARANCE_DELTA)) {
                 // マーカーの位置比率や縮小率（倍率）を計算する
                 // ratioはアイコンに近いほど1.0に近づく
-                const ratio = (time - (m.targetTime - MARKER_APPEARANCE_DELTA)) / MARKER_APPEARANCE_DELTA;
+                const ratio = (time - (m.targetTime - (m.noteSpeed||MARKER_APPEARANCE_DELTA))) / (m.noteSpeed||MARKER_APPEARANCE_DELTA);
                 const distance = UNIT_ICON_Y * 1.6 * ratio;
 
                 m.setVisible(true)
