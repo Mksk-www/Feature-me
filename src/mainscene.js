@@ -585,7 +585,7 @@ phina.define('MainScene', {
             .addChildTo(this);
 
 		if(rating!="MISS"){
-			let addFeatureScore = (rating=="Stunning Bloom"?7951:3975);
+			let addFeatureScore = (rating=="Stunning_Bloom"?7951:3975);
 			if(random(0,100)>5) addFeatureScore*=1.5;
 			if(marker>3) addFeatureScore*=1.2;
 			addFeatureScore*=1.1

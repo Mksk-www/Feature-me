@@ -594,6 +594,7 @@ function logout(params) {
 function sendNewUserData(rank, score, type) {
 	score = String(score)
 	let rating = playingMusicData.lev;
+	if(typeof rating == "string") rating = Number(rating.slice(0,2)) +0.5
 	const score2 = Number(score.slice(-4, -2));
 	const score3 = Number(score.slice(-4, -1));
 	let exp = 300;
@@ -631,7 +632,7 @@ function sendNewUserData(rank, score, type) {
 	rating = Math.floor(rating * 100) / 100
 	if (rating < 0) rating = 0;
 
-	if(playingMusicData.diff=="ozma") rating = userData.rating;
+	if(playingMusicData.diff=="ozma") rating = 0;
 	console.log(rating);
 
 	if (!login) return;

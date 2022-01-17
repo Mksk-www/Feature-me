@@ -95,7 +95,7 @@ const musicList = [
 		music:ASSETS_BASE_DIR+"ラエルの歌/ラエルの歌.mp3",
 		beatmap:ASSETS_BASE_DIR+"ラエルの歌/beatmap.json",
 		bpm:60,
-		lev:13,
+		lev:12,
 		diff:"expert",
 		nd:"Raetan",
 		duration:"00:20",
@@ -112,16 +112,6 @@ const musicList = [
 		duration:"00:20",
 		thumb:ASSETS_BASE_DIR+"BGS/image.png"
 	},
-	/* {
-		name:"ちゅ縺｡繧ーりﾂ縺翫▲縺ｷぷノｮ縺?◆うﾀ",
-		music:"./assets/チューリップのうた/tyurippu.mp3",
-		beatmap:"./assets/チューリップのうた/beatmap.json",
-		bpm:104,
-		lev:15,
-		diff:"master",
-		nd:"Mksk",
-		duration:"00:51"
-	}, */
 	{
 		name:"Feat you.",
 		music:ASSETS_BASE_DIR+"feat_you/Feat_You._3.mp3",
@@ -137,7 +127,7 @@ const musicList = [
 		music:ASSETS_BASE_DIR+"ours/ours.mp3",
 		beatmap:ASSETS_BASE_DIR+"ours/beatmap.json",
 		bpm:80,
-		lev:10,
+		lev:"11+",
 		duration:"01:42",
 		diff:"advanced",
 		nd:"Mksk",
