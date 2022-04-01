@@ -67,6 +67,7 @@ phina.define('MainScene', {
             SoundManager.setVolume(effectVolume / 100);
             SoundManager.setVolumeMusic(musicVolume / 100);
             SoundManager.playMusic('music', null, false);
+			console.log(this.elapsedTime,this.gameTime)
         });
 
         setTimeout(() => {
@@ -76,7 +77,7 @@ phina.define('MainScene', {
                 e.background = "transparent"
             })
             result(this.technicalScore, this.combo, this.maxCombo, this.RatePerfect, this.RateGreat, this.RateMiss, this.fast, this.late, beatmap.title)
-        }, beatmap.duration + 1000)
+        }, beatmap.duration + beatmap.offset + MUSIC_START_DELAY + 1000)
 
         this.backGround = Sprite("background").addChildTo(this)
         this.backGround.origin.set(0, 0);

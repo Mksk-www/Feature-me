@@ -528,7 +528,7 @@ function loginxhr() {
 }
 
 async function notification(title, details) {
-	let notificationdiv = document.createElement("div");
+/* 	let notificationdiv = document.createElement("div");
 	console.log(notificationdiv)
 	notificationdiv.className = "notification";
 	document.body.appendChild(notificationdiv);
@@ -540,7 +540,11 @@ async function notification(title, details) {
 	await sleep(3000);
 	notificationdiv.style.animation = "notificationhide 0.3s ease forwards";
 	await sleep(300)
-	notificationdiv.remove();
+	notificationdiv.remove(); */
+	const notification = new inAppNotification({
+		title:title,
+		description:details,
+	})
 
 }
 
