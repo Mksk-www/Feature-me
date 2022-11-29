@@ -1,2 +1,0 @@
-Font:Malgun Gothic 36px White 
-Align center
