@@ -10,12 +10,7 @@ const Header: React.FC = () => {
 
     return (
         <header className={style.header}>
-            <div className={style.titleBar}>
-                Feature Me Alpha 0.4.0
-            </div>
-            <div className={style.headerContent}>
                 <h1>{title||"Home"}</h1>
-            </div>
         </header>
     )
 }
