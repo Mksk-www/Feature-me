@@ -1,5 +1,4 @@
 import ChamferedButton from "Components/Button/chamferedButton/chamferedButton";
-import TranslateText from "Components/TranslateText/TranslateText";
 import React from "react";
 
 import style from "./errorBoundary.scss"
@@ -35,35 +34,35 @@ class ErrorBoundary extends React.Component {
             return (
                 <div className={style.errorPage}>
                     <div className={style.errorDetails}>
-                        <h1><TranslateText defaultValue="Game Crashed." content="crashHandler.header" /></h1>
-                        <p><TranslateText defaultValue="An Critical Error has occured." content="crashHandler.description" /></p>
+                        <h1>Game Crashed.</h1>
+                        <p>An Critical Error has occured.</p>
                         <div className={style.interaction}>
-                            <ChamferedButton onClick={() => location.reload()} > <TranslateText content="crashHandler.interaction.relaunch" /></ChamferedButton>
-                            <ChamferedButton onClick={() => window.open("https://github.com/Feature-Me/Feature-Me/issues")}><TranslateText content="crashHandler.interaction.report" /></ChamferedButton>
+                            <ChamferedButton onClick={() => location.reload()} >Relaunch</ChamferedButton>
+                            <ChamferedButton onClick={() => window.open("https://github.com/Feature-Me/Feature-Me/issues")}>Report this issue</ChamferedButton>
                         </div>
                         <div className={style.errorMessage}>
-                            <p><TranslateText defaultValue="Error details" content="crashHandler.details" /></p>
+                            <p>Error details</p>
                             <h2>{this.state.error?.toString()}</h2>
                             <hr />
                             <div className={style.stackTraces}>
                                 <div className={style.trace}>
-                                    <h2><TranslateText defaultValue="Stack Trace" content="crashHandler.stackTrace" end=":" /></h2>
+                                    <h2>Stack Trace:</h2>
                                     <StackTrace stack={this.state.error?.stack || ""} isComponent={false} />
                                 </div>
                                 <div className={style.trace}>
-                                    <h2><TranslateText defaultValue="Component Trace" content="crashHandler.componentTrace" end=":" /></h2>
+                                    <h2>Component Trace:</h2>
                                     <StackTrace stack={this.state.errorInfo?.componentStack || ""} isComponent={true} />
                                 </div>
                                 <hr />
                                 <hr />
                                 <details className={style.rawTrace}>
-                                    <summary><TranslateText defaultValue="View raw Error" content="crashHandler.viewRawError" /></summary>
+                                    <summary>View raw Error</summary>
                                     <code>
                                         {this.state.error?.stack}
                                     </code>
                                 </details>
                                 <details className={style.rawTrace}>
-                                    <summary><TranslateText defaultValue="View raw Component Stack" content="crashHandler.viewRawComponent" end=":" /></summary>
+                                    <summary>View raw Component Stack:</summary>
                                     <code>
                                         {this.state.errorInfo?.componentStack}
                                     </code>
