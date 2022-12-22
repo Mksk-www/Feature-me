@@ -26,19 +26,19 @@ body {
     @include font-size;
     scroll-behavior: smooth;
     cursor: url("../Assets/Images/pointer.cur"), default;
-    scrollbar-color: $borderColor;
-    scrollbar-width: 2px;
+    scrollbar-color: $accentColor;
+    scrollbar-width: 4px;
 
 }
 
 ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
+    width: 4px;
+    height: 4px;
     background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: $borderColor
+    background: $accentColor
 }
 
 .app {
@@ -48,12 +48,14 @@ body {
     overflow: hidden;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 72px 1fr 48px;
+    grid-template-rows: 48px 1fr 48px;
 }
 
 
 * {
     box-sizing: border-box;
+    min-height: 0;
+    min-width: 0;
 }
 
 a{
