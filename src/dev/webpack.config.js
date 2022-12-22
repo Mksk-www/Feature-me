@@ -5,7 +5,7 @@ module.exports = {
     entry: path.resolve(__dirname,"App","app.tsx"),
     mode: "development",
     output: {
-        path: path.resolve(__dirname, "../../dist"),
+        path: path.resolve(__dirname, "../../"),
         filename: "script.js"
     },
     resolve: {
@@ -25,7 +25,7 @@ module.exports = {
                 },
             },
             {
-                test: /\.module.[s]?css$/,
+                test: /\.[s]?css$/,
                 use: [
                     'style-loader',
                     {
@@ -34,18 +34,6 @@ module.exports = {
                     },
                     'postcss-loader', 'sass-loader'
                 ],
-                exclude: /\.[s]?css/
-            },
-            {
-                test: /\.[s]?css$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                    },
-                    'postcss-loader', 'sass-loader'
-                ],
-                exclude:/\.module.[s]?css/
             },
             {
                 test:/\.cur?$/,
