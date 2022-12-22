@@ -7,11 +7,10 @@
     grid-template-rows: 1fr;
     grid-template-columns: auto 1fr;
     border-top: 1px solid $borderColor;
-
+    padding: 0 16px;
     .keyhint{
         display: flex;
         flex-direction: row-reverse;
-        padding: 0 16px;
         .keyhintContent{
             display: grid;
             grid-template-rows: 1fr;
