@@ -1,0 +1,15 @@
+@import "../../Assets/mixin.scss";
+
+.header {
+    height: 72px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 24px 48px;
+    .titleBar{
+        background-color: $gray;
+    }
+    .headerContent{
+        border-bottom: 1px solid $borderColor;
+    }
+}
