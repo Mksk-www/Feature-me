@@ -7,19 +7,21 @@ import version from "Config/versions.json";
 
 import style from "./app.scss";
 import initLocalStorage from "Utils/Storage/LocalStorage/initLocalStorage";
-import { BrowserRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import Header from "Components/Header/head";
 import Footer from "Components/Footer/footer";
 import PageRouter from "Routes/router";
+import Title from "Pages/Title/title";
 
 const App:React.FC = () =>{
     return(
         <div className={style.app}>
             <Header />
-            <BrowserRouter>
+            <MemoryRouter>
                 <PageRouter />
-            </BrowserRouter>
+            </MemoryRouter>
             <Footer />
+            <Title />
         </div>
     )
 }
