@@ -1,0 +1,410 @@
+{
+	"BPM":120,
+    "offset":  150,
+	"duration":20000,
+	"title":"Vocaloid_Eazy",
+	"nd": "Raetan",
+	"diff": "ozma",
+	"music":"./Vocaloid_Easy.mp3",
+	"lev": 999,
+	"artist": "Raetan",
+	"notes":[
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":1
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":2
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":3
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":4			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":5
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":6
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":7
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":8
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":9
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":10
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":11
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":12
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":13
+			}
+		},
+			{
+			"track": 5,
+			"count": 0.5,
+			"speed":{
+				"type":"absolute",
+				"value":14
+			}
+			},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":1
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":2
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":3
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":4			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":5
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":6
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":7
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":8
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":9
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":10
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":11
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":12
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":13
+			}
+		},
+			{
+			"track": 5,
+			"count": 1.5,
+			"speed":{
+				"type":"absolute",
+				"value":14
+			}
+			},
+			{
+			"track": 0,
+			"count": 1
+		},
+		{
+			"track": 1,
+			"count": 1.1
+		},
+			{
+			"track": 2,
+			"count": 1.2
+		},
+			{
+			"track": 4,
+			"count": 1.3
+		},
+			{
+			"track": 2,
+			"count": 1.4
+		},
+			{
+			"track": 1,
+			"count": 1.5
+		},
+			{
+			"track": 0,
+			"count": 1.6
+		},
+			{
+			"track": 4,
+			"count": 1.7
+		},
+			{
+			"track": 2,
+			"count": 1.8
+		},
+			{
+			"track": 3,
+			"count": 1.9
+		},
+		{
+			"track": 0,
+			"count": 1
+		},
+		{
+			"track": 1,
+			"count": 2.1
+		},
+			{
+			"track": 2,
+			"count": 2.2
+		},
+			{
+			"track": 4,
+			"count": 2.3
+		},
+			{
+			"track": 2,
+			"count": 2.4
+		},
+			{
+			"track": 1,
+			"count": 2.5
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":1
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":2
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":3
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":4			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":5
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":6
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":7
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":8
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":9
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":10
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":11
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":12
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":13
+			}
+		},
+			{
+			"track": 6,
+			"count": 2.5,
+			"speed":{
+				"type":"absolute",
+				"value":14
+			}
+			}
+	]
+}
