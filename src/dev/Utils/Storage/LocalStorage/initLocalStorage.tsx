@@ -1,6 +1,4 @@
 import React from "react";
-import { toast } from "react-toastify";
-import TranslateText from "Components/TranslateText/TranslateText";
 import { enviroment, resourcesDownloaded, DBVersion, gameConfig, musicSelect } from "./defaultValue";
 
 function initLocalStorage(): void {
@@ -14,7 +12,6 @@ function initLocalStorage(): void {
     
 } catch (error) {
     console.error(error);
-    toast.error(`${error}`);
     }
 }
 
