@@ -1,18 +1,29 @@
 import React from "react";
-import * as  path from "path-browserify"
+import path from "path-browserify";
+import { useSetAtom } from "jotai";
+import { useNavigate } from "react-router-dom";
 
-import musicList from "Config/musicList.json";
+import selectedMusicState from "State/gameState";
 
 import style from "./home.scss";
 
 import thumbnail from "Assets/Images/music.png";
 
+
 const MusicListCard: React.FC<{ content: musicListContent }> = (props) => {
+
+    const setMusic = useSetAtom(selectedMusicState);
+    const navigate = useNavigate()
 
     const thumbnailImage = path.join("musics", props.content.dir, "thumbnail.png");
 
+    function handleClick() {
+        setMusic(props.content.name);
+        navigate("/play")
+    }
+
     return (
-        <div className={style.card}>
+        <div className={style.card} onClick={handleClick}>
             <img draggable="false" src={thumbnailImage} onError={(e) => e.currentTarget.src = thumbnail} />
             <h1>{props.content.name}</h1>
             <h4> //By {props.content.artist}</h4>
