@@ -1,0 +1,18 @@
+.keylist{
+    .input{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: 1fr;
+        padding: 1px;
+        &:hover{
+            padding: 0;
+            outline: none;
+            border: 1px solid #1189da;
+        }
+        &:active, &:focus{
+            padding: 0;
+            outline: none;
+            border: 1px solid darkorange;
+        }
+    }
+}
