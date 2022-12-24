@@ -3,6 +3,8 @@
 .home{
     overflow: auto;
     padding: 16px;
+    height: 100%;
+    width: 100%;
 }
 
 .card{
@@ -17,6 +19,14 @@
     transition: 0.2s;
     align-items: center;
     column-gap: 8px;
+
+    @media screen and (max-width:1024px) {
+        grid-template-columns: 64px auto 1fr 96px;
+        .details{
+            display: none;
+        }
+    }
+
     img{
         height: 64px;
         width: 64px;
@@ -26,6 +36,8 @@
         font-weight: light;
         font-style: italic;
     }
+
+
     .diff{
         height: 100%;
         position: relative;
