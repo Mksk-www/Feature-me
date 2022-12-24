@@ -1,11 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import path from "path-browserify";
-import easings from "Utils/easing/easing";
 
 import selectedMusicState from "State/selectedMusicState";
-import gameDataState from "State/gameState";
 
 import musicList from "Config/musicList.json"
 
@@ -15,11 +12,12 @@ import thumbnail from "Assets/Images/music.png";
 import MusicLoadError from "Utils/Error/musicLoadError";
 import { motion, useAnimation } from "framer-motion";
 import sleep from "Utils/sleep/sleep";
+import gameRendererState from "State/gameRendererState";
 
 
 
 const MusicTitle: React.FC = () => {
-    const gameData = useAtomValue(gameDataState);
+    const gameRenderer = useAtomValue(gameRendererState);
     const selectedMusic = useAtomValue(selectedMusicState);
     const titleRef = React.useRef<HTMLDivElement>(null);
     const currentMusic = musicList.musicList.find(m => m.name == selectedMusic)
@@ -42,7 +40,7 @@ const MusicTitle: React.FC = () => {
 
     React.useEffect(() => {
         let timeout:NodeJS.Timeout
-        if (gameData.ready) {
+        if (gameRenderer) {
             timeout = setTimeout(async()=>{
                 animationController.start(fadeOut);
                 await sleep(200);
@@ -52,7 +50,7 @@ const MusicTitle: React.FC = () => {
         return ()=>{
             clearTimeout(timeout)
         }
-    }, [gameData.ready])
+    }, [gameRenderer])
 
     return (
         <motion.div className={style.musicTitle} animate={animationController} ref={titleRef}>
