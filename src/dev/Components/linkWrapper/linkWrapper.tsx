@@ -1,20 +1,19 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-
-import useSeneChangeNavigation from "Hooks/scenechange/useSceneChangeNavigation";
 
 interface linkWrapperPropsType {
-    children?: React.ReactNode,
-    to: string,
-    className?: string,
-    state?:any;
+    children?: React.ReactNode
+    to: string
+    className?: string
+    state?:any
+    onClick?:Function
 }
 
 const LinkWrapper: React.FC<linkWrapperPropsType> = (props): JSX.Element => {
-    const navigate = useSeneChangeNavigation();
+    const navigate = useNavigate();
 
     function handleClick(e: React.MouseEvent<HTMLDivElement>): void {
+        if(props.onClick) props.onClick()
         navigate(props.to,{state:props.state});
     }
 
