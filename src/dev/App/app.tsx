@@ -18,7 +18,9 @@ const App:React.FC = () =>{
         <div className={style.app}>
             <MemoryRouter>
                 <Header />
-                <PageRouter />
+                <div className={style.page}>
+                    <PageRouter />
+                </div>
                 <Footer />
             </MemoryRouter>
             <Title />
