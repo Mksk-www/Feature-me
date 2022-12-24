@@ -3,7 +3,7 @@ import path from "path-browserify";
 import { useSetAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
 
-import selectedMusicState from "State/gameState";
+import selectedMusicState from "State/selectedMusicState";
 
 import style from "./home.scss";
 
@@ -27,7 +27,7 @@ const MusicListCard: React.FC<{ content: musicListContent }> = (props) => {
             <img draggable="false" src={thumbnailImage} onError={(e) => e.currentTarget.src = thumbnail} />
             <h1>{props.content.name}</h1>
             <h4> //By {props.content.artist}</h4>
-            <div>
+            <div className={style.details}>
                 Time : {props.content.duration} <br />
                 BPM : {props.content.bpm} <br />
                 Chart Designer : {props.content.nd}
@@ -35,7 +35,7 @@ const MusicListCard: React.FC<{ content: musicListContent }> = (props) => {
             <div className={`${style.diff} ${style[props.content.diff]}`}>
                 <span className={style.label}>
                     //{props.content.diff}
-                    </span>
+                </span>
                 <h3 className={style.text}>
                     {props.content.lev}
                 </h3>
