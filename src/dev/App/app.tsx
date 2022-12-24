@@ -16,11 +16,11 @@ import Title from "Pages/Title/title";
 const App:React.FC = () =>{
     return(
         <div className={style.app}>
-            <Header />
             <MemoryRouter>
+                <Header />
                 <PageRouter />
+                <Footer />
             </MemoryRouter>
-            <Footer />
             <Title />
         </div>
     )
