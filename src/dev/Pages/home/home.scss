@@ -48,6 +48,7 @@
             font-size: 2em;
             text-align: center;
             line-height: 64px;
+            text-shadow: 2px 2px $black;
         }
     }
     &:hover{
@@ -59,7 +60,8 @@
     }
     &:active{
         filter: brightness(0.9);
-        transform: scale(0.99);
+        transform: perspective(1000px) rotateY(0.5deg) rotateX(-5deg);
+        transform-origin: top left;
     }
 }
 
