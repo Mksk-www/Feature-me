@@ -1,5 +1,9 @@
 import { atom } from "jotai";
 
-const selectedMusicState = atom("");
+const gameDataState = atom({
+    ready:false,
+    audio:new ArrayBuffer(0),
+    chart:{}
+});
 
-export default selectedMusicState
+export default gameDataState
