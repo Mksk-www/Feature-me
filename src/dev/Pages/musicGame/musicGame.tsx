@@ -9,6 +9,8 @@ import musicList from "Config/musicList.json"
 
 import style from "./musicGame.scss";
 import MusicTitle from "./musicTitle";
+import GameLoader from "./GameLoader";
+import gameDataState from "State/gameState";
 
 
 
@@ -32,9 +34,10 @@ const MusicGame: React.FC = () => {
         }
     }, [])
 
+
     return (
         <div className={style.musicGame}>
-
+            <GameLoader />
             <MusicTitle />
         </div>
     )
