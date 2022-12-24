@@ -1,12 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useSetAtom } from "jotai";
+
+import MusicListCard from "./musicListCard";
+import headerState from "State/headerState";
 
 import musicList from "Config/musicList.json";
 
 import style from "./home.scss";
-import MusicListCard from "./musicListCard";
-import { useNavigate } from "react-router-dom";
-import { useSetAtom } from "jotai";
-import headerState from "State/headerState";
 
 const Home:React.FC = () => {
     const navigate = useNavigate();

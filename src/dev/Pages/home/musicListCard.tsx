@@ -1,10 +1,9 @@
 import React from "react";
+import * as  path from "path-browserify"
 
 import musicList from "Config/musicList.json";
 
 import style from "./home.scss";
-
-import * as  path from "path-browserify"
 
 import thumbnail from "Assets/Images/music.png";
 
