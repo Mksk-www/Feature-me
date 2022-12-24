@@ -12,6 +12,7 @@ import style from "./home.scss";
 const Home:React.FC = () => {
     const navigate = useNavigate();
     const setTitle = useSetAtom(headerState);
+    
 
     React.useEffect(()=>{
         //update title
