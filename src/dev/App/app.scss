@@ -51,6 +51,10 @@ body {
     grid-template-rows: 48px 1fr 48px;
 }
 
+.page{
+    position: relative;
+    overflow: auto;
+}
 
 * {
     box-sizing: border-box;
