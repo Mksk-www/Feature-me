@@ -37,6 +37,10 @@ const GameplaySettings: React.FC = () => {
                 <KeybindSettings />
             </div>
             <div className={style.setting}>
+                <h2>Scroll Speed</h2>
+                <NumberInput min={1} max={20} value={gameplaySettings.scrollSpeed} onChange={(value) => setGameplaySettings((s: gameplaySettings) => { return { ...s, scrollSpeed: value } })} />
+            </div>
+            <div className={style.setting}>
                 <h2>Show judge VFX</h2>
                 <HorizonalSelectFromArray contents={selector} value={selector.find(s => s.value == gameplaySettings.VFX) || selector[0]} onChange={(value:selectContents<boolean>) => setGameplaySettings((s: gameplaySettings) => { return { ...s, VFX: value.value } })} />
             </div>
