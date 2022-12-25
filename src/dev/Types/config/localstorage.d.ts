@@ -15,4 +15,5 @@ interface gameplaySettings {
     VFX:boolean
     fastLate:boolean
     vLine:boolean
+    scrollSpeed:number
 }
