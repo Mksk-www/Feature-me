@@ -34,7 +34,7 @@ const MusicTitle: React.FC = () => {
     const thumbnailImage = path.join("musics", currentMusic?.dir, "thumbnail.png");
 
     React.useEffect(() => {
-        if (titleRef.current) titleRef.current.style.visibility = "";
+        if (titleRef.current) titleRef.current.style.display = "";
         animationController.start(fadeIn);
     }, [])
 
@@ -44,7 +44,7 @@ const MusicTitle: React.FC = () => {
             timeout = setTimeout(async()=>{
                 animationController.start(fadeOut);
                 await sleep(200);
-                if (titleRef.current) titleRef.current.style.visibility="none";
+                if (titleRef.current) titleRef.current.style.display="none";
             },3000)
         }
         return ()=>{
