@@ -44,6 +44,10 @@ const GameplaySettings: React.FC = () => {
                 <h2>Show FAST/LATE</h2>
                 <HorizonalSelectFromArray contents={selector} value={selector.find(s => s.value == gameplaySettings.fastLate) || selector[0]} onChange={(value: selectContents<boolean>) => setGameplaySettings((s: gameplaySettings) => { return { ...s, fastLate: value.value } })} />
             </div>
+            <div className={style.setting}>
+                <h2>Show Vertical Line</h2>
+                <HorizonalSelectFromArray contents={selector} value={selector.find(s => s.value == gameplaySettings.vLine) || selector[0]} onChange={(value: selectContents<boolean>) => setGameplaySettings((s: gameplaySettings) => { return { ...s, vLine: value.value } })} />
+            </div>
             {/* add judge timing settings */}
         </div>
     )
