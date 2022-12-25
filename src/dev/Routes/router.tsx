@@ -5,6 +5,7 @@ import Home from "Pages/home/home";
 
 import SettingsPage from "Pages/settings/settings";
 import MusicGame from "Pages/musicGame/musicGame";
+import ResultPage from "Pages/result/result";
 
 const PageRouter: React.FC = () => {
     const location = useLocation()
@@ -13,6 +14,7 @@ const PageRouter: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/settings/*" element={<SettingsPage />} />
             <Route path="/play" element={<MusicGame />} />
+            <Route path="/result" element={<ResultPage />} />
         </Routes>
     )
 }
