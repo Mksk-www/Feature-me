@@ -8,16 +8,20 @@ import headerState from "State/headerState";
 import musicList from "Config/musicList.json";
 
 import style from "./home.scss";
+import selectedMusicState from "State/selectedMusicState";
 
 const Home:React.FC = () => {
     const navigate = useNavigate();
     const setTitle = useSetAtom(headerState);
+    const setSelectedMusic = useSetAtom(selectedMusicState);
+    
     
 
     React.useEffect(()=>{
         //update title
         setTitle("Home");
         //add shortcut
+        setSelectedMusic("");
         window.addEventListener("keydown",(e)=>{
             if(e.code=="Escape") navigate("/settings");
         })
