@@ -93,7 +93,6 @@ const GameRenderer: React.FC = () => {
                 score: gameVariables.score,
                 judges: gameVariables.judges,
                 timing: gameVariables.timing,
-                chain: gameVariables.chain,
                 maxChain: gameVariables.maxChain
             }
         })
