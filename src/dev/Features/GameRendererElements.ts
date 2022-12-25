@@ -31,7 +31,7 @@ const background = new PIXI.Graphics()
 
 const judgeLine = new PIXI.Graphics()
     .beginFill(accentColor)
-    .drawRect(0, judgeLineY - 4, 1200, 8);
+    .drawRect(0, judgeLineY, 1200, 8);
 
 const LineGroup = new PIXI.Container();
 LineGroup.height = height;
@@ -85,10 +85,10 @@ SeedRightNoteGroup.x = areaWidth - seedNoteWidth;
 SeedRightNoteGroup.y = 0;
 
 const BrightNoteGroup = new PIXI.Container();
-SeedRightNoteGroup.width = areaWidth - 2 * seedNoteWidth
-SeedRightNoteGroup.height = height;
-SeedRightNoteGroup.x = seedNoteWidth
-SeedRightNoteGroup.y = 0;
+BrightNoteGroup.width = areaWidth - 2 * seedNoteWidth
+BrightNoteGroup.height = height;
+BrightNoteGroup.x = seedNoteWidth
+BrightNoteGroup.y = 0;
 
 const Character = PIXI.Sprite.from(character);
 Character.anchor.y = 1
@@ -119,5 +119,6 @@ export {
     TapNoteGroup,
     SeedLeftNoteGroup,
     SeedRightNoteGroup,
-    BrightNoteGroup
+    BrightNoteGroup,
+    judgeLineY
 }
