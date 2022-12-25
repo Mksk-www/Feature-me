@@ -9,6 +9,5 @@ interface gameResultState {
         fast: number
         late: number
     }
-    chain:number
     maxChain:number
 }
