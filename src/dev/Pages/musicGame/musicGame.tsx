@@ -11,6 +11,8 @@ import style from "./musicGame.scss";
 import MusicTitle from "./musicTitle";
 import GameLoader from "./GameLoader";
 import gameDataState from "State/gameState";
+import GameRenderer from "./GameRenderer";
+import Background from "./background";
 
 
 
@@ -37,7 +39,9 @@ const MusicGame: React.FC = () => {
 
     return (
         <div className={style.musicGame}>
+            <Background />
             <GameLoader />
+            <GameRenderer />
             <MusicTitle />
         </div>
     )
