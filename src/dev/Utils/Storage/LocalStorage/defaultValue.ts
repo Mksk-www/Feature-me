@@ -14,7 +14,8 @@ const gameplaySettings = {
     keybinds: ["KeyD", "KeyF", "KeyJ", "KeyK", "Space", "KeyE", "KeyI"],
     VFX: true,
     fastLate: true,
-    vLine: true
+    vLine: true,
+    scrollSpeed:10
 }
 
 export { graphicsSettings, audioSettings, gameplaySettings }
