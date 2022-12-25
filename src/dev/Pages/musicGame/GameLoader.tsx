@@ -26,11 +26,13 @@ const GameLoader: React.FC = () => {
         .then((result) => {
             const music = result[0];
             const chart = result[1];
+            
             if (!music || !chart) throw new MusicLoadError(`Music name : ${selectedMusic}`);
+
             setGameData({
                 ready:true,
                 audio:music,
-                chart:chart
+                chart
             })
         })
         .catch(()=>{
@@ -45,7 +47,7 @@ const GameLoader: React.FC = () => {
             .catch(reject)
     })
 
-    const loadChart = new Promise<ArrayBuffer>((resolve, reject) => {
+    const loadChart = new Promise<chart>((resolve, reject) => {
         fetch(path.join(baseDir, "beatmap.json"))
             .then(res => res.json())
             .then(resolve)
