@@ -42,7 +42,7 @@ const SettingsPage: React.FC = () => {
                     settingsTab.map(t=>{
                         const isActive = t.to == currentTab;
                         return(
-                            <LinkWrapper to={t.to} className={`${style.tab} ${isActive&&style.active}`} onClick={()=>setCurrentTab(t.to)}>{t.label}</LinkWrapper>
+                            <LinkWrapper to={t.to} className={`${style.tab} ${isActive&&style.active}`} onClick={()=>setCurrentTab(t.to)} key={t.label}>{t.label}</LinkWrapper>
                         )
                     })
                 }
