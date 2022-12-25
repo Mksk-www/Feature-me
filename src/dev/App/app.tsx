@@ -1,17 +1,20 @@
 import React from "react";
 import { createRoot } from 'react-dom/client';
+import { MemoryRouter } from "react-router-dom";
 
-import ErrorBoundary from "Components/errorBoundary/errorBoundary";
+
 
 import version from "Config/versions.json";
+import { VERSION } from "pixi.js";
 
-import style from "./app.scss";
 import initLocalStorage from "Utils/Storage/LocalStorage/initLocalStorage";
-import { MemoryRouter } from "react-router-dom";
+import ErrorBoundary from "Components/errorBoundary/errorBoundary";
 import Header from "Components/Header/head";
 import Footer from "Components/Footer/footer";
 import PageRouter from "Routes/router";
 import Title from "Pages/Title/title";
+
+import style from "./app.scss";
 
 const App:React.FC = () =>{
     return(
@@ -46,7 +49,7 @@ function init(): void {
     console.log("%c Please be careful when you paste anything to console.\n Attackers may steal your information.", "color:#ffa69f;background-color:#633023;font-size:16px;");
     console.log("%c  Do you know what you are supposed to do with this tool? If you do, how about contributing to this project?", "color:#1189da;font-size:24px;");
     console.log(`%c Running Feature Me Alpha ${version.version}.Build:${version.build}.`, "color:#a0d6a6;background-color:#2d3c2e;font-size:16px;");
-    console.log(`%c React${React.version}\n PixiJS${0}`, "color:#f3c0e6;background-color:#3c2d38;font-size:16px;")
+    console.log(`%c React${React.version}\n PixiJS${VERSION}`, "color:#f3c0e6;background-color:#3c2d38;font-size:16px;")
 
 }
 window.addEventListener('load', init);
