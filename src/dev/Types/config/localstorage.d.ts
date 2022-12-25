@@ -1,6 +1,7 @@
 interface graphicsSettings {
     fps:number
     resolution:number
+    antialias:boolean
 }
 
 interface audioSettings {
