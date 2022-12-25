@@ -1,6 +1,7 @@
 const graphicsSettings = {
     fps: 60,
     resolution: 1,
+    antialias:false
 }
 
 const audioSettings = {
