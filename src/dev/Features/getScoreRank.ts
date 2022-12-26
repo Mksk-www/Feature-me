@@ -1,5 +1,5 @@
 const scoreRanks = [
-    { label: "SSS+", min: 990000, max: 1000000 },
+    { label: "SSS+", min: 990000, max: 1000001 },
     { label: "SSS", min: 980000, max: 990000 },
     { label: "SS+", min: 970000, max: 980000 },
     { label: "SS", min: 950000, max: 970000 },
@@ -13,7 +13,7 @@ const scoreRanks = [
     { label: "A", min: 800000, max: 830000 },
     { label: "B", min: 700000, max: 800000 },
     { label: "C", min: 600000, max: 700000 },
-    { label: "D", min: 0, max: 600000 }
+    { label: "D", min: -1, max: 600000 }
 ]
 
 function getScoreRankFromScore(score: number) {

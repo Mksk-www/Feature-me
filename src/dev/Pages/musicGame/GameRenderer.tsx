@@ -20,7 +20,7 @@ import effectSound from "Assets/Sounds/default.mp3";
 
 import style from "./musicGame.scss";
 import judgeTable from "Features/judgeTable";
-import { createJudgeText, UIGroup, updateChainText, updateScoreText } from "Features/GameUIElements";
+import { createJudgeText, UIGroup, updateChainText, updateJudgeValues, updateScoreText } from "Features/GameUIElements";
 import gameResultState from "State/gameResultState";
 
 const GameRenderer: React.FC = () => {
@@ -96,9 +96,9 @@ const GameRenderer: React.FC = () => {
                 maxChain: gameVariables.maxChain
             }
         })
-        setTimeout(()=>{
+        setTimeout(() => {
             navigate("/result");
-        },1000)
+        }, 1000)
     }
 
     //setup scene
@@ -106,6 +106,9 @@ const GameRenderer: React.FC = () => {
         App.stage.addChild(LaneGroup);
         App.stage.addChild(UIGroup);
         App.ticker.add(update, PIXI.UPDATE_PRIORITY.HIGH);
+
+        LaneGroup.on("pointerdown", (e) => { })
+
         //wait and play assist
         setTimeout(() => {
             musicAudio.play();
@@ -123,6 +126,7 @@ const GameRenderer: React.FC = () => {
     function initializeUi() {
         updateChainText(0);
         updateScoreText(0);
+        updateJudgeValues(gameVariables.judges, 0);
     }
 
     //update function is added PIXI ticker
@@ -185,7 +189,7 @@ const GameRenderer: React.FC = () => {
             note.visual.y = judgeLineY * progress;
 
             //judge seed note
-            if (note instanceof seedNote && !note.judged && gameTime > note.targetTime) judge(note, gameTime);
+            if (note instanceof seedNote && !note.judged && gameTime > note.targetTime) judgeSeedNote(note);
 
             //lost note
             const relativeTime = note.targetTime - gameTime;
@@ -276,6 +280,32 @@ const GameRenderer: React.FC = () => {
         note.judged = true;
     }
 
+    function judgeSeedNote(note: seedNote) {
+        let judgeData: table;
+        if (note.LR == gameVariables.characterPosition) judgeData = judgeTable.stunningBloom;
+        else judgeData = judgeTable.miss;
+
+        //play sound
+        if (judgeData.key != "miss") {
+            playEffectSound();
+        }
+
+        //update variables
+        gameVariables.judges[judgeData.key as judgeText] += 1;
+        gameVariables.score += gameVariables.scorePerNotes * judgeData.scoreMultiplier;
+
+        //update chain
+        if (judgeData.key != "miss") gameVariables.chain += 1;
+        else gameVariables.chain = 0;
+        
+        //update max chain
+        if (gameVariables.maxChain < gameVariables.chain) gameVariables.maxChain = gameVariables.chain;
+
+        updateVisualEffect();
+
+        note.judged = true;
+    }
+
 
     function playEffectSound() {
         //move another thread and play audio
@@ -292,6 +322,7 @@ const GameRenderer: React.FC = () => {
     function updateVisualEffect() {
         updateChainText(gameVariables.chain);
         updateScoreText(gameVariables.score);
+        updateJudgeValues(gameVariables.judges, gameVariables.maxChain)
     }
 
     React.useEffect(() => {
@@ -309,9 +340,26 @@ const GameRenderer: React.FC = () => {
                     setTimeout(() => keyDown(index))
                 }
             })
+
+            //stop audio
             if (musicAudio) {
                 musicAudio.stop();
+                musicAudio.unload();
             }
+
+            //remove touch event
+            LaneGroup.removeAllListeners()
+
+            //destroy notes
+            if (gameVariables.notes) {
+                for (let i = 0; i < gameVariables.notes.length; i++) {
+                    const note = gameVariables.notes[i];
+                    if (note.visual) note.visual.destroy();
+                }
+            }
+
+            //destroy renderer
+            App.stage.destroy();
             App.destroy();
 
         }

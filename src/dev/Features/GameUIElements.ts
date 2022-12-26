@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js";
 import sleep from "Utils/sleep/sleep";
+import judgeTable from "./judgeTable";
 
 const width = 1920;
 const height = 873;
@@ -17,7 +18,7 @@ ScoreGroup.x = 24;
 ScoreGroup.y = 64;
 
 const JudgesGroup = new PIXI.Container();
-JudgesGroup.x = 4;
+JudgesGroup.x = 24;
 JudgesGroup.y = 240;
 
 const ChainTextGroup = new PIXI.Container();
@@ -30,7 +31,7 @@ JudgeTextGroup.x = (width - areaWidth) / 2;
 JudgeTextGroup.y = judgeLineY - 200;
 
 
-UIGroup.addChild(ScoreGroup, JudgesGroup, ChainTextGroup,JudgeTextGroup);
+UIGroup.addChild(ScoreGroup, JudgesGroup, ChainTextGroup, JudgeTextGroup);
 
 const scoreTextLabelStyle = new PIXI.TextStyle({
     fontFamily: 'Montserrat',
@@ -47,7 +48,7 @@ function updateScoreText(score: number) {
     }
     const style = new PIXI.TextStyle({
         fontFamily: 'Montserrat',
-        fontSize: 80,
+        fontSize: 72,
         fill: '#f5f5f5'
     });
     const text = new PIXI.Text(Math.round(score), style);
@@ -60,13 +61,40 @@ function updateChainText(chain: number) {
     }
     const style = new PIXI.TextStyle({
         fontFamily: 'Montserrat',
-        fontSize: 96,
+        fontSize: 72,
         fill: '#c0c0c0',
-        fontWeight:"lighter"
+        fontWeight: "lighter"
     });
     const text = new PIXI.Text(chain, style);
     text.anchor.set(0.5, 0)
     ChainTextGroup.addChildAt(text, 0);
+}
+
+function updateJudgeValues(judges: gameVariables["judges"], chain: number) {
+    JudgesGroup.removeChildren(0);
+    const maxChainTextStyle = new PIXI.TextStyle({
+        fontFamily: 'Montserrat',
+        fontSize: 24,
+        fill: '#c0c0c0',
+        fontWeight: "lighter"
+    });
+    const maxChainText = new PIXI.Text(`Max Chain : ${chain}`, maxChainTextStyle);
+    JudgesGroup.addChild(maxChainText);
+
+    let loopIndex = 1;
+    for (const key in judges) {
+        const judgeData = judgeTable[key as judgeText];
+        const judgeDataTextStyle = new PIXI.TextStyle({
+            fontFamily: 'Montserrat',
+            fontSize: 24,
+            fill: judgeData.color,
+            fontWeight: "lighter"
+        });
+        const judgeDataText = new PIXI.Text(`${judgeData.label} : ${judges[key as judgeText]}`, judgeDataTextStyle)
+        judgeDataText.y = 36 * loopIndex;
+        JudgesGroup.addChild(judgeDataText);
+        loopIndex++;
+    }
 }
 
 async function createJudgeText(judgeText: string, color: number, accuracy: number, position: number) {
@@ -83,21 +111,21 @@ async function createJudgeText(judgeText: string, color: number, accuracy: numbe
             fontFamily: 'Montserrat',
             fontSize: 12,
             fill: label == "FAST" ? 0x1f5ff4 : 0xf4751f,
-            align:"center"
+            align: "center"
         });
-        const FLLabelText = new PIXI.Text(label,FLLabelStyle);
+        const FLLabelText = new PIXI.Text(label, FLLabelStyle);
         const boundingBox = FLLabelText.getBounds();
-        FLLabelText.x = (240-boundingBox.width)/2;
+        FLLabelText.x = (240 - boundingBox.width) / 2;
         JudgeTextLabelGroup.addChild(FLLabelText)
     }
 
     const judgeTextStyle = new PIXI.TextStyle({
         fontFamily: 'Montserrat',
-        fontSize:20,
-        fill:color,
-        align:"center"
+        fontSize: 20,
+        fill: color,
+        align: "center"
     })
-    const judgeTextLabel = new PIXI.Text(judgeText,judgeTextStyle);
+    const judgeTextLabel = new PIXI.Text(judgeText, judgeTextStyle);
     const boundingBox = judgeTextLabel.getBounds();
     judgeTextLabel.x = (240 - boundingBox.width) / 2;
     judgeTextLabel.y = 20
@@ -105,7 +133,7 @@ async function createJudgeText(judgeText: string, color: number, accuracy: numbe
 
     //add to container
     JudgeTextGroup.addChild(JudgeTextLabelGroup);
-    
+
     for (let i = 0; i < 25; i++) {
         JudgeTextLabelGroup.y -= 2;
         JudgeTextLabelGroup.alpha -= 0.02;
@@ -122,5 +150,6 @@ export {
     ChainTextGroup,
     updateChainText,
     updateScoreText,
-    createJudgeText
+    updateJudgeValues,
+    createJudgeText,
 };
