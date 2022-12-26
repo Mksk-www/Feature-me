@@ -20,7 +20,7 @@ import effectSound from "Assets/Sounds/default.mp3";
 
 import style from "./musicGame.scss";
 import judgeTable from "Features/judgeTable";
-import { createJudgeText, UIGroup, updateChainText, updateScoreText } from "Features/GameUIElements";
+import { createJudgeText, UIGroup, updateChainText, updateJudgeValues, updateScoreText } from "Features/GameUIElements";
 import gameResultState from "State/gameResultState";
 
 const GameRenderer: React.FC = () => {
@@ -107,7 +107,7 @@ const GameRenderer: React.FC = () => {
         App.stage.addChild(UIGroup);
         App.ticker.add(update, PIXI.UPDATE_PRIORITY.HIGH);
 
-        LaneGroup.on("pointerdown",(e)=>{})
+        LaneGroup.on("pointerdown", (e) => { })
 
         //wait and play assist
         setTimeout(() => {
@@ -126,6 +126,7 @@ const GameRenderer: React.FC = () => {
     function initializeUi() {
         updateChainText(0);
         updateScoreText(0);
+        updateJudgeValues(gameVariables.judges, 0);
     }
 
     //update function is added PIXI ticker
@@ -317,6 +318,7 @@ const GameRenderer: React.FC = () => {
     function updateVisualEffect() {
         updateChainText(gameVariables.chain);
         updateScoreText(gameVariables.score);
+        updateJudgeValues(gameVariables.judges, gameVariables.maxChain)
     }
 
     React.useEffect(() => {
