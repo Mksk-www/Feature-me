@@ -294,6 +294,10 @@ const GameRenderer: React.FC = () => {
         gameVariables.judges[judgeData.key as judgeText] += 1;
         gameVariables.score += gameVariables.scorePerNotes * judgeData.scoreMultiplier;
 
+        //update chain
+        if (judgeData.key != "miss") gameVariables.chain += 1;
+        else gameVariables.chain = 0;
+        
         //update max chain
         if (gameVariables.maxChain < gameVariables.chain) gameVariables.maxChain = gameVariables.chain;
 
