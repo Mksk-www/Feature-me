@@ -41,7 +41,7 @@ LineGroup.width = areaWidth;
 LineGroup.x = 0;
 LineGroup.y = 0
 
-if (gameplaySettings.vLine) {
+if (gameplaySettings.vLine !== false) {
     for (let i = 0; i < 5; i++) {
         if (i == 0) {
             LineGroup.addChild(
