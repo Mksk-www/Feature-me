@@ -91,7 +91,7 @@ function updateJudgeValues(judges: gameVariables["judges"], chain: number) {
             fontWeight: "lighter"
         });
         const judgeDataText = new PIXI.Text(`${judgeData.label} : ${judges[key as judgeText]}`, judgeDataTextStyle)
-        judgeDataText.y = 32 * loopIndex;
+        judgeDataText.y = 36 * loopIndex;
         JudgesGroup.addChild(judgeDataText);
         loopIndex++;
     }
