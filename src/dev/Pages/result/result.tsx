@@ -14,8 +14,9 @@ const ResultPage: React.FC = () => {
     const result = useAtomValue(gameResultState);
     const setTitle = useSetAtom(headerState);
 
-    const initial = { opacity: 0, x: -200 };
+    const initial = { opacity: 0};
     const fadeIn = { opacity: 1, transition: { duration: 2, ease: "easeOut" } };
+    const scoreInitial = { opacity: 0, x: -200 };
     const scoreFadeIn = { opacity: [0, 0, 1], x: [-200, -200, 0], transition: { duration: 2, ease: "easeOut" } };
 
     React.useEffect(() => {
@@ -31,7 +32,7 @@ const ResultPage: React.FC = () => {
                 </div>
                 <h2>Back to Menu</h2>
             </LinkWrapper>
-            <motion.div className={style.score} animate={scoreFadeIn} initial={initial}>
+            <motion.div className={style.score} animate={scoreFadeIn} initial={scoreInitial}>
                 <div >
                     <p className={style.label} >//SCORE</p>
                     <h1>{Math.round(result.score)}</h1>
