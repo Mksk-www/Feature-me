@@ -47,7 +47,7 @@ function updateScoreText(score: number) {
     }
     const style = new PIXI.TextStyle({
         fontFamily: 'Montserrat',
-        fontSize: 80,
+        fontSize: 72,
         fill: '#f5f5f5'
     });
     const text = new PIXI.Text(Math.round(score), style);
@@ -60,7 +60,7 @@ function updateChainText(chain: number) {
     }
     const style = new PIXI.TextStyle({
         fontFamily: 'Montserrat',
-        fontSize: 96,
+        fontSize: 72,
         fill: '#c0c0c0',
         fontWeight:"lighter"
     });
