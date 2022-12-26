@@ -96,9 +96,9 @@ const GameRenderer: React.FC = () => {
                 maxChain: gameVariables.maxChain
             }
         })
-        setTimeout(()=>{
+        setTimeout(() => {
             navigate("/result");
-        },1000)
+        }, 1000)
     }
 
     //setup scene
@@ -312,6 +312,13 @@ const GameRenderer: React.FC = () => {
             if (musicAudio) {
                 musicAudio.stop();
             }
+            if(gameVariables.notes){
+                for (let i = 0; i < gameVariables.notes.length; i++) {
+                    const note = gameVariables.notes[i];
+                    if(note.visual) note.visual.destroy();
+                }
+            }
+            App.stage.destroy();
             App.destroy();
 
         }

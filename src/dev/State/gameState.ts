@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-const initialChart:chart = {
+const initialChart: chart = {
     BPM: 0,
     offset: 0,
     duration: 0,
@@ -15,10 +15,11 @@ const initialChart:chart = {
 }
 
 
-const gameDataState = atom<{ready:boolean,audio:ArrayBuffer,chart:chart}>({
-    ready:false,
-    audio:new ArrayBuffer(0),
+const gameDataState = atom<{ ready: boolean, audio: ArrayBuffer, chart: chart }>({
+    ready: false,
+    audio: new ArrayBuffer(0),
     chart: initialChart
 });
 
 export default gameDataState
+export { initialChart }
