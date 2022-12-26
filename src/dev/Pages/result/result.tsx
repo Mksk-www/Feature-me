@@ -15,22 +15,23 @@ const ResultPage: React.FC = () => {
     const setTitle = useSetAtom(headerState);
 
     const initial = { opacity: 0, x: -200 };
-    const fadeIn = { opacity: [0, 0, 1], x: [-200, -200, 0], transition: { duration: 2, ease: "easeOut" } };
+    const fadeIn = { opacity: 1, transition: { duration: 2, ease: "easeOut" } };
+    const scoreFadeIn = { opacity: [0, 0, 1], x: [-200, -200, 0], transition: { duration: 2, ease: "easeOut" } };
 
-    React.useEffect(()=>{
-        setTitle(t=>`Result - ${t}`);
-    },[])
+    React.useEffect(() => {
+        setTitle(t => `Result - ${t}`);
+    }, [])
 
 
     return (
-        <div className={style.resultPage}>
+        <motion.div className={style.resultPage} animate={fadeIn} initial={initial}>
             <LinkWrapper to={"/"} className={style.head}>
                 <div className={style.icon}>
                     <BsChevronDoubleLeft />
                 </div>
                 <h2>Back to Menu</h2>
             </LinkWrapper>
-            <motion.div className={style.score} animate={fadeIn} initial={initial}>
+            <motion.div className={style.score} animate={scoreFadeIn} initial={initial}>
                 <div >
                     <p className={style.label} >//SCORE</p>
                     <h1>{Math.round(result.score)}</h1>
@@ -70,7 +71,7 @@ const ResultPage: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
