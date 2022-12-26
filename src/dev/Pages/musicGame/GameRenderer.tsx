@@ -106,6 +106,9 @@ const GameRenderer: React.FC = () => {
         App.stage.addChild(LaneGroup);
         App.stage.addChild(UIGroup);
         App.ticker.add(update, PIXI.UPDATE_PRIORITY.HIGH);
+
+        LaneGroup.on("pointerdown",(e)=>{})
+
         //wait and play assist
         setTimeout(() => {
             musicAudio.play();
@@ -285,7 +288,7 @@ const GameRenderer: React.FC = () => {
         if (judgeData.key != "miss") {
             playEffectSound();
         }
-        
+
         //update variables
         gameVariables.judges[judgeData.key as judgeText] += 1;
         gameVariables.score += gameVariables.scorePerNotes * judgeData.scoreMultiplier;
@@ -331,15 +334,25 @@ const GameRenderer: React.FC = () => {
                     setTimeout(() => keyDown(index))
                 }
             })
+
+            //stop audio
             if (musicAudio) {
                 musicAudio.stop();
+                musicAudio.unload();
             }
+
+            //remove touch event
+            LaneGroup.removeAllListeners()
+
+            //destroy notes
             if (gameVariables.notes) {
                 for (let i = 0; i < gameVariables.notes.length; i++) {
                     const note = gameVariables.notes[i];
                     if (note.visual) note.visual.destroy();
                 }
             }
+
+            //destroy renderer
             App.stage.destroy();
             App.destroy();
 

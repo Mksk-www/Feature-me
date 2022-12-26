@@ -23,6 +23,8 @@ LaneGroup.height = height;
 LaneGroup.width = areaWidth;
 LaneGroup.x = (width - areaWidth) / 2;
 LaneGroup.y = 0;
+LaneGroup.interactive = true;
+
 
 const background = new PIXI.Graphics()
     .beginFill(backgroundColor, 0.7)
@@ -113,7 +115,7 @@ LaneGroup.addChild(
     NoteGroup
 );
 
-export { 
+export {
     LaneGroup,
     Character,
     TapNoteGroup,
