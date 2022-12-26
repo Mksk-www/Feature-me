@@ -185,7 +185,7 @@ const GameRenderer: React.FC = () => {
             note.visual.y = judgeLineY * progress;
 
             //judge seed note
-            if (note instanceof seedNote && !note.judged && gameTime > note.targetTime) judge(note, gameTime);
+            if (note instanceof seedNote && !note.judged && gameTime > note.targetTime) judgeSeedNote(note);
 
             //lost note
             const relativeTime = note.targetTime - gameTime;
@@ -276,6 +276,28 @@ const GameRenderer: React.FC = () => {
         note.judged = true;
     }
 
+    function judgeSeedNote(note: seedNote) {
+        let judgeData: table;
+        if (note.LR == gameVariables.characterPosition) judgeData = judgeTable.stunningBloom;
+        else judgeData = judgeTable.miss;
+
+        //play sound
+        if (judgeData.key != "miss") {
+            playEffectSound();
+        }
+        
+        //update variables
+        gameVariables.judges[judgeData.key as judgeText] += 1;
+        gameVariables.score += gameVariables.scorePerNotes * judgeData.scoreMultiplier;
+
+        //update max chain
+        if (gameVariables.maxChain < gameVariables.chain) gameVariables.maxChain = gameVariables.chain;
+
+        updateVisualEffect();
+
+        note.judged = true;
+    }
+
 
     function playEffectSound() {
         //move another thread and play audio
@@ -312,10 +334,10 @@ const GameRenderer: React.FC = () => {
             if (musicAudio) {
                 musicAudio.stop();
             }
-            if(gameVariables.notes){
+            if (gameVariables.notes) {
                 for (let i = 0; i < gameVariables.notes.length; i++) {
                     const note = gameVariables.notes[i];
-                    if(note.visual) note.visual.destroy();
+                    if (note.visual) note.visual.destroy();
                 }
             }
             App.stage.destroy();
