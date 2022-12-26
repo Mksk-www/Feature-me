@@ -22,6 +22,10 @@ const GeneralSettings: React.FC = () => {
             <h1>General</h1>
             <h2>Game information</h2>
             <h3>Feature Me Alpha 0.4.0</h3>
+        
+            <h2>Links</h2>
+            <a href="https://feature-me.github.io/Feature-me-Alpha-v0.x/">Alpha 0.3.7</a>
+            <a href="https://feature-me-v1.onrender.com/">Feature Me</a>
         </div>
     )
 }
