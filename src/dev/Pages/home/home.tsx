@@ -9,16 +9,26 @@ import musicList from "Config/musicList.json";
 
 import style from "./home.scss";
 import selectedMusicState from "State/selectedMusicState";
+import gameDataState, { initialChart } from "State/gameState";
 
 const Home:React.FC = () => {
     const navigate = useNavigate();
     const setTitle = useSetAtom(headerState);
     const setSelectedMusic = useSetAtom(selectedMusicState);
+    const setGameData = useSetAtom(gameDataState);
     
-    
+    //delete game cache
+    function initializeCache() {
+        setGameData({
+            ready: false,
+            audio: new ArrayBuffer(0),
+            chart: initialChart
+        })
+    }
 
     React.useEffect(()=>{
         //update title
+        initializeCache();
         setTitle("Home");
         //add shortcut
         setSelectedMusic("");
