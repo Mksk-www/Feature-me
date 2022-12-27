@@ -12,15 +12,16 @@ import easings from "Utils/easing/easing";
 import sleep from "Utils/sleep/sleep";
 import scrollSpeedToTime from "Utils/scrollSpeedToTime/scrollSpeedToTime";
 
-import { BrightNoteGroup, Character, judgeLineY, LaneGroup, SeedLeftNoteGroup, SeedRightNoteGroup, TapNoteGroup } from "Features/GameRendererElements";
+import { BrightNoteGroup, Character, judgeLineY, LaneGroup, SeedLeftNoteGroup, SeedRightNoteGroup, TapNoteGroup, updateRendererElementSettings } from "Features/GameRendererElements";
 import parseChart from "Features/parseChart";
 import { brightNote, note, seedNote } from "Features/noteClasses";
 
 import effectSound from "Assets/Sounds/default.mp3";
+import assistSound from "Assets/Sounds/assist.mp3"
 
 import style from "./musicGame.scss";
 import judgeTable from "Features/judgeTable";
-import { createJudgeText, UIGroup, updateChainText, updateJudgeValues, updateScoreText } from "Features/GameUIElements";
+import { createJudgeText, UIGroup, updateChainText, updateJudgeValues, updateScoreText, updateUIElementSettings } from "Features/GameUIElements";
 import gameResultState from "State/gameResultState";
 
 const GameRenderer: React.FC = () => {
@@ -34,7 +35,10 @@ const GameRenderer: React.FC = () => {
     const gameplaySettings: gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}")
 
     let musicAudio: Howl;
-    //let effectAudio: Howl;
+    let assistAudio = new Howl({
+        src: assistSound,
+        volume: audioSettings.master * audioSettings.effect
+    })
 
     let App: PIXI.Application = new PIXI.Application({
         height: 873,
@@ -72,9 +76,10 @@ const GameRenderer: React.FC = () => {
         gameVariables.notes = parseChart(gameData.chart.notes, gameData.chart.BPM);
         gameVariables.scorePerNotes = 1000000 / gameVariables.notes.length;
         //run setup functions
+        updateSettings();
+        initializeUi();
         setAudio();
         setScene();
-        initializeUi();
     }
 
     //set music instance
@@ -84,6 +89,13 @@ const GameRenderer: React.FC = () => {
             volume: audioSettings.master * audioSettings.music
         })
         musicAudio.once("end", endGame)
+    }
+
+    async function playAssistSound() {
+        for (let i = 0; i < 4; i++) {
+            assistAudio.play();
+            await sleep((60 / gameData.chart.BPM) * 1000)
+        }
     }
 
     function endGame() {
@@ -101,6 +113,11 @@ const GameRenderer: React.FC = () => {
         }, 1000)
     }
 
+    function updateSettings() {
+        updateRendererElementSettings();
+        updateUIElementSettings();
+    }
+
     //setup scene
     function setScene() {
         App.stage.addChild(LaneGroup);
@@ -109,10 +126,11 @@ const GameRenderer: React.FC = () => {
 
         LaneGroup.on("pointerdown", (e) => { })
 
-        //wait and play assist
+        //play assist sound and wait
+        setTimeout(playAssistSound, 4000);
         setTimeout(() => {
             musicAudio.play();
-        }, 4000 + ((60 / gameData.chart.BPM) * 1000 * 4))
+        }, 4000 + ((60 / gameData.chart.BPM) * 1000 * 4));
         //set started time
         gameVariables.startedTime = performance.now()
         //start ticker and rendering
@@ -297,7 +315,7 @@ const GameRenderer: React.FC = () => {
         //update chain
         if (judgeData.key != "miss") gameVariables.chain += 1;
         else gameVariables.chain = 0;
-        
+
         //update max chain
         if (gameVariables.maxChain < gameVariables.chain) gameVariables.maxChain = gameVariables.chain;
 

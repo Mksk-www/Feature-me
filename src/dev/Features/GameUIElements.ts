@@ -2,6 +2,9 @@ import * as PIXI from "pixi.js";
 import sleep from "Utils/sleep/sleep";
 import judgeTable from "./judgeTable";
 
+let gameplaySettings: gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}");
+
+
 const width = 1920;
 const height = 873;
 
@@ -41,6 +44,9 @@ const scoreTextLabelStyle = new PIXI.TextStyle({
 const scoreTextLabel = new PIXI.Text("//SCORE", scoreTextLabelStyle);
 ScoreGroup.addChildAt(scoreTextLabel, 0)
 
+function updateUIElementSettings() {
+    gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}");
+}
 
 function updateScoreText(score: number) {
     if (ScoreGroup.children.length > 1) {
@@ -105,7 +111,7 @@ async function createJudgeText(judgeText: string, color: number, accuracy: numbe
     if (position == 4) JudgeTextLabelGroup.x = (areaWidth - 240) / 2;
 
     //if accuracy is bigger than 24, show FAST/LATE
-    if (Math.abs(accuracy) > 24) {
+    if (Math.abs(accuracy) > 24 && gameplaySettings.fastLate) {
         const label = accuracy < 0 ? "FAST" : "LATE";
         const FLLabelStyle = new PIXI.TextStyle({
             fontFamily: 'Montserrat',
@@ -140,8 +146,8 @@ async function createJudgeText(judgeText: string, color: number, accuracy: numbe
         await sleep(750 / 50);
     }
     JudgeTextGroup.removeChild(JudgeTextLabelGroup);
-
 }
+
 
 export {
     UIGroup,
@@ -152,4 +158,5 @@ export {
     updateScoreText,
     updateJudgeValues,
     createJudgeText,
+    updateUIElementSettings,
 };

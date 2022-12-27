@@ -35,17 +35,18 @@ const NumberInput: React.FC<rangeInputPropsType> = (props) => {
 
     return (
         <div className={style.numberinput_wrapper}>
-            <div className={style.icon} onClick={() => handleChange(-step*10)}>
+            <div className={style.icon} onClick={() => handleChange(step*10)}>
                 <AiOutlineDoubleLeft />
             </div>
-            <div className={style.icon} onClick={()=>handleChange(-step)}>
-                <MdRemove />
+            <div className={style.icon} onClick={()=>handleChange(step)}>
+                <MdAdd />
+                
             </div>
             <input type="number" className={style.number} max={max} min={min} step={step} value={value} onChange={e=>handleChange(Number(e.target.value)-value)} />
-            <div className={style.icon} onClick={() => handleChange(step)}>
-                <MdAdd />
+            <div className={style.icon} onClick={() => handleChange(-step)}>
+                <MdRemove />
             </div>
-            <div className={style.icon} onClick={() => handleChange(step*10)}>
+            <div className={style.icon} onClick={() => handleChange(-step*10)}>
                 <AiOutlineDoubleRight />
             </div>
         </ div>
