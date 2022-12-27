@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js";
 
 import character from "Assets/Images/Characters/Shiori-back.png";
 
-const gameplaySettings: gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}");
+let gameplaySettings: gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}");
 
 const width = 1920
 const height = 873
@@ -115,6 +115,10 @@ LaneGroup.addChild(
     NoteGroup
 );
 
+function updateRendererElementSettings() {
+    gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}");
+}
+
 export {
     LaneGroup,
     Character,
@@ -122,5 +126,6 @@ export {
     SeedLeftNoteGroup,
     SeedRightNoteGroup,
     BrightNoteGroup,
-    judgeLineY
+    judgeLineY,
+    updateRendererElementSettings
 }
