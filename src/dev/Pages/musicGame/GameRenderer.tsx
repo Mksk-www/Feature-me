@@ -12,7 +12,7 @@ import easings from "Utils/easing/easing";
 import sleep from "Utils/sleep/sleep";
 import scrollSpeedToTime from "Utils/scrollSpeedToTime/scrollSpeedToTime";
 
-import { BrightNoteGroup, Character, judgeLineY, LaneGroup, SeedLeftNoteGroup, SeedRightNoteGroup, TapNoteGroup } from "Features/GameRendererElements";
+import { BrightNoteGroup, Character, judgeLineY, LaneGroup, SeedLeftNoteGroup, SeedRightNoteGroup, TapNoteGroup, updateRendererElementSettings } from "Features/GameRendererElements";
 import parseChart from "Features/parseChart";
 import { brightNote, note, seedNote } from "Features/noteClasses";
 
@@ -20,7 +20,7 @@ import effectSound from "Assets/Sounds/default.mp3";
 
 import style from "./musicGame.scss";
 import judgeTable from "Features/judgeTable";
-import { createJudgeText, UIGroup, updateChainText, updateJudgeValues, updateScoreText } from "Features/GameUIElements";
+import { createJudgeText, UIGroup, updateChainText, updateJudgeValues, updateScoreText, updateUIElementSettings } from "Features/GameUIElements";
 import gameResultState from "State/gameResultState";
 
 const GameRenderer: React.FC = () => {
@@ -72,6 +72,7 @@ const GameRenderer: React.FC = () => {
         gameVariables.notes = parseChart(gameData.chart.notes, gameData.chart.BPM);
         gameVariables.scorePerNotes = 1000000 / gameVariables.notes.length;
         //run setup functions
+        updateSettings();
         setAudio();
         setScene();
         initializeUi();
@@ -99,6 +100,11 @@ const GameRenderer: React.FC = () => {
         setTimeout(() => {
             navigate("/result");
         }, 1000)
+    }
+
+    function updateSettings(){
+        updateRendererElementSettings();
+        updateUIElementSettings();
     }
 
     //setup scene
@@ -297,7 +303,7 @@ const GameRenderer: React.FC = () => {
         //update chain
         if (judgeData.key != "miss") gameVariables.chain += 1;
         else gameVariables.chain = 0;
-        
+
         //update max chain
         if (gameVariables.maxChain < gameVariables.chain) gameVariables.maxChain = gameVariables.chain;
 
