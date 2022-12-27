@@ -17,6 +17,7 @@ import parseChart from "Features/parseChart";
 import { brightNote, note, seedNote } from "Features/noteClasses";
 
 import effectSound from "Assets/Sounds/default.mp3";
+import assistSound from "Assets/Sounds/assist.mp3"
 
 import style from "./musicGame.scss";
 import judgeTable from "Features/judgeTable";
@@ -34,7 +35,10 @@ const GameRenderer: React.FC = () => {
     const gameplaySettings: gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}")
 
     let musicAudio: Howl;
-    //let effectAudio: Howl;
+    let assistAudio = new Howl({
+        src: assistSound,
+        volume: audioSettings.master * audioSettings.effect
+    })
 
     let App: PIXI.Application = new PIXI.Application({
         height: 873,
@@ -73,9 +77,9 @@ const GameRenderer: React.FC = () => {
         gameVariables.scorePerNotes = 1000000 / gameVariables.notes.length;
         //run setup functions
         updateSettings();
+        initializeUi();
         setAudio();
         setScene();
-        initializeUi();
     }
 
     //set music instance
@@ -85,6 +89,13 @@ const GameRenderer: React.FC = () => {
             volume: audioSettings.master * audioSettings.music
         })
         musicAudio.once("end", endGame)
+    }
+
+    async function playAssistSound() {
+        for (let i = 0; i < 4; i++) {
+            assistAudio.play();
+            await sleep((60 / gameData.chart.BPM) * 1000)
+        }
     }
 
     function endGame() {
@@ -102,7 +113,7 @@ const GameRenderer: React.FC = () => {
         }, 1000)
     }
 
-    function updateSettings(){
+    function updateSettings() {
         updateRendererElementSettings();
         updateUIElementSettings();
     }
@@ -115,10 +126,11 @@ const GameRenderer: React.FC = () => {
 
         LaneGroup.on("pointerdown", (e) => { })
 
-        //wait and play assist
+        //play assist sound and wait
+        setTimeout(playAssistSound, 4000);
         setTimeout(() => {
             musicAudio.play();
-        }, 4000 + ((60 / gameData.chart.BPM) * 1000 * 4))
+        }, 4000 + ((60 / gameData.chart.BPM) * 1000 * 4));
         //set started time
         gameVariables.startedTime = performance.now()
         //start ticker and rendering
