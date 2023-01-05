@@ -85,6 +85,7 @@ const GameRenderer: React.FC = () => {
         initializeUi();
         setAudio();
         setScene();
+        attachEvent();
     }
 
     //set music instance
@@ -129,21 +130,51 @@ const GameRenderer: React.FC = () => {
         App.stage.addChild(UIGroup);
         App.ticker.add(update, PIXI.UPDATE_PRIORITY.HIGH);
 
-        LaneGroup.on("pointerdown", (e) => { })
-
         //play assist sound and wait
         setTimeout(playAssistSound, 4000);
         setTimeout(() => {
             musicAudio.play();
         }, 4000 + ((60 / gameData.chart.BPM) * 1000 * 4));
         //set started time
-        gameVariables.startedTime = performance.now()
+        gameVariables.startedTime = performance.now();
         //start ticker and rendering
-        App.start()
-
-
+        App.start();
         //hide title overlay
         setGameRenderer(true);
+    }
+
+    //add tap event
+    function attachEvent() {
+        LaneGroup.on("pointerdown", handleEvent)
+    }
+
+    //remove tap event
+    function detachEvent() {
+        //remove touch event
+        LaneGroup.removeAllListeners();
+    }
+
+    function handleEvent(e: PIXI.InteractionEvent) {
+        //tap input
+        tapInput(e);
+        //pointer entered data
+        const now = performance.now();
+        const fromY = e.data.global.y;
+        //check flick input
+        LaneGroup.once("pointerup", (e: PIXI.InteractionEvent) => {
+            const delay = performance.now() - now;
+            const toY = e.data.global.y;
+            if (Math.abs(fromY - toY) > 100) findNote(4,delay);
+            console.log(fromY, toY);
+        })
+    }
+
+    //parse position and judge
+    function tapInput(e: PIXI.InteractionEvent) {
+        const posX = e.data.global.x - e.target.x;
+        if (posX < 120) moveCharacter(5);
+        else if (posX > 1079) moveCharacter(6);
+        else findNote(Math.floor((posX - 120) / 240));
     }
 
     //init ui values
@@ -251,10 +282,10 @@ const GameRenderer: React.FC = () => {
     }
 
     //find an oldest note from same as input lane
-    function findNote(position: number) {
+    function findNote(position: number,delay:number = 0) {
         const elapsedTime = performance.now() - gameVariables.startedTime;
         const gameTime = elapsedTime - 4000 - ((60 / gameData.chart.BPM) * 1000 * 4) + gameData.chart.offset;
-        const judgeTime = gameTime;
+        const judgeTime = gameTime - delay;
 
         const note: Array<note> = gameVariables.notes.filter((n) => n.keyId == position && Math.abs(n.targetTime - gameTime) < judgeTable.miss.range);
         if (note.length > 1) {
@@ -376,8 +407,7 @@ const GameRenderer: React.FC = () => {
                 musicAudio.unload();
             }
 
-            //remove touch event
-            LaneGroup.removeAllListeners()
+            detachEvent();
 
             //destroy notes
             if (gameVariables.notes) {
