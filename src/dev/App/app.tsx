@@ -16,8 +16,8 @@ import Title from "Pages/Title/title";
 
 import style from "./app.scss";
 
-const App:React.FC = () =>{
-    return(
+const App: React.FC = () => {
+    return (
         <div className={style.app}>
             <MemoryRouter>
                 <Header />
@@ -54,3 +54,7 @@ function init(): void {
 }
 window.addEventListener('load', init);
 window.addEventListener("contextmenu", (e) => e.preventDefault());
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('scripts/serviceWorker.js');
+}
