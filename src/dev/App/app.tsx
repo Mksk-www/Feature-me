@@ -56,5 +56,5 @@ window.addEventListener('load', init);
 window.addEventListener("contextmenu", (e) => e.preventDefault());
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('scripts/serviceWorker.js');
+    navigator.serviceWorker.register('serviceWorker.js', { scope: "/" });
 }
