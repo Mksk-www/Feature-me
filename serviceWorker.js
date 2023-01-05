@@ -1,11 +1,18 @@
-const CACHE_NAME = `feature-me-alpha-cache`;
+const CACHE_NAME = `FMAlpha-v1`;
+
+const cacheFiles = [
+    "/",
+    "./index.html",
+    "./script.js",
+]
 
 // Use the install event to pre-cache all initial resources.
 self.addEventListener('install', event => {
     event.waitUntil((async () => {
         const cache = await caches.open(CACHE_NAME);
-        cache.addAll(['/']);
+        cache.addAll(cacheFiles);
     })());
+    console.log("[Service Worker] installed Service Worker.");
 });
 
 self.addEventListener('fetch', event => {
