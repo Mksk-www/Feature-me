@@ -25,7 +25,6 @@ LaneGroup.x = (width - areaWidth) / 2;
 LaneGroup.y = 0;
 LaneGroup.interactive = true;
 
-
 const background = new PIXI.Graphics()
     .beginFill(backgroundColor, 0.7)
     .drawRect(0, 0, areaWidth, height)
@@ -127,5 +126,5 @@ export {
     SeedRightNoteGroup,
     BrightNoteGroup,
     judgeLineY,
-    updateRendererElementSettings
-}
+    updateRendererElementSettings, background
+};
