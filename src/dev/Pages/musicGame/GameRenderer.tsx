@@ -27,6 +27,8 @@ import gameResultState from "State/gameResultState";
 const GameRenderer: React.FC = () => {
     const navigate = useNavigate();
     const gameRendererRef = React.useRef<HTMLDivElement>(null);
+
+    //load data and settings
     const gameData = useAtomValue(gameDataState);
     const setGameRenderer = useSetAtom(gameRendererState);
     const setResult = useSetAtom(gameResultState);
@@ -34,6 +36,7 @@ const GameRenderer: React.FC = () => {
     const audioSettings: audioSettings = JSON.parse(localStorage.getItem("audioSettings") || "{}")
     const gameplaySettings: gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}")
 
+    //howlerjs sound instances
     let musicAudio: Howl;
     let assistAudio = new Howl({
         src: assistSound,
@@ -48,6 +51,8 @@ const GameRenderer: React.FC = () => {
         resolution: graphicsSettings.resolution,
         autoStart: false,
     });
+
+    //game variables
     let gameVariables: gameVariables = {
         characterPosition: "left",
         startedTime: 0,
@@ -141,6 +146,7 @@ const GameRenderer: React.FC = () => {
         setGameRenderer(true);
     }
 
+    //init ui values
     function initializeUi() {
         updateChainText(0);
         updateScoreText(0);
@@ -224,6 +230,7 @@ const GameRenderer: React.FC = () => {
         else findNote(pos)
     }
 
+    //move character to left / right
     function moveCharacter(pos: number) {
         new Promise<void>(async (resolve, reject) => {
             const newPos = pos == 5 ? "left" : "right";
@@ -243,6 +250,7 @@ const GameRenderer: React.FC = () => {
         })
     }
 
+    //find an oldest note from same as input lane
     function findNote(position: number) {
         const elapsedTime = performance.now() - gameVariables.startedTime;
         const gameTime = elapsedTime - 4000 - ((60 / gameData.chart.BPM) * 1000 * 4) + gameData.chart.offset;
@@ -263,6 +271,7 @@ const GameRenderer: React.FC = () => {
         }
     }
 
+    //judge and update values
     function judge(note: note, judgeTime: number) {
         if (note.judged || !note.active) return;
         const accuracy = judgeTime - note.targetTime;
@@ -298,6 +307,7 @@ const GameRenderer: React.FC = () => {
         note.judged = true;
     }
 
+    //judge for seed notes
     function judgeSeedNote(note: seedNote) {
         let judgeData: table;
         if (note.LR == gameVariables.characterPosition) judgeData = judgeTable.stunningBloom;
@@ -324,7 +334,7 @@ const GameRenderer: React.FC = () => {
         note.judged = true;
     }
 
-
+    //tap effect sound
     function playEffectSound() {
         //move another thread and play audio
         setTimeout(() => {
@@ -337,6 +347,7 @@ const GameRenderer: React.FC = () => {
         })
     }
 
+    //update ui text
     function updateVisualEffect() {
         updateChainText(gameVariables.chain);
         updateScoreText(gameVariables.score);
