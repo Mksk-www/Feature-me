@@ -1,0 +1,21 @@
+{
+    "short_name": "Feature Me Alpha",
+    "name": "Feature Me Alpha",
+    "categories": [
+        "game",
+        "music"
+    ],
+    "description": "A new music game with a new style.",
+    "display": "standalone",
+    "start_url": "/",
+    "id": "/",
+    "orientation": "landscape",
+    "theme-color": "#14141e",
+    "icons": [
+        {
+            "src": "/favicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
