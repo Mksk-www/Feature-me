@@ -34,7 +34,7 @@ GPU : WebGL avaliable
 
 Input : keyboard,mouse or touch
 
-Browser : Latest Browser(recommended: Chrome and Firefox. IE is not supported)
+Browser : Latest Browser and JavaScript ES6 avaliable (recommended: Chrome and Firefox. IE is not supported)
 
 Network : network connection(to cache resources)
 
@@ -49,6 +49,6 @@ GPU : none
 
 input : keyboard and mouse
 
-Browser : Latest browser (recommended: Chrome and Firefox. IE is not supported)
+Browser : Latest browser and JavaScript ES6 avaliable (recommended: Chrome and Firefox. IE is not supported)
 
 Network : network connection(to load resources)
