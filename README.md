@@ -28,7 +28,7 @@ CPU : Intel core i3 or higher
 
 RAM : 300MB available
 
-Storage : 30MB or more avaliable
+Storage : 500MB or more free spaces in main drive
 
 GPU : WebGL avaliable
 
