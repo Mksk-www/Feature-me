@@ -1,12 +1,14 @@
 import React from "react";
-import { BiPointer } from "react-icons/bi";
 
 import version from "Config/versions.json";
 
 import style from "./footer.scss";
+import { useAtomValue } from "jotai";
+import footerState from "State/footerState";
 
 
 const Footer: React.FC = () => {
+    const footer = useAtomValue(footerState);
 
     return (
         <footer className={style.footer}>
@@ -16,12 +18,24 @@ const Footer: React.FC = () => {
             </div>
             <div className={style.keyhint}>
 
-                <div className={style.keyhintContent}>
+                {/* <div className={style.keyhintContent}>
                     <div className={style.icon}>
                         <BiPointer />
                     </div>
                     Select
-                </div>
+                </div> */}
+                {
+                    footer.map(content=>{
+                        return(
+                            <div className={style.keyhintContent}>
+                                <div className={style.icon}>
+                                    {content.icon}
+                                </div>
+                                <span>{content.value}</span>
+                            </div>
+                        )
+                    })
+                }
             </div>
         </footer>
     )

@@ -4,26 +4,38 @@ import { useAtomValue, useSetAtom } from "jotai";
 
 import headerState from "State/headerState";
 import selectedMusicState from "State/selectedMusicState";
+import { BiPointer } from "react-icons/bi";
 
-import musicList from "Config/musicList.json"
-
-import style from "./musicGame.scss";
 import MusicTitle from "./musicTitle";
 import GameLoader from "./GameLoader";
-import gameDataState from "State/gameState";
 import GameRenderer from "./GameRenderer";
 import Background from "./background";
+import footerState from "State/footerState";
 
-
+import style from "./musicGame.scss";
+import trimKeyCode from "Utils/trimKeyCode/trimKeyCode";
 
 const MusicGame: React.FC = () => {
     const navigate = useNavigate();
     const setTitle = useSetAtom(headerState);
+    const setFooter = useSetAtom(footerState);
     const selectedMusic = useAtomValue(selectedMusicState);
+
+    function setFooterContent() {
+        let keysArray = [];
+        const { keybinds } = JSON.parse(localStorage.getItem("gameplaySettings") || "{}")
+        for (const key of keybinds) {
+            keysArray.push({ icon: <h2>{trimKeyCode(key)}</h2>, value: "" })
+        }
+        keysArray.push({ icon: <BiPointer />, value: "Play" });
+        setFooter(keysArray.reverse());
+    }
 
     React.useEffect(() => {
         //update title
         setTitle(selectedMusic);
+        //set footer
+        setFooterContent();
         //add shortcut
         window.addEventListener("keydown", (e) => {
             if (e.code == "Escape") navigate("/");

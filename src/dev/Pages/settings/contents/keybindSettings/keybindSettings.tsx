@@ -1,22 +1,25 @@
 import React from "react";
-import {cloneDeep} from "lodash"
+import { cloneDeep } from "lodash"
 
 import style from "./keybindSettings.scss";
 
 const KeybindSettings: React.FC = () => {
-    
+
     const [gameplaySettings, setGameplaySettings] = React.useState<gameplaySettings>(JSON.parse(localStorage.getItem("gameplaySettings") || "{}"))
 
     function setKeybind(index: number, key: string) {
         setGameplaySettings(c => {
             let newKeybinds = cloneDeep(c.keybinds);
-            newKeybinds[index] = key
+            newKeybinds[Number(index)] = key
             return {
                 ...c,
-                keybinds:newKeybinds
+                keybinds: newKeybinds
             }
         });
     }
+    React.useEffect(() => {
+        localStorage.setItem("gameplaySettings", JSON.stringify(gameplaySettings))
+    }, [gameplaySettings])
 
     return (
         <div className={style.keylist}>

@@ -4,23 +4,30 @@ import { useAtomValue, useSetAtom } from "jotai";
 import React from "react";
 import { BsChevronDoubleLeft } from "react-icons/bs";
 import { motion } from "framer-motion";
+import { BiPointer } from "react-icons/bi";
 
 import gameResultState from "State/gameResultState";
 
-import style from "./result.scss";
 import headerState from "State/headerState";
+import footerState from "State/footerState";
+
+import style from "./result.scss";
 
 const ResultPage: React.FC = () => {
     const result = useAtomValue(gameResultState);
     const setTitle = useSetAtom(headerState);
+    const setFooter = useSetAtom(footerState);
 
-    const initial = { opacity: 0};
+    const initial = { opacity: 0 };
     const fadeIn = { opacity: 1, transition: { duration: 2, ease: "easeOut" } };
     const scoreInitial = { opacity: 0, x: -200 };
     const scoreFadeIn = { opacity: [0, 0, 1], x: [-200, -200, 0], transition: { duration: 2, ease: "easeOut" } };
 
     React.useEffect(() => {
+        //update title
         setTitle(t => `Result - ${t}`);
+        //set footer
+        setFooter([{ icon: <BiPointer />, value: "Select" }])
     }, [])
 
 
