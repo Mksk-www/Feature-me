@@ -19,10 +19,13 @@ import { brightNote, note, seedNote } from "Features/noteClasses";
 import effectSound from "Assets/Sounds/default.mp3";
 import assistSound from "Assets/Sounds/assist.mp3"
 
-import style from "./musicGame.scss";
 import judgeTable from "Features/judgeTable";
 import { createJudgeText, UIGroup, updateChainText, updateJudgeValues, updateScoreText, updateUIElementSettings } from "Features/GameUIElements";
 import gameResultState from "State/gameResultState";
+
+import Stats from "stats.js";
+
+import style from "./musicGame.scss";
 
 const GameRenderer: React.FC = () => {
     const navigate = useNavigate();
@@ -35,6 +38,12 @@ const GameRenderer: React.FC = () => {
     const graphicsSettings: graphicsSettings = JSON.parse(localStorage.getItem("graphicsSettings") || "{}")
     const audioSettings: audioSettings = JSON.parse(localStorage.getItem("audioSettings") || "{}")
     const gameplaySettings: gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}")
+
+    //status monitor
+    const stats = new Stats();
+    stats.dom.style.position = "absolute";
+    stats.dom.style.left = "auto";
+    stats.dom.style.right = "0";
 
     //howlerjs sound instances
     let musicAudio: Howl;
@@ -76,7 +85,7 @@ const GameRenderer: React.FC = () => {
     function init() {
         //append game canvas
         gameRendererRef.current?.appendChild(App.view);
-        App.ticker.maxFPS = graphicsSettings.fps
+        App.ticker.maxFPS = graphicsSettings.fps;
         //parse chart and create instances
         gameVariables.notes = parseChart(gameData.chart.notes, gameData.chart.BPM);
         gameVariables.scorePerNotes = 1000000 / gameVariables.notes.length;
@@ -164,7 +173,7 @@ const GameRenderer: React.FC = () => {
         LaneGroup.once("pointerup", (e: PIXI.InteractionEvent) => {
             const delay = performance.now() - now;
             const toY = e.data.global.y;
-            if (Math.abs(fromY - toY) > 100) findNote(4,delay);
+            if (Math.abs(fromY - toY) > 100) findNote(4, delay);
             console.log(fromY, toY);
         })
     }
@@ -186,10 +195,14 @@ const GameRenderer: React.FC = () => {
 
     //update function is added PIXI ticker
     function update() {
+        stats.begin();
+
         const elapsedTime = performance.now() - gameVariables.startedTime;
         const gameTime = elapsedTime - 4000 - ((60 / gameData.chart.BPM) * 1000 * 4) + gameData.chart.offset;
         updateActive(gameTime);
         updateNotes(gameTime);
+
+        stats.end()
     }
 
     //note add or remove from visual group
@@ -282,7 +295,7 @@ const GameRenderer: React.FC = () => {
     }
 
     //find an oldest note from same as input lane
-    function findNote(position: number,delay:number = 0) {
+    function findNote(position: number, delay: number = 0) {
         const elapsedTime = performance.now() - gameVariables.startedTime;
         const gameTime = elapsedTime - 4000 - ((60 / gameData.chart.BPM) * 1000 * 4) + gameData.chart.offset;
         const judgeTime = gameTime - delay;
@@ -387,6 +400,7 @@ const GameRenderer: React.FC = () => {
 
     React.useEffect(() => {
         if (gameData.ready) init();
+        if (gameRendererRef.current) gameRendererRef.current.appendChild(stats.dom);
         window.addEventListener("keydown", (e) => {
             if (gameplaySettings.keybinds.includes(e.code)) {
                 const index = gameplaySettings.keybinds.findIndex(k => k == e.code);
@@ -400,6 +414,9 @@ const GameRenderer: React.FC = () => {
                     setTimeout(() => keyDown(index))
                 }
             })
+
+            //remove stats
+            if (gameRendererRef.current) gameRendererRef.current.removeChild(stats.dom);
 
             //stop audio
             if (musicAudio) {
