@@ -12,7 +12,7 @@ function createReplay(replay: replayData) {
     const url = URL.createObjectURL(blob);
     const download = document.createElement("a");
     download.href = url;
-    download.download = `${replay.chart.title}-${new Date().toLocaleString().replace(/\//g, "-").replace(" ", "-").replace(/:/g, "-")}-feature-me-replay.fmrp`;
+    download.download = `${replay.chart.title}-${new Date().toLocaleString().replace(/\//g, "-").replace(" ", "-").replace(/:/g, "-")}-feature-me-replay.fmarp`;
     download.click();
 
 }
