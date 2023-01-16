@@ -12,6 +12,8 @@ import headerState from "State/headerState";
 import footerState from "State/footerState";
 
 import style from "./result.scss";
+import ChamferedButton from "Components/Button/chamferedButton/chamferedButton";
+import createReplay from "Features/createReplayFile";
 
 const ResultPage: React.FC = () => {
     const result = useAtomValue(gameResultState);
@@ -23,11 +25,20 @@ const ResultPage: React.FC = () => {
     const scoreInitial = { opacity: 0, x: -200 };
     const scoreFadeIn = { opacity: [0, 0, 1], x: [-200, -200, 0], transition: { duration: 2, ease: "easeOut" } };
 
+    function handleDownload() {
+        console.log(result.replay);
+
+        if (!result.replay) return;
+        createReplay(result.replay)
+    }
+
     React.useEffect(() => {
         //update title
-        setTitle(t => `Result - ${t}`);
+        setTitle(t => {
+            return `Result - ${t}`
+        });
         //set footer
-        setFooter([{ icon: <BiPointer />, value: "Select" }])
+        setFooter([{ icon: <BiPointer />, value: "Select" }]);
     }, [])
 
 
@@ -78,6 +89,11 @@ const ResultPage: React.FC = () => {
                         <span className={style.late}>{result.timing.late}</span>
                     </div>
                 </div>
+            </div>
+            <div className={style.share}>
+                {
+                    result.replay && <ChamferedButton onClick={handleDownload}>Download Replay</ChamferedButton>
+                }
             </div>
         </motion.div>
     )
