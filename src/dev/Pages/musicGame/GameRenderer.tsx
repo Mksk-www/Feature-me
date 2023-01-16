@@ -35,9 +35,15 @@ const GameRenderer: React.FC = () => {
     const gameData = useAtomValue(gameDataState);
     const setGameRenderer = useSetAtom(gameRendererState);
     const setResult = useSetAtom(gameResultState);
-    const graphicsSettings: graphicsSettings = JSON.parse(localStorage.getItem("graphicsSettings") || "{}")
-    const audioSettings: audioSettings = JSON.parse(localStorage.getItem("audioSettings") || "{}")
-    const gameplaySettings: gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}")
+    const graphicsSettings: graphicsSettings = JSON.parse(localStorage.getItem("graphicsSettings") || "{}");
+    const audioSettings: audioSettings = JSON.parse(localStorage.getItem("audioSettings") || "{}");
+    const gameplaySettings: gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}");
+
+    const replayData: replayData = {
+        audio: gameData.audio,
+        chart: gameData.chart,
+        input: []
+    }
 
     //status monitor
     const stats = new Stats();
@@ -120,7 +126,8 @@ const GameRenderer: React.FC = () => {
                 score: gameVariables.score,
                 judges: gameVariables.judges,
                 timing: gameVariables.timing,
-                maxChain: gameVariables.maxChain
+                maxChain: gameVariables.maxChain,
+                replay: replayData
             }
         })
         setTimeout(() => {
@@ -174,16 +181,24 @@ const GameRenderer: React.FC = () => {
             const delay = performance.now() - now;
             const toY = e.data.global.y;
             if (Math.abs(fromY - toY) > 100) findNote(4, delay);
-            console.log(fromY, toY);
         })
     }
 
     //parse position and judge
     function tapInput(e: PIXI.InteractionEvent) {
         const posX = e.data.global.x - e.target.x;
-        if (posX < 120) moveCharacter(5);
-        else if (posX > 1079) moveCharacter(6);
-        else findNote(Math.floor((posX - 120) / 240));
+        if (posX < 120) {
+            moveCharacter(5);
+            captureInput(5);
+        }
+        else if (posX > 1079) {
+            moveCharacter(6);
+            captureInput(6);
+        }
+        else {
+            findNote(Math.floor((posX - 120) / 240));
+            captureInput(Math.floor((posX - 120) / 240));
+        }
     }
 
     //init ui values
@@ -271,7 +286,9 @@ const GameRenderer: React.FC = () => {
     //keydown event handler
     function keyDown(pos: number) {
         if (pos > 4) moveCharacter(pos);
-        else findNote(pos)
+        else findNote(pos);
+
+        captureInput(pos);
     }
 
     //move character to left / right
@@ -396,6 +413,11 @@ const GameRenderer: React.FC = () => {
         updateChainText(gameVariables.chain);
         updateScoreText(gameVariables.score);
         updateJudgeValues(gameVariables.judges, gameVariables.maxChain)
+    }
+
+    function captureInput(pos: number) {
+        const time = performance.now() - gameVariables.startedTime;
+        replayData.input.push({ time, key: pos });
     }
 
     React.useEffect(() => {
