@@ -9,5 +9,6 @@ interface gameResultState {
         fast: number
         late: number
     }
-    maxChain:number
+    maxChain: number
+    replay?: replayData
 }
