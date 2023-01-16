@@ -1,5 +1,5 @@
 import React from "react";
-import {BsWrench} from "react-icons/bs";
+import { BsWrench } from "react-icons/bs";
 
 import style from "./head.scss";
 import { useAtomValue } from "jotai";
@@ -12,14 +12,18 @@ const Header: React.FC = () => {
 
     const title = useAtomValue(headerState);
 
-    function navigateSettings(){
-        if(location.pathname.includes("/settings")) navigate("/");
+    function navigateSettings() {
+        if (location.pathname.includes("/settings")) navigate("/");
         else navigate("/settings");
     }
 
+    React.useEffect(() => {
+        document.title = `${title} - Feature Me Alpha`;
+    },[title])
+
     return (
         <header className={style.header}>
-            <h1>{title||"Home"}</h1>
+            <h1>{title || "Home"}</h1>
 
             <div className={style.icons}>
                 <div className={style.icon} onClick={navigateSettings}>
