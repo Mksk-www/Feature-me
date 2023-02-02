@@ -29,7 +29,7 @@ const ResultPage: React.FC = () => {
         console.log(result.replay);
 
         if (!result.replay) return;
-        createReplay(result.replay)
+        createReplay(result)
     }
 
     React.useEffect(() => {
