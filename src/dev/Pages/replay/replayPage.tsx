@@ -1,5 +1,4 @@
 import React from "react";
-import { BsWrench, BsCameraVideo } from "react-icons/bs";
 
 import { useAtomValue, useSetAtom } from "jotai";
 import headerState from "State/headerState";
@@ -72,7 +71,7 @@ const ReplayPage: React.FC = () => {
             </div>
             <hr />
             <ChamferedButton>View Replay</ChamferedButton>
-            <ChamferedButton>Encode Replay</ChamferedButton>
+            {/* <ChamferedButton>Encode Replay</ChamferedButton> */}
             <hr />
             <h2>Replay Summary</h2>
             {
@@ -93,7 +92,6 @@ const ReplayPage: React.FC = () => {
 
             }
             <hr />
-            <input type="text" placeholder="Player Name to show" />
         </div>
     )
 }
