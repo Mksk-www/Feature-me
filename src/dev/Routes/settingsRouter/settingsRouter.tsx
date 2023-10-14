@@ -4,7 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import GeneralSettings from "Pages/settings/contents/General";
 import AudioSettings from "Pages/settings/contents/Audio";
 import GraphicsSettings from "Pages/settings/contents/Graphics";
-import GameplaySettings from "Pages/settings/contents/gameplay";
+import GameplaySettings from "Pages/settings/contents/Gameplay";
 
 const SettingsRouter: React.FC = () => {
     return (
