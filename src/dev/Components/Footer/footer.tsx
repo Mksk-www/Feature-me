@@ -18,16 +18,10 @@ const Footer: React.FC = () => {
             </div>
             <div className={style.keyhint}>
 
-                {/* <div className={style.keyhintContent}>
-                    <div className={style.icon}>
-                        <BiPointer />
-                    </div>
-                    Select
-                </div> */}
                 {
-                    footer.map(content=>{
-                        return(
-                            <div className={style.keyhintContent}>
+                    footer.map((content,index) => {
+                        return (
+                            <div className={style.keyhintContent} key={index}>
                                 <div className={style.icon}>
                                     {content.icon}
                                 </div>

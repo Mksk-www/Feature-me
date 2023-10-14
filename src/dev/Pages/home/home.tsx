@@ -35,7 +35,7 @@ const Home: React.FC = () => {
         initializeCache();
         setTitle("Home");
         //set footer
-        setFooter([{ icon: <BiPointer />, value: "Select" }])
+        setFooter([{ icon: <BiPointer />, value: "Select" }, { icon: <h3>Esc</h3>, value: "Settings" }])
         //add shortcut
         setSelectedMusic("");
         window.addEventListener("keydown", (e) => {
@@ -47,7 +47,7 @@ const Home: React.FC = () => {
                 if (e.code == "Escape") navigate("/settings");
             })
         }
-    }, [])
+    }, []);
 
     return (
         <div className={style.home}>
