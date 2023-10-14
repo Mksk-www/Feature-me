@@ -14,12 +14,12 @@ const Footer: React.FC = () => {
         <footer className={style.footer}>
             <div className={style.credit}>
                 VERSION:{version.build} <br />
-                2021 - {new Date().getFullYear()} Mksk & Rae the Feature Me Project
+                ©2021 - {new Date().getFullYear()} Mksk & Rae the Feature Me Project
             </div>
             <div className={style.keyhint}>
 
                 {
-                    footer.map((content,index) => {
+                    footer.map((content, index) => {
                         return (
                             <div className={style.keyhintContent} key={index}>
                                 <div className={style.icon}>

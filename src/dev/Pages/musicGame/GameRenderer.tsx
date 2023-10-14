@@ -91,7 +91,8 @@ const GameRenderer: React.FC = () => {
     function init() {
         //append game canvas
         gameRendererRef.current?.appendChild(App.view);
-        App.ticker.maxFPS = graphicsSettings.fps;
+        if (!graphicsSettings.vsync)
+            App.ticker.maxFPS = graphicsSettings.fps;
         //parse chart and create instances
         gameVariables.notes = parseChart(gameData.chart.notes, gameData.chart.BPM);
         gameVariables.scorePerNotes = 1000000 / gameVariables.notes.length;
@@ -144,7 +145,14 @@ const GameRenderer: React.FC = () => {
     function setScene() {
         App.stage.addChild(LaneGroup);
         App.stage.addChild(UIGroup);
-        App.ticker.add(update, PIXI.UPDATE_PRIORITY.HIGH);
+
+        console.log(graphicsSettings.vsync);
+
+        if (graphicsSettings.vsync) {
+            requestAnimationFrame(update);
+        } else {
+            App.ticker.add(update, PIXI.UPDATE_PRIORITY.HIGH);
+        }
 
         //play assist sound and wait
         setTimeout(playAssistSound, 4000);
@@ -211,12 +219,14 @@ const GameRenderer: React.FC = () => {
     //update function is added PIXI ticker
     function update() {
         stats.begin();
-
         const elapsedTime = performance.now() - gameVariables.startedTime;
         const gameTime = elapsedTime - 4000 - ((60 / gameData.chart.BPM) * 1000 * 4) + gameData.chart.offset;
         updateActive(gameTime);
         updateNotes(gameTime);
-
+        App.render();
+        if (graphicsSettings.vsync) {
+            requestAnimationFrame(update);
+        }
         stats.end()
     }
 
@@ -317,7 +327,7 @@ const GameRenderer: React.FC = () => {
         const gameTime = elapsedTime - 4000 - ((60 / gameData.chart.BPM) * 1000 * 4) + gameData.chart.offset;
         const judgeTime = gameTime - delay;
 
-        const note: Array<note> = gameVariables.notes.filter((n) => n.keyId == position && Math.abs(n.targetTime - gameTime) < judgeTable.miss.range);
+        const note: Array<note> = gameVariables.notes.filter((n) => !n.judged && n.keyId == position && Math.abs(n.targetTime - gameTime) < judgeTable.miss.range);
         if (note.length > 1) {
             //find an oldest note
             let min = Infinity;

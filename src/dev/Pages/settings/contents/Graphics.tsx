@@ -45,6 +45,10 @@ const GraphicsSettings: React.FC = () => {
                 <h2>Anti-Aliasing</h2>
                 <HorizonalSelectFromArray contents={selector} value={selector.find(s => s.value == graphicsSettings.antialias) || selector[0]} onChange={(value: selectContents<boolean>) => setGraphicsSettings((s: graphicsSettings) => { return { ...s, antialias:value.value } })} />
             </div>
+            <div className={style.setting}>
+                <h2>V-sync</h2>
+                <HorizonalSelectFromArray contents={selector} value={selector.find(s => s.value == graphicsSettings.vsync) || selector[0]} onChange={(value: selectContents<boolean>) => setGraphicsSettings((s: graphicsSettings) => { return { ...s, vsync: value.value } })} />
+            </div>
         </div>
     )
 }
