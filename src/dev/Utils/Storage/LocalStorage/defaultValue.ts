@@ -1,7 +1,8 @@
 const graphicsSettings = {
     fps: 60,
     resolution: 1,
-    antialias:false
+    antialias: false,
+    vsync: false
 }
 
 const audioSettings = {
@@ -15,7 +16,7 @@ const gameplaySettings = {
     VFX: true,
     fastLate: true,
     vLine: true,
-    scrollSpeed:10
+    scrollSpeed: 10
 }
 
 export { graphicsSettings, audioSettings, gameplaySettings }

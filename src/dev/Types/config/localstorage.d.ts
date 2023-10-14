@@ -2,6 +2,7 @@ interface graphicsSettings {
     fps:number
     resolution:number
     antialias:boolean
+    vsync:boolean
 }
 
 interface audioSettings {
