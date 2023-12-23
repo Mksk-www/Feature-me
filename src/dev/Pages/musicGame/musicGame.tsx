@@ -14,12 +14,14 @@ import footerState from "State/footerState";
 
 import style from "./musicGame.scss";
 import trimKeyCode from "Utils/trimKeyCode/trimKeyCode";
+import gameRendererState from "State/gameRendererState";
 
 const MusicGame: React.FC = () => {
     const navigate = useNavigate();
     const setTitle = useSetAtom(headerState);
     const setFooter = useSetAtom(footerState);
     const selectedMusic = useAtomValue(selectedMusicState);
+    const setGameRenderer = useSetAtom(gameRendererState);
 
     function setFooterContent() {
         let keysArray = [];
@@ -39,11 +41,13 @@ const MusicGame: React.FC = () => {
         //add shortcut
         window.addEventListener("keydown", (e) => {
             if (e.code == "Escape") navigate("/");
+            setGameRenderer(false);
         })
 
         return () => {
             window.removeEventListener("keydown", (e) => {
                 if (e.code == "Escape") navigate("/");
+                setGameRenderer(false);
             })
         }
     }, [])

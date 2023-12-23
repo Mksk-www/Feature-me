@@ -54,7 +54,7 @@ const MenuAudioPlayer: React.FC = () => {
             }
         });
 
-    },[])
+    },[gameRendererValue])
 
     return (
         <>

@@ -135,6 +135,7 @@ const GameRenderer: React.FC = () => {
         })
         setTimeout(() => {
             navigate("/result");
+            setGameRenderer(false);
         }, 1000)
     }
 
@@ -423,7 +424,7 @@ const GameRenderer: React.FC = () => {
     //update ui text
     function updateVisualEffect() {
         updateChainText(gameVariables.chain);
-        updateScoreText(gameVariables.score);
+        updateScoreText(Math.round(gameVariables.score));
         updateJudgeValues(gameVariables.judges, gameVariables.maxChain)
     }
 
