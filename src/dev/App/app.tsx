@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import { MemoryRouter } from "react-router-dom";
 
 
-
 import version from "Config/versions.json";
 import { VERSION } from "pixi.js";
 
@@ -11,6 +10,9 @@ import initLocalStorage from "Utils/Storage/LocalStorage/initLocalStorage";
 import ErrorBoundary from "Components/errorBoundary/errorBoundary";
 import Header from "Components/Header/head";
 import Footer from "Components/Footer/footer";
+
+import MenuAudioPlayer from "Components/MenuAudioPlayer/MenuAudioPlayer";
+
 import PageRouter from "Routes/router";
 import Title from "Pages/Title/title";
 
@@ -27,6 +29,7 @@ const App: React.FC = () => {
                 <Footer />
             </MemoryRouter>
             <Title />
+            <MenuAudioPlayer/>
         </div>
     )
 }

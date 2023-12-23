@@ -8,7 +8,8 @@ const graphicsSettings = {
 const audioSettings = {
     master: 1,
     music: 1,
-    effect: 1
+    effect: 1,
+    menuAudio: true,
 }
 
 const gameplaySettings = {

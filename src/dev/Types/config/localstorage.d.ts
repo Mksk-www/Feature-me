@@ -9,6 +9,7 @@ interface audioSettings {
     master:number
     music:number
     effect:number
+    menuAudio:boolean
 }
 
 interface gameplaySettings {
