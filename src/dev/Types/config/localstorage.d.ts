@@ -18,4 +18,6 @@ interface gameplaySettings {
     fastLate:boolean
     vLine:boolean
     scrollSpeed:number
+    offset:number
+    judgeTiming:number
 }

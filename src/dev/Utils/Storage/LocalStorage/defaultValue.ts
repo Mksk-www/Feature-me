@@ -17,7 +17,9 @@ const gameplaySettings = {
     VFX: true,
     fastLate: true,
     vLine: true,
-    scrollSpeed: 10
+    scrollSpeed: 10,
+    offset: 0,
+    judgeTiming: 0
 }
 
 export { graphicsSettings, audioSettings, gameplaySettings }

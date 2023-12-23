@@ -52,6 +52,14 @@ const GameplaySettings: React.FC = () => {
                 <h2>Show Vertical Line</h2>
                 <HorizonalSelectFromArray contents={selector} value={selector.find(s => s.value == gameplaySettings.vLine) || selector[0]} onChange={(value: selectContents<boolean>) => setGameplaySettings((s: gameplaySettings) => { return { ...s, vLine: value.value } })} />
             </div>
+            <div className={style.setting}>
+                <h2>Offset Adjustment(ms) <span style={{fontSize:"12px"}}>* if there are many LATE notes, set to +</span></h2>
+                <NumberInput min={-2000} max={2000} step={1} value={gameplaySettings.offset} onChange={(value) => setGameplaySettings((s: gameplaySettings) => { return { ...s, offset: value } })} />
+            </div>
+            <div className={style.setting}>
+                <h2>Judge Timing Adjustment(ms) <span style={{fontSize:"12px"}}>* there are if many LATE notes, set to +</span></h2>
+                <NumberInput min={-2000} max={2000} step={1} value={gameplaySettings.judgeTiming} onChange={(value) => setGameplaySettings((s: gameplaySettings) => { return { ...s, judgeTiming: value } })} />
+            </div>
             {/* add judge timing settings */}
         </div>
     )

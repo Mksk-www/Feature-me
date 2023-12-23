@@ -102,6 +102,7 @@ const GameRenderer: React.FC = () => {
         setAudio();
         setScene();
         attachEvent();
+
     }
 
     //set music instance
@@ -325,7 +326,7 @@ const GameRenderer: React.FC = () => {
     function findNote(position: number, delay: number = 0) {
         const elapsedTime = performance.now() - gameVariables.startedTime;
         const gameTime = elapsedTime - 4000 - ((60 / gameData.chart.BPM) * 1000 * 4) + gameData.chart.offset;
-        const judgeTime = gameTime - delay;
+        const judgeTime = gameTime - delay - gameplaySettings.offset - gameplaySettings.judgeTiming;
 
         const note: Array<note> = gameVariables.notes.filter((n) => !n.judged && n.keyId == position && Math.abs(n.targetTime - gameTime) < judgeTable.miss.range);
         if (note.length > 1) {
