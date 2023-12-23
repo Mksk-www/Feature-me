@@ -101,6 +101,7 @@ const GameRenderer: React.FC = () => {
         initializeUi();
         setAudio();
         setScene();
+        moveCharacter(5);
         attachEvent();
 
     }
