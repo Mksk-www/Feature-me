@@ -40,14 +40,18 @@ const MusicGame: React.FC = () => {
         setFooterContent();
         //add shortcut
         window.addEventListener("keydown", (e) => {
-            if (e.code == "Escape") navigate("/");
-            setGameRenderer(false);
+            if (e.code == "Escape") {
+                navigate("/");
+                setGameRenderer(false);
+            }
         })
 
         return () => {
             window.removeEventListener("keydown", (e) => {
-                if (e.code == "Escape") navigate("/");
-                setGameRenderer(false);
+                if (e.code == "Escape") {
+                    navigate("/");
+                    setGameRenderer(false);
+                }
             })
         }
     }, [])
