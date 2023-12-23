@@ -38,7 +38,7 @@ const GameplaySettings: React.FC = () => {
             </div>
             <div className={style.setting}>
                 <h2>Scroll Speed</h2>
-                <NumberInput min={1} max={20} step={0.1} value={gameplaySettings.scrollSpeed} onChange={(value) => setGameplaySettings((s: gameplaySettings) => { return { ...s, scrollSpeed: value } })} />
+                <NumberInput min={1} max={20} step={0.1} AccuracyDigit={1} value={gameplaySettings.scrollSpeed} onChange={(value) => setGameplaySettings((s: gameplaySettings) => { return { ...s, scrollSpeed: value } })} />
             </div>
             <div className={style.setting}>
                 <h2>Show judge VFX</h2>
