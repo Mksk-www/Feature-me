@@ -5,6 +5,8 @@ import judgeTable from "./judgeTable";
 let gameplaySettings: gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}");
 
 
+const judgeKey = ["stunningBloom", "bloom", "miss"]
+
 const width = 1920;
 const height = 873;
 
@@ -48,59 +50,70 @@ function updateUIElementSettings() {
     gameplaySettings = JSON.parse(localStorage.getItem("gameplaySettings") || "{}");
 }
 
+const scoreTextStyle = new PIXI.TextStyle({
+    fontFamily: 'Montserrat',
+    fontSize: 72,
+    fill: '#f5f5f5'
+});
+const scoreText = new PIXI.Text(0, scoreTextStyle);
+ScoreGroup.addChild(scoreText);
+
 function updateScoreText(score: number) {
-    if (ScoreGroup.children.length > 1) {
-        ScoreGroup.removeChildAt(1);
-    }
-    const style = new PIXI.TextStyle({
-        fontFamily: 'Montserrat',
-        fontSize: 72,
-        fill: '#f5f5f5'
-    });
-    const text = new PIXI.Text(Math.round(score), style);
-    ScoreGroup.addChildAt(text, 1);
+    scoreText.text = score;
 }
 
+const chainTextStyle = new PIXI.TextStyle({
+    fontFamily: 'Montserrat',
+    fontSize: 72,
+    fill: '#c0c0c0',
+    fontWeight: "lighter"
+});
+const chainText = new PIXI.Text(0, chainTextStyle);
+chainText.anchor.set(0.5, 0);
+ChainTextGroup.addChildAt(chainText, 0);
+
 function updateChainText(chain: number) {
-    if (ChainTextGroup.children.length != 0) {
-        ChainTextGroup.removeChildAt(0);
-    }
-    const style = new PIXI.TextStyle({
+    chainText.text = chain;
+}
+
+const maxChainTextStyle = new PIXI.TextStyle({
+    fontFamily: 'Montserrat',
+    fontSize: 24,
+    fill: '#c0c0c0',
+    fontWeight: "lighter"
+});
+const maxChainText = new PIXI.Text(`Max Chain : 0`, maxChainTextStyle);
+JudgesGroup.addChild(maxChainText);
+
+let loopIndex = 1;
+for (const key of judgeKey) {
+    const judgeData = judgeTable[key as judgeText];
+
+    const judgeDataTextStyle = new PIXI.TextStyle({
         fontFamily: 'Montserrat',
-        fontSize: 72,
-        fill: '#c0c0c0',
+        fontSize: 24,
+        fill: judgeData.color,
         fontWeight: "lighter"
     });
-    const text = new PIXI.Text(chain, style);
-    text.anchor.set(0.5, 0)
-    ChainTextGroup.addChildAt(text, 0);
+    const judgeDataText = new PIXI.Text(`${judgeData.label} : 0`, judgeDataTextStyle);
+    judgeDataText.name = key;
+    judgeDataText.y = 36 * loopIndex;
+    JudgesGroup.addChild(judgeDataText);
+    loopIndex++;
 }
 
 function updateJudgeValues(judges: gameVariables["judges"], chain: number) {
-    JudgesGroup.removeChildren(0);
-    const maxChainTextStyle = new PIXI.TextStyle({
-        fontFamily: 'Montserrat',
-        fontSize: 24,
-        fill: '#c0c0c0',
-        fontWeight: "lighter"
-    });
-    const maxChainText = new PIXI.Text(`Max Chain : ${chain}`, maxChainTextStyle);
-    JudgesGroup.addChild(maxChainText);
 
-    let loopIndex = 1;
+    maxChainText.text = `Max Chain : ${chain}`
+
     for (const key in judges) {
         const judgeData = judgeTable[key as judgeText];
-        const judgeDataTextStyle = new PIXI.TextStyle({
-            fontFamily: 'Montserrat',
-            fontSize: 24,
-            fill: judgeData.color,
-            fontWeight: "lighter"
-        });
-        const judgeDataText = new PIXI.Text(`${judgeData.label} : ${judges[key as judgeText]}`, judgeDataTextStyle)
-        judgeDataText.y = 36 * loopIndex;
-        JudgesGroup.addChild(judgeDataText);
-        loopIndex++;
+        const target: PIXI.Text = JudgesGroup.getChildByName(key);
+        if (target) {
+            target.text = `${judgeData.label} : ${judges[key as judgeText]}`
+        }
     }
+
 }
 
 async function createJudgeText(judgeText: string, color: number, accuracy: number, position: number) {
