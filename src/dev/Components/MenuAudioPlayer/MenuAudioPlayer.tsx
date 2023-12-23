@@ -37,7 +37,8 @@ const MenuAudioPlayer: React.FC = () => {
         AudioRef.current = new Howl({
             src: "./musics/" + AudioList[audioTitle] + "/audio.mp3",
             volume: audioSettings.master * audioSettings.music,
-            autoplay:true
+            autoplay:true,
+            loop:true
         });
 
         AudioRef.current.on("play",()=>{
