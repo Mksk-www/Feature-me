@@ -32,7 +32,7 @@ const MenuAudioPlayer: React.FC = () => {
         console.log(audioTitle);
         
 
-        if(!audioSettings.menuAudio) return console.log(false);
+        if(audioSettings.menuAudio === false) return console.log(false);
 
         AudioRef.current = new Howl({
             src: "./musics/" + AudioList[audioTitle] + "/audio.mp3",
