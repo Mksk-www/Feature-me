@@ -1,6 +1,6 @@
 {
   "name": "feature-me-alpha",
-  "version": "0.4.1",
+  "version": "0.4.4",
   "description": "Music game 'Feature me'",
   "main": "index.js",
   "scripts": {
