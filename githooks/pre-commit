@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "Starting pre-commit script..."
+CLIENT_STATUS=$(git status | grep "client/")
+SERVER_STATUS=$(git status | grep "server/")
+
+if [ -n "$(echo $CLIENT_STATUS)" ]; then
+    CLIENT_COUNT=$(cat ./client/version/build_no)
+    echo current client count $CLIENT_COUNT
+    expr $CLIENT_COUNT + 1 > ./client/version/build_no
+    echo "updated client build_no $CLIENT_COUNT -> $(expr $CLIENT_COUNT + 1)"
+else
+    echo no update found in client
+fi
+
+if [ -n "$(echo $SERVER_STATUS)" ]; then
+    SERVER_COUNT=$(cat ./server/version/build_no)
+    expr $SERVER_COUNT + 1 > ./server/version/build_no
+    echo "updated server build_no $SERVER_COUNT -> $(expr $SERVER_COUNT + 1)"
+else
+    echo no update found in client
+fi
