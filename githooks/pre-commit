@@ -18,5 +18,5 @@ if [ -n "$(echo $SERVER_STATUS)" ]; then
     expr $SERVER_COUNT + 1 > ./server/version/build_no
     echo "updated server build_no $SERVER_COUNT -> $(expr $SERVER_COUNT + 1)"
 else
-    echo no update found in client
+    echo no update found in server
 fi
