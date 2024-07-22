@@ -8,6 +8,9 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@solid-primitives/i18n": "^2.1.1",
+        "@solid-primitives/intersection-observer": "^2.1.6",
+        "@solidjs/router": "^0.14.1",
         "solid-js": "^1.8.17"
     },
     "devDependencies": {
