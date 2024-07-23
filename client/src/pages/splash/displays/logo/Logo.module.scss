@@ -1,0 +1,53 @@
+@import "global/styles/mixin.scss";
+
+.title {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: showLogo 3s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+
+    .inner {
+        display: grid;
+        grid-template-rows: 64px auto;
+        grid-template-columns: repeat(2, auto);
+        column-gap: 16px;
+        row-gap: 8px;
+        align-items: center;
+        justify-items: end;
+
+        .the {
+            font-size: 32px;
+            font-weight: 100;
+        }
+
+        .title {
+            font-size: 64px;
+            @include font-header;
+        }
+
+        .project {
+            grid-column: 1/-1;
+            font-size: 20px;
+            color: $grayText;
+        }
+    }
+}
+
+@keyframes showLogo {
+    from {
+        opacity: 0;
+        transform: translate(-24px, 0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(24px, 0);
+    }
+}
