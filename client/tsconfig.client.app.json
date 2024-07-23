@@ -25,11 +25,12 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
+        "baseUrl": "./",
         "paths": {
-            "global/*":["./src/global/*"],
-            "pages/*": ["./src/pages/*"],
-            "assets/*":["./src/assets/*"],
-            "@/*":["./src/*"]
+            "global/*":["src/global/*"],
+            "pages/*": ["src/pages/*"],
+            "assets/*":["src/assets/*"],
+            "@/*":["src/*"]
         }
     },
     "include": [
