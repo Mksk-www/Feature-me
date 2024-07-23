@@ -1,0 +1,25 @@
+$fontText: "Zen Kaku Gothic", sans-serif;
+$fontHeader: "Julius Sans One", "Zen Kaku Gothic", sans-serif;
+
+@mixin font-header {
+    font-family: $fontHeader;
+}
+
+@mixin font-text {
+    font-family: $fontText;
+}
+
+//color palette
+$pageBackground: rgb(20, 20, 20);
+$textColor: rgb(240, 240, 240);
+$grayText: rgb(200, 200, 200);
+
+$shadowColor: rgb(220, 220, 220);
+
+$borderColor: rgb(220, 220, 220);
+
+$accentColor: rgb(64, 225, 239);
+
+$focusColor: rgb(231, 149, 47);
+
+$inputBackground: rgb(26, 27, 29);

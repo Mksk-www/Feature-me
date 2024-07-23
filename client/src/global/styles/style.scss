@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "Julius Sans One";
+    src: url("assets/fonts/JULIUSSANSONE-REGULAR.TTF");
+}
+
+@font-face {
+    font-family: "Zen Kaku Gothic";
+    src: url("assets/fonts/ZENKAKUGOTHICNEW-REGULAR.TTF");
+}
+
+body {
+    margin: 0;
+    font-family: "Zen Kaku Gothic";
+}
+
+#root {
+    position: relative;
+    height: 100vh;
+}
