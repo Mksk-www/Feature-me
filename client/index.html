@@ -2,23 +2,49 @@
 Copyright 2024 Mksk and Rae The Feature Me Project all rights reserved.
 -->
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Feature Me Alpha</title>
+    <title>Feature Me Alpha</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #cover {
+            position: relative;
+            background-color: rgb(30, 30, 30);
+            height: 100vh;
+        }
+
+        #cover p {
+            position: absolute;
+            bottom: 48px;
+            right: 48px;
+            color: white;
+        }
+
+    </style>
 </head>
 
 <body>
-  <div id="root"></div>
-  <div id="cover">
-    
-  </div>
-  <script type="module" src="/src/index.tsx"></script>
+    <noscript>
+        JavaScriptが無効になっているようです.このページの動作にはJavaScriptが必要です. <br>
+        JavaScript seems to be disabled. This page requires JavaScript to work correctly.
+    </noscript>
+    <div id="root">
+
+    </div>
+    <div id="cover">
+        <p>Loading...</p>
+    </div>
+    <script type="module" src="/src/index.tsx"></script>
 </body>
 
 </html>
