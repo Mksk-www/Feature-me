@@ -1,0 +1,10 @@
+@import "global/styles/mixin.scss";
+
+.app {
+    background-color: $pageBackground;
+    height: 100dvh;
+    position: relative;
+    color: $textColor;
+    @include font-text;
+    overflow: hidden;
+}
