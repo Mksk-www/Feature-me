@@ -7,8 +7,8 @@
     "os-utils": "^0.0.14",
     "phina.js": "^0.2.3"
   },
-  "name": "Feature Me",
-  "version": "1.0.0",
+  "name": "feature-me-alpha",
+  "version": "0.3.7",
   "main": "index.js",
 	"scripts":{
 		"test":"node index.js"

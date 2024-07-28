@@ -70,7 +70,7 @@ window.addEventListener("load", async () => {
 	if (!localStorage.getItem('vLine')) localStorage.setItem('vLine', "1");
 	setVLine(localStorage.getItem('vLine'));
 	if (localStorage.getItem('userid') && localStorage.getItem('username')) autoLogin();
-	if(!localStorage.getItem('keymap')) localStorage.setItem('keymap',JSON.stringify(KEY_TO_JUDGE_LIST));
+	if (!localStorage.getItem('keymap')) localStorage.setItem('keymap', JSON.stringify(KEY_TO_JUDGE_LIST));
 	setKeyMap(localStorage.getItem('keymap'));
 
 	document.querySelectorAll('.modal>.button:not(.static)').forEach(e => {
@@ -82,17 +82,17 @@ window.addEventListener("load", async () => {
 		})
 	})
 
-	select('#passtoggle').addEventListener('click',()=>{
+	select('#passtoggle').addEventListener('click', () => {
 		let passInput = select('input[name="password-login"]')
-		if(passInput.type=="password"){
-			passInput.type="text";
+		if (passInput.type == "password") {
+			passInput.type = "text";
 			select('#passtoggle').textContent = "HIDE"
-		}else{
-			passInput.type="password";
+		} else {
+			passInput.type = "password";
 			select('#passtoggle').textContent = "SHOW"
 		}
 	})
-	
+
 	select('#cover').style.animation = "hidemodal 0.3s ease forwards";
 	await sleep(300);
 	select('#cover').style.display = "none";
@@ -272,17 +272,17 @@ function setVLine(e) {
 	localStorage.setItem("vLine", vLine);
 }
 
-function setKeyMap(map){
+function setKeyMap(map) {
 	KEY_TO_JUDGE_LIST = JSON.parse(map);
 	for (let i of document.querySelectorAll('.keyconfiginput')) {
-		i.value = (KEY_TO_JUDGE_LIST[i.id]["key"]==" "?"space":KEY_TO_JUDGE_LIST[i.id]["key"]);
-		i.addEventListener('keydown',(e)=>{
+		i.value = (KEY_TO_JUDGE_LIST[i.id]["key"] == " " ? "space" : KEY_TO_JUDGE_LIST[i.id]["key"]);
+		i.addEventListener('keydown', (e) => {
 			e.preventDefault();
-			if(e.key=="Escape") return notification("",'Keybind register Error:このキーは既に予約されているため,設定できません.');
-			KEY_TO_JUDGE_LIST[i.id] = {code:e.keyCode,key:e.key};
-			i.value ="";
-			i.value = (e.key==" "?"space":e.key);
-			localStorage.setItem('keymap',JSON.stringify(KEY_TO_JUDGE_LIST))
+			if (e.key == "Escape") return notification("", 'Keybind register Error:このキーは既に予約されているため,設定できません.');
+			KEY_TO_JUDGE_LIST[i.id] = { code: e.keyCode, key: e.key };
+			i.value = "";
+			i.value = (e.key == " " ? "space" : e.key);
+			localStorage.setItem('keymap', JSON.stringify(KEY_TO_JUDGE_LIST))
 		})
 	}
 }
@@ -294,7 +294,7 @@ function reset() {
 	setJudgeType(true);
 	setEffectType(0);
 	setFps(120);
-	setKeyMap(JSON.stringify([{code:68,key:"d"},{code:70,key:"f"},{code:74,key:"j"},{code:75,key:"k"},{code:32,key:" "},{code:69,key:"e"},{code:75,key:"i"}]));
+	setKeyMap(JSON.stringify([{ code: 68, key: "d" }, { code: 70, key: "f" }, { code: 74, key: "j" }, { code: 75, key: "k" }, { code: 32, key: " " }, { code: 69, key: "e" }, { code: 75, key: "i" }]));
 }
 
 function setAssets(music) {
@@ -402,11 +402,11 @@ function shareOnLeaderboard() {
 	select('#shareleaderboard').style.animation = "showmodal 0.3s ease forwards"
 }
 function submitShare() {
-	let xhr = new XMLHttpRequest();
+	/* let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'https://FeatureMe-Server.mksksub.repl.co/api/post/leaderboard');
 	xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
 	xhr.send(`music=${playing}&name=${select('#shareleaderboard>div>input').value}&score=${select('#score').textContent}&rank=${select('#rank').textContent}&time=${getTime()}`)
-	console.log("sent result.")
+	console.log("sent result.") */
 }
 function set0(num) {
 	var ret;
@@ -436,12 +436,12 @@ function sleep(msec) {
 function setScoreRank(score) {
 	const highScore = ["SSS+", "SSS", "SS+", "SS", "S+", "S", "AAA", "AA"];
 	const lowScore = ["B", "C"];
-	if(score >=1000000) return "SSS+";
+	if (score >= 1000000) return "SSS+";
 	else if (score > 880000) return highScore[Math.floor((1000000 - score) / 15000)];
 	else if (score > 800000) return "A";
 	else if (score <= 600000) return "D";
 	else return lowScore[Math.floor((800000 - score) / 100000)];
-	
+
 }
 
 function setMusicList() {
@@ -474,76 +474,76 @@ function showUserDetails() {
 }
 
 function loginxhr() {
-	document.querySelectorAll('#login-username-error,#login-password-error').forEach(e => e.textContent = "");
-	const name = select('input[name="username-login"]').value;
-	const pass = select('input[name="password-login"]').value;
-	if (logintype == "login") {
-		let xhr = new XMLHttpRequest();
-		xhr.open('POST', 'https://FeatureMe-Server.mksksub.repl.co/api/post/account/login');
-		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-		xhr.send(`username=${name}&password=${pass}&auto=false`);
-		xhr.onload = e => {
-			const res = JSON.parse(xhr.response)
-			if (xhr.response.includes('Error')) notification("エラーが発生しました.後ほどお試しください.", res.details);
-			else {
-				userData = res;
-				login = true;
-				setUserData();
-				notification('', "ログインしました.");
-				select('#loginmodal').style.animation = "hidemodal 0.3s ease forwards";
-				setTimeout(() => {
-					select('#loginmodal').style.display = "none"
-				}, 300)
+	/* 	document.querySelectorAll('#login-username-error,#login-password-error').forEach(e => e.textContent = "");
+		const name = select('input[name="username-login"]').value;
+		const pass = select('input[name="password-login"]').value;
+		if (logintype == "login") {
+			let xhr = new XMLHttpRequest();
+			xhr.open('POST', 'https://FeatureMe-Server.mksksub.repl.co/api/post/account/login');
+			xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+			xhr.send(`username=${name}&password=${pass}&auto=false`);
+			xhr.onload = e => {
+				const res = JSON.parse(xhr.response)
+				if (xhr.response.includes('Error')) notification("エラーが発生しました.後ほどお試しください.", res.details);
+				else {
+					userData = res;
+					login = true;
+					setUserData();
+					notification('', "ログインしました.");
+					select('#loginmodal').style.animation = "hidemodal 0.3s ease forwards";
+					setTimeout(() => {
+						select('#loginmodal').style.display = "none"
+					}, 300)
+				}
 			}
-		}
-	} else {
-		if (!name.match(/^[A-Za-z0-9]+$/) || name.length > 11 || !name) {
-			select('#login-username-error').textContent = `ユーザー名で使用でるのは10文字以内の半角英数字です.`;
-			return;
-		}
-		if (!pass.match(/^[A-Za-z0-9]+$/) || pass.length > 33 || pass.length < 6) {
-			select('#login-password-error').textContent = `パスワードで使用できるのは6から32文字の半角英数字です.`;
-			return;
-		}
-		let xhr = new XMLHttpRequest();
-		xhr.open('POST', 'https://FeatureMe-Server.mksksub.repl.co/api/post/account/register');
-		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-		xhr.send(`username=${name}&password=${pass}`);
-		xhr.onload = e => {
-			const res = JSON.parse(xhr.response)
-			console.log(res);
-			if (xhr.response.includes('Error')) notification("エラーが発生しました.後ほどお試しください.", res.details);
-			else {
-				notification('登録完了', "正常に登録しました.ログインしてください.");
-				select('#loginmodal').style.animation = "hidemodal 0.3s ease forwards";
-				setTimeout(() => {
-					select('#loginmodal').style.display = "none"
-					select('#loginmodal-first').style.display = 'block'; select('#loginmodal-second').style.display = 'none';
-					select('#submit-login').style.display = 'none';
-				}, 300)
-
+		} else {
+			if (!name.match(/^[A-Za-z0-9]+$/) || name.length > 11 || !name) {
+				select('#login-username-error').textContent = `ユーザー名で使用でるのは10文字以内の半角英数字です.`;
+				return;
 			}
-		}
-	}
+			if (!pass.match(/^[A-Za-z0-9]+$/) || pass.length > 33 || pass.length < 6) {
+				select('#login-password-error').textContent = `パスワードで使用できるのは6から32文字の半角英数字です.`;
+				return;
+			}
+			let xhr = new XMLHttpRequest();
+			xhr.open('POST', 'https://FeatureMe-Server.mksksub.repl.co/api/post/account/register');
+			xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+			xhr.send(`username=${name}&password=${pass}`);
+			xhr.onload = e => {
+				const res = JSON.parse(xhr.response)
+				console.log(res);
+				if (xhr.response.includes('Error')) notification("エラーが発生しました.後ほどお試しください.", res.details);
+				else {
+					notification('登録完了', "正常に登録しました.ログインしてください.");
+					select('#loginmodal').style.animation = "hidemodal 0.3s ease forwards";
+					setTimeout(() => {
+						select('#loginmodal').style.display = "none"
+						select('#loginmodal-first').style.display = 'block'; select('#loginmodal-second').style.display = 'none';
+						select('#submit-login').style.display = 'none';
+					}, 300)
+	
+				}
+			}
+		} */
 }
 
 async function notification(title, details) {
-/* 	let notificationdiv = document.createElement("div");
-	console.log(notificationdiv)
-	notificationdiv.className = "notification";
-	document.body.appendChild(notificationdiv);
-	notificationdiv.innerHTML = `
-	<h2>${title}</h2>
-	<p>${details}</p>
-	`
-	notificationdiv.style.animation = "notificationshow 0.3s ease forwards";
-	await sleep(3000);
-	notificationdiv.style.animation = "notificationhide 0.3s ease forwards";
-	await sleep(300)
-	notificationdiv.remove(); */
+	/* 	let notificationdiv = document.createElement("div");
+		console.log(notificationdiv)
+		notificationdiv.className = "notification";
+		document.body.appendChild(notificationdiv);
+		notificationdiv.innerHTML = `
+		<h2>${title}</h2>
+		<p>${details}</p>
+		`
+		notificationdiv.style.animation = "notificationshow 0.3s ease forwards";
+		await sleep(3000);
+		notificationdiv.style.animation = "notificationhide 0.3s ease forwards";
+		await sleep(300)
+		notificationdiv.remove(); */
 	const notification = new inAppNotification({
-		title:title,
-		description:details,
+		title: title,
+		description: details,
 	})
 
 }
@@ -558,7 +558,7 @@ function setUserData() {
 }
 
 function autoLogin() {
-	let xhr = new XMLHttpRequest();
+	/* let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'https://FeatureMe-Server.mksksub.repl.co/api/post/account/login');
 	xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
 	xhr.send(`username=${localStorage.getItem('username')}&id=${localStorage.getItem('userid')}&auto=true`);
@@ -578,11 +578,11 @@ function autoLogin() {
 				select('#loginmodal').style.display = "none"
 			}, 300)
 		}
-	}
+	} */
 }
 
 function openmypage(params) {
-	window.open(`https://FeatureMe-Server.mksksub.repl.co/account/${userData.name}`)
+	//window.open(`https://FeatureMe-Server.mksksub.repl.co/account/${userData.name}`)
 }
 
 function logout(params) {
@@ -598,7 +598,7 @@ function logout(params) {
 function sendNewUserData(rank, score, type) {
 	score = String(score)
 	let rating = playingMusicData.lev;
-	if(typeof rating == "string") rating = Number(rating.slice(0,2)) +0.5
+	if (typeof rating == "string") rating = Number(rating.slice(0, 2)) + 0.5
 	const score2 = Number(score.slice(-4, -2));
 	const score3 = Number(score.slice(-4, -1));
 	let exp = 300;
@@ -607,7 +607,7 @@ function sendNewUserData(rank, score, type) {
 			rating += 2.5
 			break;
 		case "SSS":
-			rating += 2 
+			rating += 2
 			break;
 		case "SS+":
 			rating += 1.5 + (score3 - 500) / 500
@@ -636,26 +636,26 @@ function sendNewUserData(rank, score, type) {
 	rating = Math.floor(rating * 100) / 100
 	if (rating < 0) rating = 0;
 
-	if(playingMusicData.diff=="ozma") rating = 0;
+	if (playingMusicData.diff == "ozma") rating = 0;
 	console.log(rating);
 
 	if (!login) return;
-	let xhr = new XMLHttpRequest();
-	xhr.open('POST', 'https://FeatureMe-Server.mksksub.repl.co/api/post/account/newdata');
-	xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-	xhr.send(`username=${localStorage.getItem('username')}&id=${localStorage.getItem('userid')}&rating=${rating}&exp=${exp}`);
-	xhr.onload = e => {
-		const res = JSON.parse(xhr.response)
-		if (xhr.response.includes('Error')) notification("エラーが発生しました.後ほどお試しください.", res.details);
-		else {
-			const res = JSON.parse(xhr.response);
-			oldUserData = userData
-			userData = res;
-			setUserData();
-			showDiffUserData();
-			notification('', "ユーザー情報を更新しました.");
-		}
-	}
+	/* 	let xhr = new XMLHttpRequest();
+		xhr.open('POST', 'https://FeatureMe-Server.mksksub.repl.co/api/post/account/newdata');
+		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+		xhr.send(`username=${localStorage.getItem('username')}&id=${localStorage.getItem('userid')}&rating=${rating}&exp=${exp}`);
+		xhr.onload = e => {
+			const res = JSON.parse(xhr.response)
+			if (xhr.response.includes('Error')) notification("エラーが発生しました.後ほどお試しください.", res.details);
+			else {
+				const res = JSON.parse(xhr.response);
+				oldUserData = userData
+				userData = res;
+				setUserData();
+				showDiffUserData();
+				notification('', "ユーザー情報を更新しました.");
+			}
+		} */
 }
 
 async function showDiffUserData() {

@@ -11,7 +11,7 @@ let MARKER_APPEARANCE_DELTA = 750; // ノーツ出現時間(ms): 大きくする
 let UNIT_ARRANGE_RADIUS = SCREEN_WIDTH * 0.3 ;
 let MUSIC_START_DELAY;
 let UNIT_ICON_Y = 625
-const ASSETS_BASE_DIR = "https://FeatureMe-Server.mksksub.repl.co/"
+const ASSETS_BASE_DIR = "http://api.v0-3x.alpha.featureme.net/"
 
 
 
