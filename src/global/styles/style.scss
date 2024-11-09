@@ -1,4 +1,36 @@
+@use "./mixin";
+
 @font-face {
-  font-family: 'Julius Sans One';
-  src: url("");
+    font-family: 'Julius Sans One';
+    src: url("fonts/JuliusSansOne-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Zen Kaku Gothic';
+    src: url("fonts/ZenKakuGothicNew-Medium.ttf");
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body{
+    margin: 0;
+    color: mixin.$textColor;
+    @include mixin.font-body;
+}
+
+h1,h2,h3,h4,h5,h6{
+    @include mixin.font-heading;
+}
+
+button,input,form{
+    all: unset;
+}
+
+#root{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
 }
