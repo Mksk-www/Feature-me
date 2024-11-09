@@ -1,0 +1,52 @@
+@use "Global/styles/mixin";
+
+.title {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    
+    .inner{
+        display: grid;
+        grid-auto-rows: 64px auto;
+        grid-template-columns: repeat(2,auto);
+        gap: 8px 16px;
+        align-items: center;
+        justify-items: end;
+        animation: showLogo 3s cubic-bezier(0.22,0.61,0.36,1) forwards;
+        
+        .the{
+            font-size: 32px;
+            
+        }
+        
+        .featureme{
+            font-size: 64px;
+            @include mixin.font-heading;
+            animation: showLogo 3s cubic-bezier(0.22,0.61,0.36,1) forwards;
+        }
+        
+        .project{
+            grid-column: 1/-1;
+            font-size: 20px;
+            color: mixin.$grayText;
+        }
+    }
+}
+
+@keyframes showLogo {
+    from{
+        opacity: 0;
+        transform: translateX(-24px);
+    }    
+    50%{
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to{
+        opacity: 0;
+        transform: translateX(24px);
+    }
+}

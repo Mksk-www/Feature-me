@@ -1,0 +1,62 @@
+@use "Global/styles/mixin";
+
+.notice{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 8px;
+    
+    &.exit{
+        animation: fadeOut 0.5s ease forwards;
+    }
+    
+    .header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        z-index: 100;
+        animation: fadeIn 2s ease;
+        height: 64px;
+        
+        .rect{
+            background-color: mixin.$textColor;
+            height: 48px;
+            width: 28px;
+            clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+            opacity: 0;
+        }
+        
+        h1{
+            opacity: 0;
+            padding: 0 8px;
+            background-image: linear-gradient(to right, transparent, black, transparent);
+            animation: slideTile 0.2s cubic-bezier(0.33,1,0.68,1) 450ms forwards;
+        }
+    }
+    
+    .spacer{
+        width: 100%;
+    }
+    
+    p{
+        overflow: hidden;
+        max-width: calc(100% - 32px);
+        width: 40em;
+        font-size: calc(24px + 0.25vw);
+        animation: fadeIn 1s ease forwards 2s;
+        opacity: 0;
+    }
+}
+
+@keyframes slideTile {
+    from{
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
