@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm-run-all --parallel vite typesafe-i18n",
+    "vite": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typesafe-i18n": "typesafe-i18n"
   },
   "devDependencies": {
     "typescript": "~5.6.2",
@@ -14,10 +16,15 @@
   },
   "dependencies": {
     "@solidjs/router": "^0.15.1",
+    "@types/node": "^22.9.0",
+    "budoux": "^0.6.3",
     "clsx": "^2.1.1",
+    "npm-run-all": "^4.1.5",
     "sass": "^1.80.6",
     "solid-devtools": "^0.30.1",
     "solid-js": "^1.9.3",
+    "solid-motionone": "^1.0.2",
+    "typesafe-i18n": "^5.26.2",
     "vite-plugin-solid": "^2.10.2"
   }
 }
