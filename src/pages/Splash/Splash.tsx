@@ -4,11 +4,13 @@ import style from "./Splash.module.scss";
 import {createSignal, Match, onCleanup, onMount, Switch} from "solid-js";
 import Logo from "Pages/Splash/elements/logo/Logo.tsx";
 import Notice from "Pages/Splash/elements/notice/Notice.tsx";
+import useAnimatedNavigate from "Global/hooks/animatedNavigation/useAnimatedNavigate.ts";
 
 export default () =>{
     
     const [element,setElement] = createSignal(0);
     let animationTimeout:NodeJS.Timeout;
+    const navigate = useAnimatedNavigate()
     
     onMount(()=>{
         animationTimeout = setTimeout(next,4000);
@@ -21,10 +23,10 @@ export default () =>{
     function next(){
         if (element() == 0){
             setElement(1);
-            animationTimeout = setTimeout(next,4000);
+            animationTimeout = setTimeout(next,12000);
             
         }else {
-            
+            navigate("/title")
         }
     }
     

@@ -4,7 +4,6 @@ import {For, getOwner, onMount} from "solid-js";
 import {useI18nContext} from "@/i18n/i18n-solid.ts";
 import BudouX from "Global/components/budoux/BudouX.tsx";
 import noticeAnimation from "Pages/Splash/animation/noticeAnimation.ts";
-import sleep from "Global/utils/sleep/sleep.ts";
 
 interface NoticeProps {
     next:()=>void;

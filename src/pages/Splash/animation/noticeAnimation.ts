@@ -1,5 +1,5 @@
 import style from "../elements/notice/Notice.module.scss";
-import sleep from "Global/utils/sleep/sleep.ts";
+import task from "Global/utils/task/task";
 import {createMotion} from "solid-motionone";
 import easing from "Global/utils/easing/easing.ts";
 import {Owner, runWithOwner} from "solid-js";
@@ -20,7 +20,7 @@ export default async (containerRef:HTMLDivElement,headerRef:HTMLDivElement,space
     headerRef.style.height = `${boundingBox.height}px`;
     
     spacerRef.style.height = `${boundingBox.height}px`;
-    await sleep(1500);
+    await task.sleep(1500);
     
     runWithOwner(owner,()=>{
         createMotion(
@@ -37,9 +37,9 @@ export default async (containerRef:HTMLDivElement,headerRef:HTMLDivElement,space
         )
     });
     
-    await sleep(5000);
+    await task.sleep(5000);
     containerRef.classList.add(style.exit);
-    await sleep(1000);
+    await task.sleep(1500);
     
     return;
     
