@@ -1,0 +1,75 @@
+@use "Global/styles/mixin";
+
+.title {
+    .background {
+        height: 100%;
+        width: 100%;
+        scale: 1.1;
+        animation: animateBg 5s ease forwards;
+    }
+
+    .content {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        font-size: calc((100% + 0.25vw) * 1.5);
+        animation: fadeIn 1.5s ease 3.5s forwards;
+        &.show{
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+        .title {
+            @include mixin.font-heading;
+            position: absolute;
+            top: calc(50% - 2em);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-style: italic;
+        }
+        .subtitle{
+            @include mixin.font-heading;
+            position: absolute;
+            top: calc(50% - 1em + 8px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-style: italic;
+        }
+
+        .start {
+            @include mixin.font-heading;
+            position: absolute;
+            top: calc(50% + 2em + 64px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-image: linear-gradient(to right, transparent, mixin.$blackText, transparent);
+        }
+        
+        footer{
+            position: absolute;
+            bottom: 0;
+            color: mixin.$grayText;
+            font-size: 1rem;
+            padding: 4px;
+        }
+    }
+}
+
+
+@keyframes animateBg {
+    from {
+        transform: translateY(-5%);
+        filter: brightness(0);
+    }
+    70% {
+        filter: brightness(0.5);
+    }
+    to {
+        transform: translateY(0);
+        filter: brightness(1);
+    }
+
+
+}
