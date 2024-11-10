@@ -7,12 +7,15 @@ import "Global/styles/style.scss";
 import FullPageFrame from "Global/components/frame/fullPageFrame/FullPageFrame.tsx";
 import TypesafeI18n from "@/i18n/i18n-solid.ts";
 import {loadAllLocales} from "@/i18n/i18n-util.sync.ts";
+import LoadingScreen from "Global/components/loadingScreen/LoadingScreen.tsx";
+import initLocalStorage from "Global/features/localStorage/init.ts";
 
 export default () =>{
     
     const [isReady,setIsReady] = createSignal(false);
     
     onMount(()=>{
+        initLocalStorage();
         loadAllLocales();
         setIsReady(true);
     })
@@ -26,6 +29,7 @@ export default () =>{
                             <Match when={isDev}><Router>{PageRouter}</Router></Match>
                             <Match when={!isDev}><MemoryRouter>{PageRouter}</MemoryRouter></Match>
                         </Switch>
+                        <LoadingScreen/>
                     </TypesafeI18n>
                 </FullPageFrame>
                 <Match when={!isReady()}>
