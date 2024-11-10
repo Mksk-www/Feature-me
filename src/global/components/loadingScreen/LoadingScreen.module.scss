@@ -1,0 +1,64 @@
+@use "Global/styles/mixin";
+
+.loadingScreen{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: mixin.$contentBackground;
+
+    &.enter{
+        animation: fadeIn 1s ease forwards;
+    }
+    
+    &.exit{
+        animation: fadeOut 1s ease forwards;
+    }
+    
+    .content{
+        position: absolute;
+        right: 64px;
+        bottom: 64px;
+        font-size: larger;
+        
+        .baseText{
+            position: relative;
+            display: inline-block;
+            top: 0;
+            left: 0;
+            padding: 4px;
+        }
+        .overlayText{
+            position: absolute;
+            display: inline-block;
+            top: 0;
+            left: 0;
+            color: mixin.$blackText;
+            animation: clipText 2s cubic-bezier(0.8,0,0.2,1) infinite;
+            padding: 4px;
+            
+            &::before{
+                content: '';
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: mixin.$textColor;
+            }
+        }
+    }
+    
+}
+
+@keyframes clipText {
+    from{
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    50%{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    to{
+        clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+    }
+}
