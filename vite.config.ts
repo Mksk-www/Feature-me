@@ -17,7 +17,7 @@ export default defineConfig({
         alias: {
             "Global/": "/src/global/",
             "Pages/": "/src/pages/",
-            "Assets/": "/src/assets",
+            "Assets/": "/src/assets/",
             "@/": "/src/"
         }
     }
